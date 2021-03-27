@@ -25,6 +25,19 @@ namespace VehicleShowRoomManager
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Contennt/layout-style").Include(
+                    "~/Content/assets/vendor/bootstrap/css/bootstrap.min.css",
+                    "~/Content/assets/vendor/fonts/circular-std/style.css",
+                    "~/Content/assets/libs/css/style.css",
+                    "~/Content/assets/vendor/fonts/fontawesome/css/fontawesome-all.css"
+
+                 ));
+            bundles.Add(new ScriptBundle("~/Content/layout-scripts").Include(
+                    "~/Content/assets/vendor/jquery/jquery-3.3.1.min.js",
+                    "~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.js",
+                    "~/Content/assets/vendor/slimscroll/jquery.slimscroll.js",
+                    "~/Content/assets/libs/js/main-js.js"
+                ));
         }
     }
 }
