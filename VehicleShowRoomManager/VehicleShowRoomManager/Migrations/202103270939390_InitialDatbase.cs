@@ -109,7 +109,26 @@
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Vehicles", t => t.VehicleId, cascadeDelete: true)
                 .Index(t => t.VehicleId);
-            
+
+            CreateTable(
+             "dbo.Customers",
+             c => new
+             {
+                 Id = c.Int(nullable: false, identity: true),
+                 ReceiptPrice = c.Double(nullable: false),
+                 ReceivedAt = c.DateTime(nullable: false),
+                 PrepaymentMoney = c.Double(nullable: false),
+                 VehicleId = c.Int(nullable: false),
+                 Status = c.Int(nullable: false),
+                 CreatedAt = c.DateTime(nullable: false),
+                 UpdatedAt = c.DateTime(nullable: false),
+             })
+             .PrimaryKey(t => t.Id)
+             .ForeignKey("dbo.Vehicles", t => t.VehicleId, cascadeDelete: true)
+             .Index(t => t.VehicleId);
+
+
+
         }
         
         public override void Down()
