@@ -6,6 +6,10 @@
 
     List<VehicleShowRoomManager.Models.VehicleModel> listModels = ViewBag.Models as List<VehicleShowRoomManager.Models.VehicleModel>;
     var modelSelectList = new SelectList(listModels, "Id", "ModelNumber", 1);
+
+
+    List<VehicleShowRoomManager.Models.Brand> listBrands = ViewBag.Brands as List<VehicleShowRoomManager.Models.Brand>;
+    var BrandSelectList = new SelectList(listBrands, "Id", "Name", 1);
 }
 
 <h2>Create Vehicle</h2>
@@ -18,51 +22,69 @@
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>Vehicle</h4>
+                <h4>Vehicle Information</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row container">
+                    <div class="form-group col-md-5">
+                        <label for="Brand" class="control-label">Brand </label>
+                        <select class="form-control" id="brand-select">
+                    
+                            @foreach (var item in listBrands)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    <div class="form-group col-md-5">
+                        <label for="VehicleModelId" class="control-label">Model Number </label>
+                        <select class="form-control" id="VehicleModelId"  name="VehicleModelId">
+                        
+                            <!--update by js-->
+                        </select>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.VehicleModelId, "Vehicle Model", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-row container">
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-                        @Html.DropDownListFor(model => model.VehicleModelId, modelSelectList, htmlAttributes: new { @class = "form-control" })
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Control, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EnumDropDownListFor(model => model.Control, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Control, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                <div class="form-row container">
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
 
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Control, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EnumDropDownListFor(model => model.Control, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Control, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Cover, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -114,4 +136,51 @@
 
 @section pageScripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        const brandSelectBox = document.getElementById("brand-select");
+        const modelSelectBox = document.getElementById("VehicleModelId");
+        $(function () {
+            const id = brandSelectBox.value;
+
+            $.ajax({
+                url: "/ShowRoom/ListModelsByBrands/".concat(id),
+                type: "GET",
+
+
+                traditional: true,
+                dataType: "html",
+                success: function (data) {
+                    updateModelSelectBox(data);
+                },
+                error: function () {
+                    alert("An error has occured!!!");
+                }
+            });
+        });
+        brandSelectBox.addEventListener("change", e => {
+            const id = e.target.value;
+
+            $.ajax({
+                url: "/ShowRoom/ListModelsByBrands/".concat(id),
+                type: "GET",
+
+
+                traditional: true,
+                dataType: "html",
+                success: function (data) {
+                    updateModelSelectBox(data);
+                },
+                error: function () {
+                    alert("An error has occured!!!");
+                }
+            });
+
+        });
+
+        function updateModelSelectBox(data) {
+ 
+            modelSelectBox.innerHTML = "";
+            modelSelectBox.innerHTML = data;
+        }
+    </script>
 }

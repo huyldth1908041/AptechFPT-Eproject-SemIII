@@ -18,6 +18,7 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult CreateVehicle()
         {
             ViewBag.Models = _db.VehicleModels.ToList();
+            ViewBag.Brands = _db.Brands.ToList();
             return View();
         }
         [HttpPost]
@@ -34,6 +35,12 @@ namespace VehicleShowRoomManager.Controllers
             _db.SaveChanges();
               
             return RedirectToAction("Index", "Home");
+        }
+    
+        public ActionResult ListModelsByBrands(int id)
+        {
+            var list = _db.Brands.Find(id).VehicleModels.ToList();
+            return PartialView(list);
         }
     }
 }
