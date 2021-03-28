@@ -17,8 +17,7 @@
 
 <div class="card">
     <div class="card-body">
-        @using (Html.BeginForm("CreateVehicle", "ShowRoom", "POST"))
-        {
+        <form action="@Url.Action("CreateVehicle", "ShowRoom")" method="post" id="create-vehicle-form">
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
@@ -29,7 +28,7 @@
                     <div class="form-group col-md-5">
                         <label for="Brand" class="control-label">Brand </label>
                         <select class="form-control" id="brand-select">
-                    
+
                             @foreach (var item in listBrands)
                             {
                                 <option value="@item.Id">@item.Name</option>
@@ -39,8 +38,8 @@
 
                     <div class="form-group col-md-5">
                         <label for="VehicleModelId" class="control-label">Model Number </label>
-                        <select class="form-control" id="VehicleModelId"  name="VehicleModelId">
-                        
+                        <select class="form-control" id="VehicleModelId" name="VehicleModelId">
+
                             <!--update by js-->
                         </select>
                     </div>
@@ -88,9 +87,16 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Cover, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Cover, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Cover, "", new { @class = "text-danger" })
+                    <div class="field item form-group">
+
+                        <div>
+                            <button type="button" id="upload_widget" class="btn btn-secondary" style="margin-left: 10px ">
+                                Click to upload
+                            </button>
+                        </div>
+                        <div class="col-md-6 col-sm-6 mt-2 cover">
+
+                        </div>
                     </div>
                 </div>
 
@@ -126,9 +132,11 @@
                     </div>
                 </div>
             </div>
-        }
+        </form>
     </div>
 </div>
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -157,6 +165,7 @@
                 }
             });
         });
+
         brandSelectBox.addEventListener("change", e => {
             const id = e.target.value;
 
@@ -178,9 +187,49 @@
         });
 
         function updateModelSelectBox(data) {
- 
+
             modelSelectBox.innerHTML = "";
             modelSelectBox.innerHTML = data;
         }
+    </script>
+
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var myWidget = cloudinary.createUploadWidget({
+                cloudName: 'dnby4zyda',
+                uploadPreset: 'gunsodn9',
+                multiple: true,
+                form: '#create-vehicle-form',
+                fieldName: 'Covers[]',
+                thumbnails: '.cover',
+                cropping: true,
+                cropping_show_back_button: true
+                
+            }, (error, result) => {
+                if (!error && result && result.event === "success") {
+                    var inputValues = document.querySelectorAll('input[name="Covers[]"]');
+                    for (let i = 0; i < inputValues.length; i++) {
+                        inputValues[i].value = inputValues[i].getAttribute('data-cloudinary-public-id')
+                    }
+                }
+            }
+            )
+            document.getElementById("upload_widget").addEventListener("click", function () {
+                myWidget.open();
+            }, false);
+
+
+
+            $('body').on('click', '.cloudinary-delete', function () {
+                var splittedImg = $(this).parent().find('img').attr('src').split('/');
+                var imgName = splittedImg[splittedImg.length - 1];
+                var splittedImgName = imgName.split('.');
+                var imgCode = splittedImgName[0];
+                $('input[data-cloudinary-public-id="' + imgCode + '"]').remove();
+            });
+        })
+
     </script>
 }
