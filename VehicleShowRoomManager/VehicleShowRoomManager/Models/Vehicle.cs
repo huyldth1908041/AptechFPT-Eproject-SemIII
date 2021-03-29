@@ -9,6 +9,9 @@ namespace VehicleShowRoomManager.Models
 {
     public class Vehicle
     {
+        private static string _cloudinaryDomain = "https://res.cloudinary.com/dnby4zyda/image/upload/v1616932607/lvnuiiti3efqjb3avjwo.png";
+        private static string _cloudinaryPrọectId = "dnby4zyda";
+        private static string _ = "dnby4zyda";
         public int Id { get; set; }
         [Required]
         public string Color { get; set; }
