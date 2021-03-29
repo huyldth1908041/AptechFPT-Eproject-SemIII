@@ -142,6 +142,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\GoodsReceipt.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\PurchaseOrderDetail.cs" />
     <Compile Include="Models\ShowRoomDataContext.cs" />
@@ -604,12 +605,18 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ShowRoom\CreateVehicle.cshtml" />
+
+    <Content Include="Views\ShowRoom\CreateGoodsReceipt.cshtml" />
+    <Content Include="Views\ShowRoom\RegisterVehicleData.cshtml" />
+
     <Content Include="Views\ShowRoom\ListModelsByBrands.cshtml" />
     <Content Include="Views\ShowRoom\CreatePurchaseOrder.cshtml" />
     <Content Include="Views\ShowRoom\ListPurchaseOrder.cshtml" />
     <Content Include="Views\ShowRoom\ListPurchaseOrderDetail.cshtml" />
+
     <Content Include="Views\ShowRoom\ListVehicle.cshtml" />
     <Content Include="Views\ShowRoom\VehicleDetail.cshtml" />	
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
