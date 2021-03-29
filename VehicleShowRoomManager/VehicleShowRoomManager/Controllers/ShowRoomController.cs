@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VehicleShowRoomManager.Models;
@@ -23,7 +24,7 @@ namespace VehicleShowRoomManager.Controllers
         [HttpPost]
         public ActionResult CreateVehicle(Vehicle model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
@@ -32,8 +33,28 @@ namespace VehicleShowRoomManager.Controllers
             model.Status = Vehicle.VehicleStatus.Pending;
             _db.Vehicles.Add(model);
             _db.SaveChanges();
-              
+
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult ListVehicle()
+        {
+            var listVehicles = _db.Vehicles.ToList();
+            return View(listVehicles);
+        }
+        public ActionResult VehicleDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Vehicle vehicleDetail = _db.Vehicles.Find(id);
+            if (vehicleDetail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vehicleDetail);
+        }
+
+
     }
 }
