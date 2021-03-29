@@ -4,6 +4,10 @@
     ViewBag.Title = "ListVehicle";
 }
 
+@section PageStyles {
+    <link href="@Url.Content("~/Content/assets/libs/css/ListVehicle.css")" rel="stylesheet" />
+}
+
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -38,16 +42,15 @@
                         </div>
                         <div class="product-content">
                             <div class="product-content-head">
-                                <h3 class="product-title">   @Html.DisplayFor(modelItem => item.Name)s</h3>
+                                <h3 class="product-title">   @Html.DisplayFor(modelItem => item.Name)</h3>
                                 <div class="product-rating d-inline-block">
                                     @Html.DisplayFor(modelItem => item.Status)
                                 </div>
-                                <div class="product-price"> @Html.DisplayFor(modelItem => item.SalePrice)</div>
+                                <div class="product-price"> @Html.DisplayFor(modelItem => item.SalePrice) VND</div>
                             </div>
                             <div class="product-btn">
                                 <a href="#" class="btn btn-primary">Add to Cart</a>
-                                <a href="#" class="btn btn-outline-light"> @Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id })</a>
-                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                                <div class="btn btn-outline-light">@Html.ActionLink("Detail", "VehicleDetail", new {id = item.Id })</div>
                             </div>
                         </div>
                     </div>

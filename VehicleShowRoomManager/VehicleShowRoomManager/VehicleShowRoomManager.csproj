@@ -183,6 +183,7 @@
     <Content Include="Content\assets\images\product-pic.jpg" />
     <Content Include="Content\assets\images\slack.png" />
     <Content Include="Content\assets\images\switch.png" />
+    <Content Include="Content\assets\libs\css\ListVehicle.css" />
     <Content Include="Content\assets\libs\css\style.css" />
     <Content Include="Content\assets\libs\js\dashboard-ecommerce.js" />
     <Content Include="Content\assets\libs\js\dashboard-finance.js" />
@@ -605,18 +606,14 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ShowRoom\CreateVehicle.cshtml" />
-
     <Content Include="Views\ShowRoom\CreateGoodsReceipt.cshtml" />
     <Content Include="Views\ShowRoom\RegisterVehicleData.cshtml" />
-
     <Content Include="Views\ShowRoom\ListModelsByBrands.cshtml" />
     <Content Include="Views\ShowRoom\CreatePurchaseOrder.cshtml" />
     <Content Include="Views\ShowRoom\ListPurchaseOrder.cshtml" />
     <Content Include="Views\ShowRoom\ListPurchaseOrderDetail.cshtml" />
-
     <Content Include="Views\ShowRoom\ListVehicle.cshtml" />
-    <Content Include="Views\ShowRoom\VehicleDetail.cshtml" />	
-
+    <Content Include="Views\ShowRoom\VehicleDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
