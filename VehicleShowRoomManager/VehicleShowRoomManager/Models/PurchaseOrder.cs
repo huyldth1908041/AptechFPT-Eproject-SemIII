@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace VehicleShowRoomManager.Models
@@ -28,5 +29,21 @@ namespace VehicleShowRoomManager.Models
         public DateTime UpdatedAt { get; set; }
 
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
+
+        public string GetModelNames()
+        {
+            if(this.PurchaseOrderDetails == null)
+            {
+                return "";
+            }
+            var modelNames = new StringBuilder();
+            foreach(var item in this.PurchaseOrderDetails)
+            {
+                modelNames.Append(item.VehicleModel.ModelNumber);
+                modelNames.Append(", ");
+            }
+            modelNames.Length -= 2;
+            return modelNames.ToString();
+        }
     }
 }

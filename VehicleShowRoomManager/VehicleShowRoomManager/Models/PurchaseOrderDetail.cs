@@ -30,5 +30,12 @@ namespace VehicleShowRoomManager.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
+        public PurchaseOrderDetailStatus Status { get; set; }
+
+        public enum PurchaseOrderDetailStatus
+        {
+            Pending = 0, Done = 1, Deleted = -1
+        }
+
     }
 }

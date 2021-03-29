@@ -1,0 +1,7 @@
+﻿@model IEnumerable<VehicleShowRoomManager.Models.VehicleModel>
+
+@foreach(var item in Model)
+{
+    <option value="@item.Id">@item.ModelNumber</option>
+ 
+}
