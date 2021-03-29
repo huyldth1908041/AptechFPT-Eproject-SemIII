@@ -21,7 +21,6 @@ namespace VehicleShowRoomManager.Models
         {
             Active, DeActive
         }
- 
         public virtual ICollection<Vehicle> Vehicles { get; set; }
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
         public DateTime CreatedAt { get; set; }
