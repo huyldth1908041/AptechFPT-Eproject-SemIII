@@ -1,0 +1,58 @@
+﻿@model IEnumerable<VehicleShowRoomManager.Models.Vehicle>
+
+@{
+    ViewBag.Title = "ListVehicle";
+}
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+            <h2 class="pageheader-title">List Vehicle </h2>
+            <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">List Vehicles</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="product-thumbnail">
+                        <div class="product-img-head">
+                            <div class="product-img">
+                                <img src="@Html.DisplayFor(modelItem => item.Cover)" alt="" class="img-fluid">
+                            </div>
+                            <div class="ribbons"></div>
+                            <div class="ribbons-text"> New</div>
+                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-content-head">
+                                <h3 class="product-title">   @Html.DisplayFor(modelItem => item.Name)s</h3>
+                                <div class="product-rating d-inline-block">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </div>
+                                <div class="product-price"> @Html.DisplayFor(modelItem => item.SalePrice)</div>
+                            </div>
+                            <div class="product-btn">
+                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                <a href="#" class="btn btn-outline-light"> @Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id })</a>
+                                <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

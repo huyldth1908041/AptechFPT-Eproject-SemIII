@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+
+using System.Net;
+
 using System.Text;
+
 using System.Web;
 using System.Web.Mvc;
 using VehicleShowRoomManager.Models;
@@ -29,6 +33,7 @@ namespace VehicleShowRoomManager.Controllers
             //handels img
             //if user dont upload any image use a place holder instead
             if (Covers == null || Covers.Count() == 0)
+
             {
                 //set cover to holder image public key
                 model.Cover = "n2ssze3joengkhuzgzr3";
@@ -64,6 +69,29 @@ namespace VehicleShowRoomManager.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ListVehicle()
+        {
+            var listVehicles = _db.Vehicles.ToList();
+            return View(listVehicles);
+        }
+        
+        public ActionResult VehicleDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Vehicle vehicleDetail = _db.Vehicles.Find(id);
+            if (vehicleDetail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vehicleDetail);
+        }
+
+
+
         //for ajax call only
 
         public ActionResult ListModelsByBrands(int id)
@@ -134,5 +162,6 @@ namespace VehicleShowRoomManager.Controllers
             }
             return View(list);
         }
+
     }
 }
