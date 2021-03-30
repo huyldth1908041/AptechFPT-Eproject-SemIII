@@ -618,6 +618,7 @@
     <Content Include="Views\ShowRoom\ListPurchaseOrderDetail.cshtml" />
     <Content Include="Views\ShowRoom\ListVehicle.cshtml" />
     <Content Include="Views\ShowRoom\VehicleDetail.cshtml" />
+    <Content Include="Views\ShowRoom\ListVehiclesByBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

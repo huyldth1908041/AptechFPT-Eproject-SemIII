@@ -31,7 +31,7 @@ namespace VehicleShowRoomManager.Controllers
             return View();
         }
         [HttpPost]
-        public string CreateVehicle(Vehicle model, List<string> Covers)
+        public ActionResult CreateVehicle(Vehicle model, List<string> Covers)
         {
 
             //handels img
@@ -56,31 +56,23 @@ namespace VehicleShowRoomManager.Controllers
                 //update model
                 model.Cover = cover.ToString();
             }
-            if(!ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
-                Debug.WriteLine(ModelState);
-                return "here";
+                ViewBag.Models = _db.VehicleModels.ToList();
+                ViewBag.Brands = _db.Brands.ToList();
+                return View(model);
             }
-            return model.Cover;
 
-                //}
+            // Save timestamp and status
+            model.CreatedAt = DateTime.Now;
+            model.UpdatedAt = DateTime.Now;
+            model.Status = Vehicle.VehicleStatus.Pending;
+            _db.Vehicles.Add(model);
+            _db.SaveChanges();
 
-                //if (!ModelState.IsValid)
-                //{
-                //    ViewBag.Models = _db.VehicleModels.ToList();
-                //    ViewBag.Brands = _db.Brands.ToList();
-                //    return View(model);
-                //}
-
-                //// Save timestamp and status
-                //model.CreatedAt = DateTime.Now;
-                //model.UpdatedAt = DateTime.Now;
-                //model.Status = Vehicle.VehicleStatus.Pending;
-                //_db.Vehicles.Add(model);
-                //_db.SaveChanges();
-
-                //return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
+        }
 
 
         public ActionResult CreateGoodsReceipt()
@@ -115,8 +107,13 @@ namespace VehicleShowRoomManager.Controllers
 
         //for ajax call only
 
-        public ActionResult ListModelsByBrands(int id)
+        public ActionResult ListModelsByBrands(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var list = _db.Brands.Find(id).VehicleModels.ToList();
             return PartialView(list);
         }
@@ -143,10 +140,15 @@ namespace VehicleShowRoomManager.Controllers
             return RedirectToAction("RegisterVehicleData", "ShowRoom",new {id = model.VehicleId });
         }
         
-        public ActionResult RegisterVehicleData(int id)
+        public ActionResult RegisterVehicleData(int? id)
         {
-          
-            return View(_db.Vehicles.Find(id));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var vehicle = _db.Vehicles.Find(id);
+
+            return View(vehicle);
         }
         [HttpPost]
         //public ActionResult RegisterVehicleData(int id ,Vehicle model)
@@ -224,8 +226,13 @@ namespace VehicleShowRoomManager.Controllers
             return View(list);
         }
 
-        public ActionResult ListPurchaseOrderDetail(int id)
+        public ActionResult ListPurchaseOrderDetail(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var currentPurchaseOrder = _db.PurchaseOrders.Find(id);
             if(currentPurchaseOrder == null)
             {
@@ -238,6 +245,16 @@ namespace VehicleShowRoomManager.Controllers
                 return View(new List<PurchaseOrderDetail>());
             }
             return View(list);
+        }
+
+        public ActionResult ListVehiclesByBrand(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list = _db.VehicleModels.Find(id).Vehicles.ToList();
+            return PartialView(list);
         }
     }
 }

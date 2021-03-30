@@ -28,7 +28,7 @@
 <div class="row">
 
     <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
-        <div class="row">
+        <div class="row" id="vehicle-container">
             @foreach (var item in Model)
             {
                 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -68,15 +68,15 @@
                 <h4 class="product-sidebar-widget-title">Model</h4>
                 @foreach (var item in listModels)
                 {
-           
-                    <label class="custom-control custom-radio" for="model-@item.Id">
-                        <input type="radio" name="model" value="@item.Id" id="model-@item.Id" class="custom-control-input"/>
-                        <span class="custom-control-label">@item.ModelName</span>
-                    </label>
+
+                    <div class="custom-control custom-radio custom-color-yellow">
+                        <input type="radio" id="model-@item.Id" name="modelNumber" class="custom-control-input" value="@item.Id">
+                        <label class="custom-control-label" for="model-@item.Id">@item.ModelNumber</label>
+                    </div>
                 }
 
 
-                
+
             </div>
             <div class="product-sidebar-widget">
                 <h4 class="product-sidebar-widget-title">Size</h4>
@@ -156,3 +156,36 @@
         </div>
     </div>
 </div>
+@section pageScripts {
+    <script>
+        const modelRadios = document.querySelectorAll("input[name='modelNumber']");
+        const vehiclesContainer = document.getElementById("vehicle-container");
+
+        for (let i = 0; i < modelRadios.length; i++) {
+            const currentRadio = modelRadios[i];
+            currentRadio.addEventListener("change", e => {
+                const id = e.target.value;
+                //call server to update
+                $.ajax({
+                    url: "/ShowRoom/ListVehiclesByBrand/".concat(id),
+                    type: "GET",
+
+
+                    traditional: true,
+                    dataType: "html",
+                    success: function (data) {
+                        updateListVehicle(data);
+                    },
+                    error: function () {
+                        alert("An error has occured!!!");
+                    }
+                });
+            })
+        }
+        function updateListVehicle(data) {
+            vehiclesContainer.innerHTML = "";
+            vehiclesContainer.innerHTML = data;
+        }
+    </script>
+        
+}
