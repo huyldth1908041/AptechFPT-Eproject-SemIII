@@ -18,7 +18,7 @@ namespace VehicleShowRoomManager.Models
         public string Color { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
+       
         public string Cover { get; set; }
 
         [ScaffoldColumn(false)]

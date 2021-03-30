@@ -31,8 +31,9 @@ namespace VehicleShowRoomManager.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateVehicle(Vehicle model, List<string> Covers)
+        public string CreateVehicle(Vehicle model, List<string> Covers)
         {
+
             //handels img
             //if user dont upload any image use a place holder instead
             if (Covers == null || Covers.Count() == 0)
@@ -55,23 +56,31 @@ namespace VehicleShowRoomManager.Controllers
                 //update model
                 model.Cover = cover.ToString();
             }
-
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
-                ViewBag.Models = _db.VehicleModels.ToList();
-                ViewBag.Brands = _db.Brands.ToList();
-                return View(model);
+                Debug.WriteLine(ModelState);
+                return "here";
             }
+            return model.Cover;
 
-            // Save timestamp and status
-            model.CreatedAt = DateTime.Now;
-            model.UpdatedAt = DateTime.Now;
-            model.Status = Vehicle.VehicleStatus.Pending;
-            _db.Vehicles.Add(model);
-            _db.SaveChanges();
+                //}
 
-            return RedirectToAction("Index", "Home");
-        }
+                //if (!ModelState.IsValid)
+                //{
+                //    ViewBag.Models = _db.VehicleModels.ToList();
+                //    ViewBag.Brands = _db.Brands.ToList();
+                //    return View(model);
+                //}
+
+                //// Save timestamp and status
+                //model.CreatedAt = DateTime.Now;
+                //model.UpdatedAt = DateTime.Now;
+                //model.Status = Vehicle.VehicleStatus.Pending;
+                //_db.Vehicles.Add(model);
+                //_db.SaveChanges();
+
+                //return RedirectToAction("Index", "Home");
+            }
 
 
         public ActionResult CreateGoodsReceipt()
