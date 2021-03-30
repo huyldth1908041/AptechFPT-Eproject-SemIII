@@ -83,6 +83,8 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult ListVehicle()
         {
             var listVehicles = _db.Vehicles.ToList();
+            ViewBag.ListModels = _db.VehicleModels.ToList();
+
             return View(listVehicles);
         }
         
