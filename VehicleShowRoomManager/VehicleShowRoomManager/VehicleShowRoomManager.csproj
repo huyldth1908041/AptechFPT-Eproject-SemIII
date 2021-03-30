@@ -139,6 +139,10 @@
     <Compile Include="Migrations\202103281603338_Add_Status_To_PurchaseOrderDetails_Table.Designer.cs">
       <DependentUpon>202103281603338_Add_Status_To_PurchaseOrderDetails_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs" />
+    <Compile Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.Designer.cs">
+      <DependentUpon>202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -614,6 +618,8 @@
     <Content Include="Views\ShowRoom\ListPurchaseOrderDetail.cshtml" />
     <Content Include="Views\ShowRoom\ListVehicle.cshtml" />
     <Content Include="Views\ShowRoom\VehicleDetail.cshtml" />
+    <Content Include="Views\ShowRoom\ListVehiclesByModel.cshtml" />
+    <Content Include="Views\ShowRoom\ListVehiclesByBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -633,6 +639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103281603338_Add_Status_To_PurchaseOrderDetails_Table.resx">
       <DependentUpon>202103281603338_Add_Status_To_PurchaseOrderDetails_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.resx">
+      <DependentUpon>202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

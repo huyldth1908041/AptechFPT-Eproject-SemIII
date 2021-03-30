@@ -202,14 +202,14 @@
                 uploadPreset: 'gunsodn9',
                 multiple: true,
                 form: '#create-vehicle-form',
-                fieldName: 'Covers[]',
+                fieldName: 'Covers',
                 thumbnails: '.cover',
-                cropping: true,
-                cropping_show_back_button: true
+                cropping: "server",
+                
                 
             }, (error, result) => {
                 if (!error && result && result.event === "success") {
-                    var inputValues = document.querySelectorAll('input[name="Covers[]"]');
+                    var inputValues = document.querySelectorAll('input[name="Covers"]');
                     for (let i = 0; i < inputValues.length; i++) {
                         inputValues[i].value = inputValues[i].getAttribute('data-cloudinary-public-id')
                     }

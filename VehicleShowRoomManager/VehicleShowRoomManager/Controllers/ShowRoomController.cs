@@ -33,6 +33,7 @@ namespace VehicleShowRoomManager.Controllers
         [HttpPost]
         public ActionResult CreateVehicle(Vehicle model, List<string> Covers)
         {
+
             //handels img
             //if user dont upload any image use a place holder instead
             if (Covers == null || Covers.Count() == 0)
@@ -83,6 +84,8 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult ListVehicle()
         {
             var listVehicles = _db.Vehicles.ToList();
+            ViewBag.ListModels = _db.VehicleModels.ToList();
+            ViewBag.ListBrands = _db.Brands.ToList();
             return View(listVehicles);
         }
         
@@ -104,8 +107,13 @@ namespace VehicleShowRoomManager.Controllers
 
         //for ajax call only
 
-        public ActionResult ListModelsByBrands(int id)
+        public ActionResult ListModelsByBrands(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var list = _db.Brands.Find(id).VehicleModels.ToList();
             return PartialView(list);
         }
@@ -132,10 +140,15 @@ namespace VehicleShowRoomManager.Controllers
             return RedirectToAction("RegisterVehicleData", "ShowRoom",new {id = model.VehicleId });
         }
         
-        public ActionResult RegisterVehicleData(int id)
+        public ActionResult RegisterVehicleData(int? id)
         {
-          
-            return View(_db.Vehicles.Find(id));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var vehicle = _db.Vehicles.Find(id);
+
+            return View(vehicle);
         }
         [HttpPost]
         //public ActionResult RegisterVehicleData(int id ,Vehicle model)
@@ -213,8 +226,13 @@ namespace VehicleShowRoomManager.Controllers
             return View(list);
         }
 
-        public ActionResult ListPurchaseOrderDetail(int id)
+        public ActionResult ListPurchaseOrderDetail(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var currentPurchaseOrder = _db.PurchaseOrders.Find(id);
             if(currentPurchaseOrder == null)
             {
@@ -227,6 +245,36 @@ namespace VehicleShowRoomManager.Controllers
                 return View(new List<PurchaseOrderDetail>());
             }
             return View(list);
+        }
+
+        public ActionResult ListVehiclesByModel(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list = _db.VehicleModels.Find(id).Vehicles.ToList();
+            return PartialView(list);
+        }
+
+        public ActionResult ListVehiclesByBrand(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var listVehicle = new List<Vehicle>();
+            var currentBrand = _db.Brands.Find(id);
+            var listModels = currentBrand.VehicleModels.ToList();
+            foreach(var item in listModels)
+            {
+                var listVehicleInThisModel = item.Vehicles.ToList();
+                foreach(var vehicle in listVehicleInThisModel)
+                {
+                    listVehicle.Add(vehicle);
+                }
+            }
+            return PartialView(listVehicle);
         }
     }
 }
