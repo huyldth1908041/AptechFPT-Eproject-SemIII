@@ -85,7 +85,7 @@ namespace VehicleShowRoomManager.Controllers
         {
             var listVehicles = _db.Vehicles.ToList();
             ViewBag.ListModels = _db.VehicleModels.ToList();
-
+            ViewBag.ListBrands = _db.Brands.ToList();
             return View(listVehicles);
         }
         
@@ -247,7 +247,7 @@ namespace VehicleShowRoomManager.Controllers
             return View(list);
         }
 
-        public ActionResult ListVehiclesByBrand(int? id)
+        public ActionResult ListVehiclesByModel(int? id)
         {
             if (id == null)
             {
@@ -255,6 +255,26 @@ namespace VehicleShowRoomManager.Controllers
             }
             var list = _db.VehicleModels.Find(id).Vehicles.ToList();
             return PartialView(list);
+        }
+
+        public ActionResult ListVehiclesByBrand(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var listVehicle = new List<Vehicle>();
+            var currentBrand = _db.Brands.Find(id);
+            var listModels = currentBrand.VehicleModels.ToList();
+            foreach(var item in listModels)
+            {
+                var listVehicleInThisModel = item.Vehicles.ToList();
+                foreach(var vehicle in listVehicleInThisModel)
+                {
+                    listVehicle.Add(vehicle);
+                }
+            }
+            return PartialView(listVehicle);
         }
     }
 }
