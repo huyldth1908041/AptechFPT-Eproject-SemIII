@@ -11,6 +11,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(VehicleShowRoomManager.Models.ShowRoomDataContext context)

@@ -111,21 +111,38 @@
                 .Index(t => t.VehicleId);
 
             CreateTable(
-             "dbo.Customers",
-             c => new
-             {
-                 Id = c.Int(nullable: false, identity: true),
-                 ReceiptPrice = c.Double(nullable: false),
-                 ReceivedAt = c.DateTime(nullable: false),
-                 PrepaymentMoney = c.Double(nullable: false),
-                 VehicleId = c.Int(nullable: false),
-                 Status = c.Int(nullable: false),
-                 CreatedAt = c.DateTime(nullable: false),
-                 UpdatedAt = c.DateTime(nullable: false),
-             })
-             .PrimaryKey(t => t.Id)
-             .ForeignKey("dbo.Vehicles", t => t.VehicleId, cascadeDelete: true)
-             .Index(t => t.VehicleId);
+               "dbo.GoodsReceipts",
+               c => new
+               {
+                   Id = c.Int(nullable: false, identity: true),
+                   ReceiptPrice = c.Double(nullable: false),
+                   ReceivedAt = c.DateTime(nullable: false),
+                   PrepaymentMoney = c.Double(nullable: false),
+                   VehicleId = c.Int(nullable: false),
+                   Status = c.Int(nullable: false),
+                   CreatedAt = c.DateTime(nullable: false),
+                   UpdatedAt = c.DateTime(nullable: false),
+               })
+               .PrimaryKey(t => t.Id)
+               .ForeignKey("dbo.Vehicles", t => t.VehicleId, cascadeDelete: true)
+               .Index(t => t.VehicleId);
+
+            CreateTable(
+            "dbo.SaleOrders",
+            c => new
+            {
+                Id = c.Int(nullable: false, identity: true),
+                CustomerId = c.Int(nullable: false),
+                VehicleId = c.Int(nullable: false),
+                TotalPrice = c.Double(nullable: false),
+                CreatedAt = c.DateTime(nullable: false),
+                UpdatedAt = c.DateTime(nullable: false),
+                Status = c.Int(nullable: false),
+
+            })
+            .PrimaryKey(t => t.Id)
+            .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true) 
+            .Index(t => t.CustomerId);
 
 
 
@@ -138,17 +155,23 @@
             DropForeignKey("dbo.PurchaseOrderDetails", "VehicleModelId", "dbo.VehicleModels");
             DropForeignKey("dbo.PurchaseOrderDetails", "PurchaseOrderId", "dbo.PurchaseOrders");
             DropForeignKey("dbo.VehicleModels", "BrandId", "dbo.Brands");
+            DropForeignKey("dbo.GoodsReceipts", "VehicleId", "dbo.Vehicles");
+            DropForeignKey("dbo.SaleOrders", "CustomerId", "dbo.Customers");
             DropIndex("dbo.Customers", new[] { "VehicleId" });
             DropIndex("dbo.Vehicles", new[] { "VehicleModelId" });
             DropIndex("dbo.PurchaseOrderDetails", new[] { "VehicleModelId" });
             DropIndex("dbo.PurchaseOrderDetails", new[] { "PurchaseOrderId" });
             DropIndex("dbo.VehicleModels", new[] { "BrandId" });
+            DropIndex("dbo.GoodsReceipts", new[] { "VehicleId" });
+            DropIndex("dbo.SaleOrders", new[] { "CustomerId" });
             DropTable("dbo.Customers");
             DropTable("dbo.Vehicles");
             DropTable("dbo.PurchaseOrders");
             DropTable("dbo.PurchaseOrderDetails");
             DropTable("dbo.VehicleModels");
             DropTable("dbo.Brands");
+            DropTable("dbo.GoodsReceipts");
+            DropTable("dbo.SaleOrders");
         }
     }
 }
