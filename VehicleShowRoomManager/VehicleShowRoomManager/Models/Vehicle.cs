@@ -11,7 +11,7 @@ namespace VehicleShowRoomManager.Models
     {
         //"https://res.cloudinary.com/dnby4zyda/image/upload/v1616932607/lvnuiiti3efqjb3avjwo.png";
         private static string _cloudinaryDomain = "https://res.cloudinary.com/";
-        private static string _cloudinaryProjectId = "dnby4zyda";
+        private static string _cloudinaryProjectId = "thaianh284";
   
         public int Id { get; set; }
         [Required]
@@ -38,8 +38,10 @@ namespace VehicleShowRoomManager.Models
 
         public enum VehicleStatus
         {
+
             Pending, Avaible, Sold, Assigned,Ready,
             Used // Đã qua sửa dụng
+
         }
 
         public enum VehicleType
@@ -85,7 +87,7 @@ namespace VehicleShowRoomManager.Models
             var listImagesUrl = new List<string>();
             foreach(var item in listCover)
             {
-                var url = _cloudinaryDomain + _cloudinaryProjectId + @"/image/upload/v1616932607/" + item + ".jpg";
+                var url = _cloudinaryDomain + _cloudinaryProjectId + @"/image/upload/v1617164737/" + item + ".jpg";
                 listImagesUrl.Add(url);
             }
             return listImagesUrl;

@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "VehicleDetail";
+
+    List<VehicleShowRoomManager.Models.Vehicle> RelatedModel = ViewBag.ListSameModel;
+
 }
 
 @section PageStyles {
@@ -27,7 +30,7 @@
     <div class="row">
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-30">
                     <div class="product-slider">
                         <div id="productslider-1" class="product-carousel carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -57,47 +60,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
-                    <div class="product-details">
-                        <div class="border-bottom pb-3 mb-3">
-                            <h2 class="mb-3">@Html.DisplayFor(model => model.Name)</h2>
-                            <div class="product-rating d-inline-block float-right">
-                                <i class="fa fa-fw fa-star"></i>
-                                <i class="fa fa-fw fa-star"></i>
-                                <i class="fa fa-fw fa-star"></i>
-                                <i class="fa fa-fw fa-star"></i>
-                                <i class="fa fa-fw fa-star"></i>
-                            </div>
-                            <h3 class="mb-0 text-primary">@Html.DisplayFor(model => model.SalePrice)</h3>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
+                <div class="product-details">
+                    <div class="border-bottom pb-3 mb-3">
+                        <h2 class="mb-3">@Html.DisplayFor(model => model.Name)</h2>
+                        <div class="product-rating d-inline-block float-right">
+                            <i class="fa fa-fw fa-star"></i>
+                            <i class="fa fa-fw fa-star"></i>
+                            <i class="fa fa-fw fa-star"></i>
+                            <i class="fa fa-fw fa-star"></i>
+                            <i class="fa fa-fw fa-star"></i>
                         </div>
-                        <div class="product-colors border-bottom">
-                            <h4>Select Colors</h4>
-                            <input type="radio" class="radio" id="radio-1" name="group" />
-                            <label for="radio-1"></label>
-                            <input type="radio" class="radio" id="radio-2" name="group" />
-                            <label for="radio-2"></label>
-                            <input type="radio" class="radio" id="radio-3" name="group" />
-                            <label for="radio-3"></label>
+                        <h3 class="mb-0 text-primary">@Html.DisplayFor(model => model.SalePrice)</h3>
+                    </div>
+                    <div class="product-size border-bottom">
+                        <h4>Status</h4>
+                        <div class="btn-group" role="group" aria-label="First group">
+                            @Html.DisplayFor(model => model.Status)
                         </div>
-                        <div class="product-size border-bottom">
-                            <h4>Status</h4>
-                            <div class="btn-group" role="group" aria-label="First group">
-                                @Html.DisplayFor(model => model.Status)
-                            </div>
-                            <div class="product-qty">
+                        <div class="product-qty">
 
-                                <h4>Quantity</h4>
-                                <div class="quantity">
-                                    <input type="number" min="1" max="9" step="1" value="1">
-                                </div>
+                            <h4>Quantity</h4>
+                            <div class="quantity">
+                                <input type="number" min="1" max="9" step="1" value="1">
                             </div>
-                        </div>
-                        <div class="product-description">
-                            <h4 class="mb-1">Descriptions</h4>
-                            <p>@Html.DisplayFor(model => model.Description)</p>
-                            <a href="#" class="btn btn-primary btn-block btn-lg">Add to Cart</a>
                         </div>
                     </div>
+                    <div class="product-description">
+                        <h4 class="mb-1">Descriptions</h4>
+                        <p>@Html.DisplayFor(model => model.Description)</p>
+                        <a href="#" class="btn btn-primary btn-block btn-lg">Add to Cart</a>
+                    </div>
+                </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
                     <div class="simple-card">
@@ -158,30 +154,31 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-10">
                     <h3> Related Products</h3>
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                    <div class="product-thumbnail">
-                        <div class="product-img-head">
-                            <div class="product-img">
-                                <img src="https://i.xeoto.com.vn/auto/w900/kia/quoris/2021/mau-xe-kia-quoris-panthera-metal.png" alt="" class="img-fluid">
-                            </div>
-                            <div class="ribbons bg-danger">Sold</div>
-                            <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
-                        </div>
-                        <div class="product-content">
-                            <div class="product-content-head">
-                                <h3 class="product-title">KIA QUORIS - GAT - 3.8s</h3>
-                                <div class="product-rating d-inline-block">
-                                    Sold
+                @foreach (var item in RelatedModel)
+                {
+                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="product-thumbnail">
+                            <div class="product-img-head">
+                                <div class="product-img">
+                                    <img src="@Html.DisplayFor(modelItem => item.Cover)" alt="" class="img-fluid">
                                 </div>
-                                <div class="product-price">120000</div>
+                                <div class="ribbons bg-danger">New</div>
                             </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                <a href="#" class="btn btn-outline-light">Details</a>
+                            <div class="product-content">
+                                <div class="product-content-head">
+                                    <h3 class="product-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+                                    <div class="product-rating d-inline-block">
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </div>
+                                    <div class="product-price">@Html.DisplayFor(modelItem => item.SalePrice)</div>
+                                </div>
+                                <div class="product-btn">
+                                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                                    <a href="#" class="btn btn-outline-light">Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>}
             </div>
         </div>
     </div>
