@@ -9,3 +9,17 @@
 .form-control {
     border-radius: 15px;
 }
+
+.product-title {
+    height: 40px;
+}
+
+.product-price {
+    position: unset;
+}
+
+.carousel-item {
+    .d-block{
+    margin: 0;
+    }
+}
