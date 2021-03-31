@@ -17,6 +17,7 @@ namespace VehicleShowRoomManager.Models
         [Required]
         public string Color { get; set; }
         [Required]
+        [Display(Name = "Vehicle Name")]
         public string Name { get; set; }
        
         public string Cover { get; set; }
@@ -37,7 +38,10 @@ namespace VehicleShowRoomManager.Models
 
         public enum VehicleStatus
         {
-            Pending, Available, Sold, Assigned
+
+            Pending, Avaible, Sold, Assigned,Ready,
+            Used // Đã qua sửa dụng
+
         }
 
         public enum VehicleType
@@ -88,5 +92,6 @@ namespace VehicleShowRoomManager.Models
             }
             return listImagesUrl;
         }
+
     }
 }

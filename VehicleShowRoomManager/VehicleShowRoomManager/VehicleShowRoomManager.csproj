@@ -147,6 +147,14 @@
     <Compile Include="Migrations\202103310845440_Fix_PK_SaleOrder_and_Customer.designer.cs">
       <DependentUpon>202103310845440_Fix_PK_SaleOrder_and_Customer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103311402540_Set_display_name_SaleOrder.cs" />
+    <Compile Include="Migrations\202103311402540_Set_display_name_SaleOrder.designer.cs">
+      <DependentUpon>202103311402540_Set_display_name_SaleOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103311406041_Set_display_name_vehicle_and_customer.cs" />
+    <Compile Include="Migrations\202103311406041_Set_display_name_vehicle_and_customer.designer.cs">
+      <DependentUpon>202103311406041_Set_display_name_vehicle_and_customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -654,6 +662,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103310845440_Fix_PK_SaleOrder_and_Customer.resx">
       <DependentUpon>202103310845440_Fix_PK_SaleOrder_and_Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103311402540_Set_display_name_SaleOrder.resx">
+      <DependentUpon>202103311402540_Set_display_name_SaleOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103311406041_Set_display_name_vehicle_and_customer.resx">
+      <DependentUpon>202103311406041_Set_display_name_vehicle_and_customer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

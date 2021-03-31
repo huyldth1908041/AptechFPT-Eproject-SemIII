@@ -8,6 +8,7 @@ namespace VehicleShowRoomManager.Models
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Customer Name")]
         public string Name { get; set; }
         [Required]
         public string Phone { get; set; }

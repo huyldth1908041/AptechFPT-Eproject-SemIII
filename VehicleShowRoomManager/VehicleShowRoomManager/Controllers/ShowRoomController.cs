@@ -289,7 +289,9 @@ namespace VehicleShowRoomManager.Controllers
         // Create sale order 
         public ActionResult CreateSaleOrder()
         {
-            var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Available).ToList();
+
+            var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Avaible || s.Status == Vehicle.VehicleStatus.Used  ).ToList();
+
             ViewBag.ListModels = _db.VehicleModels.ToList();
             ViewBag.ListBrands = _db.Brands.ToList();
             return View("ListAvailableVehicle", listAvailableVehicle);
@@ -372,6 +374,33 @@ namespace VehicleShowRoomManager.Controllers
         }
 
 
+        //Assign vehicle to customer
+            
+        public ActionResult ListPendingSaleOrder()
+        {
+            
+            var listSaleOrder = _db.SaleOrders.Where(s => s.Status != SaleOrder.SaleOrderStatus.Cancel).ToList();         
+            return View(listSaleOrder);
+        }
+
+        public ActionResult AssignVehicleToCustomer(int id)
+        {
+            var saleOrder = _db.SaleOrders.Find(id);
+            var vehicle = _db.Vehicles.Find(saleOrder.VehicleId);
+            vehicle.Status = Vehicle.VehicleStatus.Assigned;
+            _db.SaveChanges();
+
+            return RedirectToAction("ListPendingSaleOrder", "ShowRoom");
+        }
+        // Comfirm Sale Order
+        public ActionResult ComfirmSaleOrder(int id)
+        {
+            var saleOrder = _db.SaleOrders.Find(id);
+            saleOrder.Status = SaleOrder.SaleOrderStatus.Done;
+            _db.SaveChanges();
+
+            return RedirectToAction("ListPendingSaleOrder", "ShowRoom");
+        }
 
 
     }
