@@ -360,7 +360,6 @@ namespace VehicleShowRoomManager.Controllers
             customer.Name = saleOrderViewModel.CustomerName;
             customer.Phone = saleOrderViewModel.Phone;
             customer.Address = saleOrderViewModel.Address;
-            customer.VehicleId = saleOrderViewModel.VehicleId;
             customer.Status = Customer.CustomerStatus.Active;
             customer.CreatedAt = DateTime.Now;
             customer.UpdatedAt = DateTime.Now;
