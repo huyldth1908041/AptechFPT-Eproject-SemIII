@@ -1,4 +1,5 @@
-﻿@model IEnumerable<VehicleShowRoomManager.Models.Vehicle>
+﻿
+@model IEnumerable<VehicleShowRoomManager.Models.Vehicle>
 
 
 
@@ -8,7 +9,7 @@
         <div class="product-thumbnail">
             <div class="product-img-head">
                 <div class="product-img">
-                    <img src="@Html.DisplayFor(modelItem => item.Cover)" alt="" class="img-fluid">
+                    <img src="@item.GetAllImages().First()" alt="" class="img-fluid">
                 </div>
                 <div class="ribbons"></div>
                 <div class="ribbons-text"> New</div>

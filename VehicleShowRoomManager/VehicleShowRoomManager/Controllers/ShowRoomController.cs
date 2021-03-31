@@ -102,6 +102,7 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return HttpNotFound();
             }
+          
             return View(vehicleDetail);
         }
 
@@ -255,8 +256,12 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var list = _db.VehicleModels.Find(id).Vehicles.ToList();
-            return PartialView(list);
+            var list = _db.VehicleModels.Find(id).Vehicles.Where(vehicle => vehicle.Status == Vehicle.VehicleStatus.Available).ToList();
+            if(list == null)
+            {
+                list = new List<Vehicle>();
+            }
+            return PartialView("_ListVehiclePartialView",list);
         }
 
         public ActionResult ListVehiclesByBrand(int? id)
@@ -270,54 +275,29 @@ namespace VehicleShowRoomManager.Controllers
             var listModels = currentBrand.VehicleModels.ToList();
             foreach(var item in listModels)
             {
-                var listVehicleInThisModel = item.Vehicles.ToList();
+                var listVehicleInThisModel = item.Vehicles.Where(vehicle => vehicle.Status == Vehicle.VehicleStatus.Available).ToList();
+           
                 foreach(var vehicle in listVehicleInThisModel)
                 {
                     listVehicle.Add(vehicle);
                 }
             }
-            return PartialView(listVehicle);
+
+            return PartialView("_ListVehiclePartialView", listVehicle);
         }
 
         // Create sale order 
         public ActionResult CreateSaleOrder()
         {
-            var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Avaible).ToList();
+            var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Available).ToList();
             ViewBag.ListModels = _db.VehicleModels.ToList();
             ViewBag.ListBrands = _db.Brands.ToList();
             return View("ListAvailableVehicle", listAvailableVehicle);
         }
 
 
-        public ActionResult ListAvailableVehiclesByModel(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var list = _db.VehicleModels.Find(id).Vehicles.Where(s=> s.Status == Vehicle.VehicleStatus.Avaible).ToList();
-            return PartialView(list);
-        }
 
-        public ActionResult ListAvailableVehiclesByBrand(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var listVehicle = new List<Vehicle>();
-            var currentBrand = _db.Brands.Find(id);
-            var listModels = currentBrand.VehicleModels.ToList();
-            foreach (var item in listModels)
-            {
-                var listVehicleInThisModel = item.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Avaible).ToList();
-                foreach (var vehicle in listVehicleInThisModel)
-                {
-                    listVehicle.Add(vehicle);
-                }
-            }
-            return PartialView(listVehicle);
-        }
+
         public ActionResult CreateSaleOrderOfAnVehicle(int? id) 
         {
             if (id == null)
