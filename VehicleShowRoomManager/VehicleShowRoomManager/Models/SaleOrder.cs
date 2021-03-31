@@ -22,5 +22,6 @@ namespace VehicleShowRoomManager.Models
             Cancel = 2,
         }
         public virtual Customer Customer { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
     }
 }

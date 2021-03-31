@@ -144,6 +144,10 @@
     <Compile Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.Designer.cs">
       <DependentUpon>202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103310726269_Fix-FK_SaleOrder_and_Customer.cs" />
+    <Compile Include="Migrations\202103310726269_Fix-FK_SaleOrder_and_Customer.designer.cs">
+      <DependentUpon>202103310726269_Fix-FK_SaleOrder_and_Customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -650,6 +654,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.resx">
       <DependentUpon>202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103310726269_Fix-FK_SaleOrder_and_Customer.resx">
+      <DependentUpon>202103310726269_Fix-FK_SaleOrder_and_Customer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

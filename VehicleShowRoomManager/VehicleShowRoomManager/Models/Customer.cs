@@ -18,8 +18,6 @@ namespace VehicleShowRoomManager.Models
         {
             Active = 1, Deactive = 0, Delete = -1
         }
-        public int VehicleId { get; set; }
-        public virtual Vehicle Vehicle { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
