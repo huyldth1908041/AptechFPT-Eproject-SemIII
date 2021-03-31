@@ -143,7 +143,7 @@
                     Description = "The exterior of the Vinfast VFe34 electric SUV is considered neutral, gentle with gentle rounded lines like an MPV. DxRxC overall dimensions are 4,300x 1,793x 1,613 mm, wheelbase 2,611 mm, ground clearance 180mm and unladen weight 1,490 kg.",
                     Type = VehicleType.Diesel,
                     Control = VehicleControlType.Manual,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 1,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -381,7 +381,7 @@
                     Description = "This is Toyota Camry",
                     Type = VehicleType.Both,
                     Control = VehicleControlType.Manual,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 5,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -415,7 +415,7 @@
                     Description = "This is Lexus ES – Executive Sedan",
                     Type = VehicleType.Petrol,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 6,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -466,7 +466,7 @@
                     Description = "This is Lexus GX",
                     Type = VehicleType.Diesel,
                     Control = VehicleControlType.Manual,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 6,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
