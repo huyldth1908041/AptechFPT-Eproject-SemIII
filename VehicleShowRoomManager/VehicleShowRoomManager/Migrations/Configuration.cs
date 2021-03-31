@@ -177,7 +177,7 @@
                     Description = "Possessing an overall size of 5095 x 1900 x 1490 mm, the Kia Quoris 2021 has a superficial and longer design than the competition, making the car stand out when placed side by side. The highlight of the car lies in the plating, trim and silver trim around the car, helping the Korean model to stand out more, especially with the exterior color of glossy black paint.",
                     Type = VehicleType.Both,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 3,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -194,7 +194,7 @@
                     Description = "This is a completely new model from Korea, so the car is applied with the latest technologies in the chassis as well as the engine or 8-speed dual-clutch transmission with other amenities.",
                     Type = VehicleType.Diesel,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 4,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -228,7 +228,7 @@
                     Description = "In terms of vehicle design, the design language remains the same as the Lux SA2.0 but differs in many details such as the air cavity on the bonnet, the large lattice grille, the pit wind cavity combined with the 4 rear exhaust pipes. .",
                     Type = VehicleType.Diesel,
                     Control = VehicleControlType.Manual,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 1,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -245,7 +245,7 @@
                     Description = "The car is 4,750 mm long, the wheelbase is 2,950 mm. The car is 190 mm shorter than the Lux SA in the E segment, but the wheelbase is 17 mm shorter.",
                     Type = VehicleType.Petrol,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 2,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -262,7 +262,7 @@
                     Description = "With a length of 5,120 mm, a wheelbase of 3,150 mm, VinFast VF33 is slightly higher than Lux SA (4,940 mm long) and Ford Exlorer (5,037 mm long). Inside the cockpit, the Vietnamese automaker is equipped with a button-shaped gear lever. A 15.4 inch infotainment screen, interior lights.",
                     Type = VehicleType.Both,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 2,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -279,7 +279,7 @@
                     Description = "Morning has 3 other versions. In these 3 versions, 1 gearbox and 2 Automatic are equipped",
                     Type = VehicleType.Petrol,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 4,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -296,7 +296,7 @@
                     Description = "This is Kia Soluto",
                     Type = VehicleType.Both,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 3,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -330,7 +330,7 @@
                     Description = "Innova retains the branding elements such as looks, engines and safety features.",
                     Type = VehicleType.Petrol,
                     Control = VehicleControlType.Manual,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 5,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -347,7 +347,7 @@
                     Description = "Toyota Vios 2021 is the most popular and popular name in the Vietnamese auto market today.",
                     Type = VehicleType.Both,
                     Control = VehicleControlType.Manual,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 5,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -364,7 +364,7 @@
                     Description = "This is Toyota Corolla Altis",
                     Type = VehicleType.Diesel,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 5,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -432,7 +432,7 @@
                     Description = "This is Lexus NX - Luxury Crossover",
                     Type = VehicleType.Diesel,
                     Control = VehicleControlType.Automatic,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 6,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -449,7 +449,7 @@
                     Description = "This is Lexus RX",
                     Type = VehicleType.Both,
                     Control = VehicleControlType.Manual,
-                    Status = VehicleStatus.Avaible,
+                    Status = VehicleStatus.Available,
                     VehicleModelId = 6,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
