@@ -13,7 +13,7 @@
                 </div>
                 <div class="ribbons"></div>
                 <div class="ribbons-text"> New</div>
-                <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
+       
             </div>
             <div class="product-content">
                 <div class="product-content-head">
@@ -26,11 +26,11 @@
                 <div class="product-btn">
                     @if (item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
                     {
-                        <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = item.Id})" class="btn btn-primary">Create Sale Order</a>
+                        <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = item.Id})" class="btn btn-primary">Create Order</a>
                     }
                     else
                     {
-                        <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Sale Order</button>
+                        <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Order</button>
                     }
                     <div class="btn btn-outline-light">@Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id })</div>
                 </div>
