@@ -51,7 +51,14 @@
                                 <div class="product-price"> @Html.DisplayFor(modelItem => item.SalePrice) &dollar;</div>
                             </div>
                             <div class="product-btn">
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                @if (item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
+                                {
+                                    <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = item.Id})" class="btn btn-primary">Create Sale Order</a>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Sale Order</button>
+                                }
                                 <div class="btn btn-outline-light">@Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id })</div>
                             </div>
                         </div>
@@ -115,7 +122,7 @@
         const modelRadios = document.querySelectorAll("input[name='modelNumber']");
         const vehiclesContainer = document.getElementById("vehicle-container");
         const brandRadios = document.querySelectorAll("input[name='brand']");
-        
+
         for (let i = 0; i < modelRadios.length; i++) {
             const currentRadio = modelRadios[i];
             currentRadio.addEventListener("change", e => {
@@ -163,6 +170,10 @@
                 });
             })
         }
+        function alertError(e) {
+            
+            alert("Can not create sale order for this Vehicle")
+        }
     </script>
-        
+
 }

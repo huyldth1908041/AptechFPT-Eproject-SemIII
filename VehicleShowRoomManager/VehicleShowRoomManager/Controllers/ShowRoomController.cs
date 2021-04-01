@@ -83,7 +83,7 @@ namespace VehicleShowRoomManager.Controllers
 
         public ActionResult ListVehicle()
         {
-            var listVehicles = _db.Vehicles.ToList();
+            var listVehicles = _db.Vehicles.Where(v => v.Status != Vehicle.VehicleStatus.Sold).ToList();
             ViewBag.ListModels = _db.VehicleModels.ToList();
             ViewBag.ListBrands = _db.Brands.ToList();
             return View(listVehicles);
@@ -256,7 +256,7 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var list = _db.VehicleModels.Find(id).Vehicles.Where(vehicle => vehicle.Status == Vehicle.VehicleStatus.Available).ToList();
+            var list = _db.VehicleModels.Find(id).Vehicles.Where(vehicle => vehicle.Status != Vehicle.VehicleStatus.Sold).ToList();
             if(list == null)
             {
                 list = new List<Vehicle>();
@@ -275,7 +275,7 @@ namespace VehicleShowRoomManager.Controllers
             var listModels = currentBrand.VehicleModels.ToList();
             foreach(var item in listModels)
             {
-                var listVehicleInThisModel = item.Vehicles.Where(vehicle => vehicle.Status == Vehicle.VehicleStatus.Available).ToList();
+                var listVehicleInThisModel = item.Vehicles.Where(vehicle => vehicle.Status != Vehicle.VehicleStatus.Sold).ToList();
            
                 foreach(var vehicle in listVehicleInThisModel)
                 {
@@ -290,11 +290,12 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult CreateSaleOrder()
         {
 
-            var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Available || s.Status == Vehicle.VehicleStatus.Used  ).ToList();
+            //var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Available || s.Status == Vehicle.VehicleStatus.Used  ).ToList();
 
-            ViewBag.ListModels = _db.VehicleModels.ToList();
-            ViewBag.ListBrands = _db.Brands.ToList();
-            return View("ListAvailableVehicle", listAvailableVehicle);
+            //ViewBag.ListModels = _db.VehicleModels.ToList();
+            //ViewBag.ListBrands = _db.Brands.ToList();
+            //return View("ListAvailableVehicle", listAvailableVehicle);
+            return RedirectToAction("ListVehicle");
         }
 
 
