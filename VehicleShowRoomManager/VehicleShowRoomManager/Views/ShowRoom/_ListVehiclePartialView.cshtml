@@ -21,7 +21,7 @@
                     <div class="product-rating d-inline-block">
                         @Html.DisplayFor(modelItem => item.Status)
                     </div>
-                    <div class="product-price"> @Html.DisplayFor(modelItem => item.SalePrice) VND</div>
+                    <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.SalePrice)</div>
                 </div>
                 <div class="product-btn">
                     @if (item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
@@ -32,7 +32,7 @@
                     {
                         <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Order</button>
                     }
-                    <div class="btn btn-outline-light">@Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id })</div>
+                    @Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                 </div>
             </div>
         </div>

@@ -87,7 +87,23 @@ namespace VehicleShowRoomManager.Models
             var listImagesUrl = new List<string>();
             foreach(var item in listCover)
             {
-                var url = _cloudinaryDomain + _cloudinaryProjectId + @"/image/upload/v1617164737/" + item + ".jpg";
+                var url = _cloudinaryDomain + _cloudinaryProjectId + @"/image/upload/v1616932607/" + item + ".jpg";
+                listImagesUrl.Add(url);
+            }
+            return listImagesUrl;
+        }
+
+        public List<string> GetMediumCovers()
+        {
+            if (this.Cover == null || this.Cover.Length == 0)
+            {
+                this.Cover = "n2ssze3joengkhuzgzr3";
+            }
+            var listCover = this.Cover.Split(',');
+            var listImagesUrl = new List<string>();
+            foreach (var item in listCover)
+            {
+                var url = _cloudinaryDomain + _cloudinaryProjectId + @"/image/upload/c_scale,w_550,h_520/v1617164737/" + item + ".jpg";
                 listImagesUrl.Add(url);
             }
             return listImagesUrl;

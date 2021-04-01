@@ -96,7 +96,7 @@ namespace VehicleShowRoomManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Vehicle vehicleDetail = _db.Vehicles.Find(id);
-            var listSame = vehicleDetail.VehicleModel.Vehicles.ToList();
+            var listSame = vehicleDetail.VehicleModel.Vehicles.Where(v => v.Id != id && v.Status != Vehicle.VehicleStatus.Sold && v.Status != Vehicle.VehicleStatus.Assigned).ToList();
             ViewBag.ListSameModel = listSame;
             if (vehicleDetail == null)
             {
