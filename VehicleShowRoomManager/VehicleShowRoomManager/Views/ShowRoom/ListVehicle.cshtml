@@ -1,4 +1,7 @@
-﻿@model IEnumerable<VehicleShowRoomManager.Models.Vehicle>
+﻿<!-- Thêm thư viện -->
+@using PagedList.Mvc;
+@model PagedList.IPagedList<VehicleShowRoomManager.Models.Vehicle>
+
 
 @{
     ViewBag.Title = "ListVehicle";
@@ -8,6 +11,7 @@
 
 @section PageStyles {
     <link href="@Url.Content("~/Content/assets/libs/css/ListVehicle.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/page-list.css")" rel="stylesheet" />
 }
 
 <div class="row">
@@ -65,7 +69,14 @@
                     </div>
                 </div>
             }
+
         </div>
+        <div class="page-separate text-center">
+            <p class="page-separate-text">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</p>
+
+            @Html.PagedListPager(Model, page => Url.Action("ListVehicle", "ShowRoom", new { page }))
+        </div>
+
     </div>
     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
         <div class="product-sidebar">
@@ -116,6 +127,7 @@
             </div>
         </div>
     </div>
+
 </div>
 @section pageScripts {
     <script>
@@ -171,7 +183,7 @@
             })
         }
         function alertError(e) {
-            
+
             alert("Can not create sale order for this Vehicle")
         }
     </script>

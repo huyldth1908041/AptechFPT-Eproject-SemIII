@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 
 using System.Data.Entity;
@@ -81,12 +82,29 @@ namespace VehicleShowRoomManager.Controllers
             return View();
         }
 
-        public ActionResult ListVehicle()
+        public ActionResult ListVehicle(int? page)
         {
-            var listVehicles = _db.Vehicles.Where(v => v.Status != Vehicle.VehicleStatus.Sold).ToList();
+            // 1. Tham số int? dùng để thể hiện null và kiểu int
+            // page có thể có giá trị là null và kiểu int.
+
+            // 2. Nếu page = null thì đặt lại là 1.
+            if (page == null) page = 1;
+
+            // 3. Tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
+            // theo LinkID mới có thể phân trang.
+         
+
+            // 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
+            int pageSize = 6;
+
+            // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
+            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
+            int pageNumber = (page ?? 1);
+
+            var listVehicles = _db.Vehicles.Where(v => v.Status != Vehicle.VehicleStatus.Sold).OrderBy(v => v.CreatedAt);
             ViewBag.ListModels = _db.VehicleModels.ToList();
             ViewBag.ListBrands = _db.Brands.ToList();
-            return View(listVehicles);
+            return View(listVehicles.ToPagedList(pageNumber, pageSize));
         }
         
         public ActionResult VehicleDetail(int? id)
