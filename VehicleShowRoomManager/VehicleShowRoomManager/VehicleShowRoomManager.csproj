@@ -131,29 +131,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103270939390_InitialDatbase.cs" />
-    <Compile Include="Migrations\202103270939390_InitialDatbase.designer.cs">
-      <DependentUpon>202103270939390_InitialDatbase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103281603338_Add_Status_To_PurchaseOrderDetails_Table.cs" />
-    <Compile Include="Migrations\202103281603338_Add_Status_To_PurchaseOrderDetails_Table.Designer.cs">
-      <DependentUpon>202103281603338_Add_Status_To_PurchaseOrderDetails_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs" />
-    <Compile Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.Designer.cs">
-      <DependentUpon>202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103310845440_Fix_PK_SaleOrder_and_Customer.cs" />
-    <Compile Include="Migrations\202103310845440_Fix_PK_SaleOrder_and_Customer.designer.cs">
-      <DependentUpon>202103310845440_Fix_PK_SaleOrder_and_Customer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103311402540_Set_display_name_SaleOrder.cs" />
-    <Compile Include="Migrations\202103311402540_Set_display_name_SaleOrder.designer.cs">
-      <DependentUpon>202103311402540_Set_display_name_SaleOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103311406041_Set_display_name_vehicle_and_customer.cs" />
-    <Compile Include="Migrations\202103311406041_Set_display_name_vehicle_and_customer.designer.cs">
-      <DependentUpon>202103311406041_Set_display_name_vehicle_and_customer.cs</DependentUpon>
+    <Compile Include="Migrations\202104011203066_Init_Database2.cs" />
+    <Compile Include="Migrations\202104011203066_Init_Database2.Designer.cs">
+      <DependentUpon>202104011203066_Init_Database2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -651,23 +631,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103270939390_InitialDatbase.resx">
-      <DependentUpon>202103270939390_InitialDatbase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103281603338_Add_Status_To_PurchaseOrderDetails_Table.resx">
-      <DependentUpon>202103281603338_Add_Status_To_PurchaseOrderDetails_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.resx">
-      <DependentUpon>202103301323320_Delete_Require_On_Cover_Column_Vehicles_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103310845440_Fix_PK_SaleOrder_and_Customer.resx">
-      <DependentUpon>202103310845440_Fix_PK_SaleOrder_and_Customer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103311402540_Set_display_name_SaleOrder.resx">
-      <DependentUpon>202103311402540_Set_display_name_SaleOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103311406041_Set_display_name_vehicle_and_customer.resx">
-      <DependentUpon>202103311406041_Set_display_name_vehicle_and_customer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104011203066_Init_Database2.resx">
+      <DependentUpon>202104011203066_Init_Database2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
