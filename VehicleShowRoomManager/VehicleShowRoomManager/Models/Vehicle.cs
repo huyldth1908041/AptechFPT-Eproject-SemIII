@@ -39,7 +39,7 @@ namespace VehicleShowRoomManager.Models
         public enum VehicleStatus
         {
 
-            Pending, Avaible, Sold, Assigned,Ready,
+            Pending, Available, Sold, Assigned, Ready,
             Used // Đã qua sửa dụng
 
         }

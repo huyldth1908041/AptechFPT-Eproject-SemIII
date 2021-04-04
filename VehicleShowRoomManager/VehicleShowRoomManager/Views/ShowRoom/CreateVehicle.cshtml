@@ -117,7 +117,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 10 })
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -205,8 +205,8 @@
                 fieldName: 'Covers',
                 thumbnails: '.cover',
                 cropping: "server",
-                
-                
+
+
             }, (error, result) => {
                 if (!error && result && result.event === "success") {
                     var inputValues = document.querySelectorAll('input[name="Covers"]');
@@ -232,4 +232,27 @@
         })
 
     </script>
+
+    @*Add path file ckeditor.js to view*@
+    <script src="~/Content/ckeditor5-build-classic/ckeditor.js"></script>
+
+    @*Change edit description to ckeditor form*@
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Description'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+
+    <style>
+        .ck-editor__editable {
+            min-height: 200px;
+        }
+    </style>
 }
