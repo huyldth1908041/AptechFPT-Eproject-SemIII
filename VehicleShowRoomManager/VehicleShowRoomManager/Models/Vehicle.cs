@@ -39,8 +39,13 @@ namespace VehicleShowRoomManager.Models
         public enum VehicleStatus
         {
 
-            Pending, Available, Sold, Assigned,Ready,
-            Used // Đã qua sửa dụng
+            Pending, //xe dg cho lay tu hang ve => ko tao dc saleorder, hien thi dc ra view
+            Available, // xe da dc lay tu hang ve => tao dc saleorder, hien thi dc ra view
+            Sold, // xe da duoc ban => ko tao dc sale order, ko hien thi ra list
+            Assigned, // xe duoc gan cho khach hang tam thoi bi lock lai => ko tao dc sale order, khong hien thi ra list
+            Ready, // khach hang da thanh toan xe chuan bi xuat khoi showrom => khong hien thi ra view list, khong tao dc sale order
+            Used, // Đã qua sửa dụng => van co the dc hien thi ra view list
+            InOrder //xe dang trong 1 order ko the tao moi order va hien thi ra view
 
         }
 
@@ -108,6 +113,6 @@ namespace VehicleShowRoomManager.Models
             }
             return listImagesUrl;
         }
-
+        public virtual ICollection<SaleOrder> SaleOrders { get; set; }
     }
 }

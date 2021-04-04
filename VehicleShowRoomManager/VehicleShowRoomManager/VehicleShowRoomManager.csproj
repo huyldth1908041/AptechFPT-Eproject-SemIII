@@ -141,6 +141,10 @@
     <Compile Include="Migrations\202104011203066_Init_Database2.Designer.cs">
       <DependentUpon>202104011203066_Init_Database2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104021811360_Add_Email_To_Customers_Table.cs" />
+    <Compile Include="Migrations\202104021811360_Add_Email_To_Customers_Table.Designer.cs">
+      <DependentUpon>202104021811360_Add_Email_To_Customers_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -625,6 +629,8 @@
     <Content Include="Views\ShowRoom\ListPendingSaleOrder.cshtml" />
     <Content Include="Views\ShowRoom\_ListVehiclePartialView.cshtml" />
     <Content Include="Views\ShowRoom\ListAvailableVehicle.cshtml" />
+    <Content Include="Views\ShowRoom\ManageVehicle.cshtml" />
+    <Content Include="Views\ShowRoom\ManageVehicleDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -641,6 +647,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104011203066_Init_Database2.resx">
       <DependentUpon>202104011203066_Init_Database2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104021811360_Add_Email_To_Customers_Table.resx">
+      <DependentUpon>202104021811360_Add_Email_To_Customers_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
