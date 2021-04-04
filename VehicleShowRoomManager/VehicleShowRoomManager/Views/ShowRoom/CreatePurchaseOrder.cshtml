@@ -1,11 +1,14 @@
 ﻿@model VehicleShowRoomManager.Models.PurchaseOrderDetail
 @{
+    VehicleShowRoomManager.Models.Vehicle currentVehicle = ViewBag.CurrentVehicle as VehicleShowRoomManager.Models.Vehicle;
     List<VehicleShowRoomManager.Models.VehicleModel> listModels = ViewBag.Models as List<VehicleShowRoomManager.Models.VehicleModel>;
-    var modelSelectList = new SelectList(listModels, "Id", "ModelNumber", 1);
+    var modelSelectList = new SelectList(listModels, "Id", "ModelNumber", currentVehicle.VehicleModelId);
 
 
     List<VehicleShowRoomManager.Models.Brand> listBrands = ViewBag.Brands as List<VehicleShowRoomManager.Models.Brand>;
-    var BrandSelectList = new SelectList(listBrands, "Id", "Name", 1);
+    var BrandSelectList = new SelectList(listBrands, "Id", "Name", currentVehicle.VehicleModel.BrandId);
+
+
 }
 <h3>Create Purchase Order</h3>
 <div class="card">
@@ -26,6 +29,10 @@
 
                             @foreach (var item in listBrands)
                             {
+                                if (item.Id == currentVehicle.VehicleModel.BrandId)
+                                {
+                                    <option value="@item.Id" selected>@item.Name</option>
+                                }
                                 <option value="@item.Id">@item.Name</option>
                             }
                         </select>
@@ -33,10 +40,7 @@
 
                     <div class="form-group col-md-5">
                         <label for="VehicleModelId" class="control-label">Model Number </label>
-                        <select class="form-control" id="VehicleModelId" name="VehicleModelId">
-
-                            <!--update by js-->
-                        </select>
+                        @Html.DropDownListFor(model => model.VehicleModelId, modelSelectList, new { @class ="form-control"})
                     </div>
                 </div>
 
@@ -44,7 +48,7 @@
                     <div class="form-group col-md-5">
                         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @Value = currentVehicle.Name} })
                             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -52,7 +56,7 @@
                     <div class="form-group col-md-5">
                         @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control", @Value = currentVehicle.Color } })
                             @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -93,7 +97,7 @@
 
 @section pageScripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
+    @*<script>
         const brandSelectBox = document.getElementById("brand-select");
         const modelSelectBox = document.getElementById("VehicleModelId");
         $(function () {
@@ -140,5 +144,5 @@
             modelSelectBox.innerHTML = "";
             modelSelectBox.innerHTML = data;
         }
-    </script>
+    </script>*@
 }

@@ -3,72 +3,153 @@
 @{
     ViewBag.Title = "List Sale Order";
 }
+@section pageStyles {
 
-<h2>List Sale Order</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Vehicle.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vehicle.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdateAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-
-            @if (item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Assigned && item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Done)
-            {
-                @Html.ActionLink("Comfirm", "ComfirmSaleOrder", new { id = item.Id }) 
-            }
-            @if (item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Avaible)
-            {
-                @Html.ActionLink("Assign", "AssignVehicleToCustomer", new { id = item.Id })
-            }
-
-        </td>
-    </tr>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets/vendor/datatables/css/dataTables.bootstrap4.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets/vendor/datatables/css/buttons.bootstrap4.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets/vendor/datatables/css/select.bootstrap4.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets/vendor/datatables/css/fixedHeader.bootstrap4.css")">
 }
 
-</table>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">
+                List Sale Order
+            </h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered first">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Customer.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Vehicle.Name)
+                            </th>
+                            <th>
+                                Total Price
+                            </th>
+                            <th>
+                                Created At
+                            </th>
+                            <th>
+                                Updated At
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Vehicle.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateAt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UpdateAt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+
+
+                                    @if (item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Assigned && item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Done)
+                                    {
+                                        @*@Html.ActionLink("Comfirm", "ComfirmSaleOrder", new { id = item.Id }, new { @class = "btn btn-infor" })*@
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirm-@item.Id">
+                                            Confirm
+                                        </button>
+                                        <div class="modal fade" id="confirm-@item.Id" tabindex="-1" role="dialog" aria-labelledby="confirm-@item.Id" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirm-@item.Id">Confirm sale Order</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        This order is purchased and done ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a href="@Url.Action("ComfirmSaleOrder", new { id = item.Id })" class="btn btn-primary">Confirm</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.InOrder)
+                                    {
+                                        @*@Html.ActionLink("Assign", "AssignVehicleToCustomer", new { id = item.Id }, new { @class = "btn btn-primary" })*@
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assign-@item.Id">
+                                            Assign
+                                        </button>
+                                        <div class="modal fade" id="assign-@item.Id" tabindex="-1" role="dialog" aria-labelledby="assign-@item.Id" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="assign-@item.Id">Assign Vehicle to Customer Confirmation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Do you want to Assign @item.Vehicle.Name to @item.Customer.Name ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a href="@Url.Action("AssignVehicleToCustomer", new { id = item.Id })" class="btn btn-primary">Assign</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal-->
+<!-- Modal -->
+
+
+
+@section pageScripts {
+    <script src="@Url.Content("~/Content/assets/vendor/multi-select/js/jquery.multi-select.js")"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="@Url.Content("~/Content/assets/vendor/datatables/js/dataTables.bootstrap4.min.js")"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="@Url.Content("~/Content/assets/vendor/datatables/js/buttons.bootstrap4.min.js")"></script>
+    <script src="@Url.Content("~/Content/assets/vendor/datatables/js/data-table.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+}

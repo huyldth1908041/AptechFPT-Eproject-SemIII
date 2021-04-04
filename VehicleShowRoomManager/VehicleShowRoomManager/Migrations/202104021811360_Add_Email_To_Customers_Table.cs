@@ -3,16 +3,16 @@ namespace VehicleShowRoomManager.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Add_Status_To_PurchaseOrderDetails_Table : DbMigration
+    public partial class Add_Email_To_Customers_Table : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.PurchaseOrderDetails", "Status", c => c.Int(nullable: false));
+            AddColumn("dbo.Customers", "Email", c => c.String(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.PurchaseOrderDetails", "Status");
+            DropColumn("dbo.Customers", "Email");
         }
     }
 }
