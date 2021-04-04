@@ -13,7 +13,7 @@
                 </div>
                 <div class="ribbons"></div>
                 <div class="ribbons-text"> New</div>
-                <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
+       
             </div>
             <div class="product-content">
                 <div class="product-content-head">
@@ -21,11 +21,18 @@
                     <div class="product-rating d-inline-block">
                         @Html.DisplayFor(modelItem => item.Status)
                     </div>
-                    <div class="product-price"> @Html.DisplayFor(modelItem => item.SalePrice) VND</div>
+                    <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.SalePrice)</div>
                 </div>
                 <div class="product-btn">
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                    <div class="btn btn-outline-light">@Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id })</div>
+                    @if (item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
+                    {
+                        <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = item.Id})" class="btn btn-primary">Create Order</a>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Order</button>
+                    }
+                    @Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                 </div>
             </div>
         </div>

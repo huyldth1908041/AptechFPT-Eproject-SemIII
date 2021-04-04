@@ -40,13 +40,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block" src="@Model.GetAllImages().First()" alt="First slide">
+                                    <img class="d-block img-fluid" src="@Model.GetAllImages().First()" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block" src="@Model.GetAllImages().First()" alt="Second slide">
+                                    <img class="d-block img-fluid" src="@Model.GetAllImages().First()" alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block" src="@Model.GetAllImages().First()" alt="Third slide">
+                                    <img class="d-block img-fluid" src="@Model.GetAllImages().First()" alt="Third slide">
                                 </div>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -63,37 +63,59 @@
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
-                <div class="product-details">
-                    <div class="border-bottom pb-3 mb-3">
-                        <h2 class="mb-3">@Html.DisplayFor(model => model.Name)</h2>
-                        <div class="product-rating d-inline-block float-right">
-                            <i class="fa fa-fw fa-star"></i>
-                            <i class="fa fa-fw fa-star"></i>
-                            <i class="fa fa-fw fa-star"></i>
-                            <i class="fa fa-fw fa-star"></i>
-                            <i class="fa fa-fw fa-star"></i>
-                        </div>
-                        <h3 class="mb-0 text-primary">@Html.DisplayFor(model => model.SalePrice)</h3>
-                    </div>
-                    <div class="product-size border-bottom">
-                        <h4>Status</h4>
-                        <div class="btn-group" role="group" aria-label="First group">
-                            @Html.DisplayFor(model => model.Status)
-                        </div>
-                        <div class="product-qty">
+                    <div class="product-details">
+                        <div class="border-bottom pb-3 mb-3">
+                            <h2 class="mb-3">@Html.DisplayFor(model => model.Name)</h2>
 
-                            <h4>Quantity</h4>
-                            <div class="quantity">
-                                <input type="number" min="1" max="9" step="1" value="1">
+                            <h3 class="mb-0 text-primary">&dollar; @Html.DisplayFor(model => model.SalePrice)</h3>
+                        </div>
+                        <div class="product-size border-bottom">
+                            <h4>Status</h4>
+                            <div class="btn-group" role="group" aria-label="First group">
+                                @Html.DisplayFor(model => model.Status)
+                            </div>
+
+                        </div>
+                        <div class="product-description">
+                            <h4 class="mb-1">Descriptions</h4>
+                            <p>@Html.DisplayFor(model => model.Description)</p>
+
+                            @if (Model.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || Model.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
+                            {
+                                <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = Model.Id})" class="btn btn-primary btn-block btn-lg">Create Sale Order</a>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-danger btn-block btn-lg" data-toggle="modal" data-target="#alert-model">Create sale order</button>
+                            }
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal" id="alert-model">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Can not create sale order for @Model.Name</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        
+                                        <p>We're sorry thar @Model.Name is not availale for sale at this momment</p>
+                                        <p>Contact admin for mor information</p>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="product-description">
-                        <h4 class="mb-1">Descriptions</h4>
-                        <p>@Html.DisplayFor(model => model.Description)</p>
-                        <a href="#" class="btn btn-primary btn-block btn-lg">Add to Cart</a>
-                    </div>
-                </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
                     <div class="simple-card">
@@ -170,11 +192,18 @@
                                     <div class="product-rating d-inline-block">
                                         @Html.DisplayFor(modelItem => item.Status)
                                     </div>
-                                    <div class="product-price">@Html.DisplayFor(modelItem => item.SalePrice)</div>
+                                    <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.SalePrice)</div>
                                 </div>
                                 <div class="product-btn">
-                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                    <a href="#" class="btn btn-outline-light">Details</a>
+                                    @if (item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
+                                    {
+                                        <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = item.Id})" class="btn btn-primary">Create Order</a>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Order</button>
+                                    }
+                                    @Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                                 </div>
                             </div>
                         </div>

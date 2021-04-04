@@ -1,4 +1,7 @@
-﻿@model IEnumerable<VehicleShowRoomManager.Models.Vehicle>
+﻿<!-- Thêm thư viện -->
+@using PagedList.Mvc;
+@model PagedList.IPagedList<VehicleShowRoomManager.Models.Vehicle>
+
 
 @{
     ViewBag.Title = "ListVehicle";
@@ -8,6 +11,7 @@
 
 @section PageStyles {
     <link href="@Url.Content("~/Content/assets/libs/css/ListVehicle.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/page-list.css")" rel="stylesheet" />
 }
 
 <div class="row">
@@ -39,7 +43,7 @@
                                 <img src="@item.GetAllImages().First()" alt="" class="img-fluid">
                             </div>
                             <div class="ribbons"></div>
-                            <div class="ribbons-text"> New</div>
+                            <div class="ribbons-text">New</div>
 
                         </div>
                         <div class="product-content">
@@ -48,17 +52,31 @@
                                 <div class="product-rating d-inline-block">
                                     @Html.DisplayFor(modelItem => item.Status)
                                 </div>
-                                <div class="product-price"> @Html.DisplayFor(modelItem => item.SalePrice) &dollar;</div>
+                                <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.SalePrice)</div>
                             </div>
                             <div class="product-btn">
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
-                                <div class="btn btn-outline-light">@Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id })</div>
+                                @if (item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
+                                {
+                                    <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = item.Id})" class="btn btn-primary">Create Order</a>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Order</button>
+                                }
+                                @Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                             </div>
                         </div>
                     </div>
                 </div>
             }
+
         </div>
+        <div class="page-separate text-center">
+            <p class="page-separate-text">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</p>
+
+            @Html.PagedListPager(Model, page => Url.Action("ListVehicle", "ShowRoom", new { page }))
+        </div>
+
     </div>
     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
         <div class="product-sidebar">
@@ -109,13 +127,14 @@
             </div>
         </div>
     </div>
+
 </div>
 @section pageScripts {
     <script>
         const modelRadios = document.querySelectorAll("input[name='modelNumber']");
         const vehiclesContainer = document.getElementById("vehicle-container");
         const brandRadios = document.querySelectorAll("input[name='brand']");
-        
+
         for (let i = 0; i < modelRadios.length; i++) {
             const currentRadio = modelRadios[i];
             currentRadio.addEventListener("change", e => {
@@ -163,6 +182,10 @@
                 });
             })
         }
+        function alertError(e) {
+
+            alert("Can not create sale order for this Vehicle")
+        }
     </script>
-        
+
 }
