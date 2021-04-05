@@ -1,0 +1,38 @@
+﻿.header {
+    background-color: cornflowerblue;
+    color: white;
+    height: 150px;
+    align-content: center;
+}
+
+.body{
+    padding: 0 40px;
+}
+.title-grey {
+    color: grey;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.header .title {
+    align-self: center;
+    font-size: 40px;
+    text-transform: uppercase;
+    padding-left: 50px;
+}
+
+.header .left, .right {
+    font-size: 20px
+}
+
+.customer {
+    color: black;
+    font-size: 20px;
+    height: 300px;
+    align-content: center;
+    border-bottom: 3px solid cornflowerblue;
+}
+
+    .customer .title {
+        text-align: right;
+    }

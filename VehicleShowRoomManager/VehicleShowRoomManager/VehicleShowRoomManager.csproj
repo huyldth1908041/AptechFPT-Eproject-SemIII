@@ -623,6 +623,7 @@
     <Content Include="Content\ckeditor5-build-classic\vendor.js" />
     <Content Include="Content\page-list.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\receipt.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -711,6 +712,7 @@
     <Content Include="Views\ShowRoom\ListAvailableVehicle.cshtml" />
     <Content Include="Views\ShowRoom\ManageVehicle.cshtml" />
     <Content Include="Views\ShowRoom\ManageVehicleDetail.cshtml" />
+    <Content Include="Views\ShowRoom\GoodReceiptDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

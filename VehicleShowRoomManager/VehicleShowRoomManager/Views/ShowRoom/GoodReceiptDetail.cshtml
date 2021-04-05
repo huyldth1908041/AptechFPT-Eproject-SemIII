@@ -1,0 +1,47 @@
+﻿@model IEnumerable<VehicleShowRoomManager.Models.GoodsReceipt>
+
+@{
+    ViewBag.Title = "GoodReceiptDetail";
+}
+<link href="@Url.Content("~/Content/receipt.css")" rel="stylesheet" />
+
+<h2>Good Receipt Detail</h2>
+
+<div class="row header">
+    <div class="col-xl-6 title">Invoice</div>
+    <div class="col-xl-3 left">
+        <div class="phone">0399.666.888</div>
+        <div class="email">showroom@gmail.com</div>
+        <div class="website">showroom.com</div>
+    </div>
+
+    <div class="col-xl-3 right">
+        <div class="address">1 Your Address</div>
+        <div class="address">City, State, Country</div>
+        <div class="zipcode">100000</div>
+    </div>
+</div>
+<div class="body">
+
+    <div class="row customer">
+        <div class="col-xl-3 left">
+            <div class="title-grey">Billed To</div>
+            <div class="phone">Client Name</div>
+            <div class="phone">1 Client Address</div>
+            <div class="phone">City, State, Country</div>
+            <div class="phone">1000000</div>
+        </div>
+
+        <div class="col-xl-3 right">
+            <div class="title-grey">Invoice Number</div>
+            <div class="address m-b-30">00000000</div>
+            <div class="title-grey">Date of Issue</div>
+            <div class="address">21/04/10</div>
+        </div>
+        <div class="col-xl-6 title">
+            <div class="title-grey">Invoice Total</div>
+            <div class="text-blue">&dollar; 4520.00</div>
+        </div>
+    </div>
+
+</div>
