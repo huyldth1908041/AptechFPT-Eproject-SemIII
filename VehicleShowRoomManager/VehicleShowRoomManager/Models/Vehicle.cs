@@ -36,6 +36,8 @@ namespace VehicleShowRoomManager.Models
         public VehicleControlType Control { get; set; }
         public VehicleStatus Status { get; set; }
 
+        public VehicleAssets Assets { get; set; }
+
         public enum VehicleStatus
         {
 
@@ -62,6 +64,14 @@ namespace VehicleShowRoomManager.Models
         {
             Automatic = 1,
             Manual = 2
+        }
+
+        public enum VehicleAssets
+        {
+         
+            Default = 0,
+            Current = 1,
+            Fixed = 2
         }
 
         //foreings key

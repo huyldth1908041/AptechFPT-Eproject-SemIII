@@ -23,6 +23,7 @@ namespace VehicleShowRoomManager.Models
         }
         public virtual ICollection<Vehicle> Vehicles { get; set; }
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
+        public virtual ICollection<ModelImage> ModelImages { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

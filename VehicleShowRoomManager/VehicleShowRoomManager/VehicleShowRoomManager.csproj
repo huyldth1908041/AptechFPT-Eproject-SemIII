@@ -145,10 +145,15 @@
     <Compile Include="Migrations\202104021811360_Add_Email_To_Customers_Table.Designer.cs">
       <DependentUpon>202104021811360_Add_Email_To_Customers_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.cs" />
+    <Compile Include="Migrations\202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.Designer.cs">
+      <DependentUpon>202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\GoodsReceipt.cs" />
+    <Compile Include="Models\ModelImage.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\PurchaseOrderDetail.cs" />
     <Compile Include="Models\SaleOrder.cs" />
@@ -546,7 +551,6 @@
     <Content Include="Content\assets\vendor\timeline\img\cd-icon-picture.svg" />
     <Content Include="Content\assets\vendor\timeline\js\main.js" />
     <Content Include="Content\assets\vendor\vector-map\jqvmap.css" />
-
     <Content Include="Content\ckeditor5-build-classic\ckeditor.js" />
     <Content Include="Content\ckeditor5-build-classic\index.html" />
     <Content Include="Content\ckeditor5-build-classic\sample\css\sample.css" />
@@ -617,10 +621,8 @@
     <Content Include="Content\ckeditor5-build-classic\translations\zh-cn.js" />
     <Content Include="Content\ckeditor5-build-classic\translations\zh.js" />
     <Content Include="Content\ckeditor5-build-classic\vendor.js" />
-
     <Content Include="Content\page-list.css" />
     <Content Include="Content\PagedList.css" />
-
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -728,6 +730,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104021811360_Add_Email_To_Customers_Table.resx">
       <DependentUpon>202104021811360_Add_Email_To_Customers_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.resx">
+      <DependentUpon>202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

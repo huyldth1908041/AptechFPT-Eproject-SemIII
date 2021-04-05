@@ -68,6 +68,7 @@ namespace VehicleShowRoomManager.Controllers
             // Save timestamp and status
             model.CreatedAt = DateTime.Now;
             model.UpdatedAt = DateTime.Now;
+            model.Assets = Vehicle.VehicleAssets.Default;
             model.Status = Vehicle.VehicleStatus.Pending;
             _db.Vehicles.Add(model);
             _db.SaveChanges();
