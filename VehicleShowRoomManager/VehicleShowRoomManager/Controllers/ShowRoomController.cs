@@ -480,6 +480,23 @@ namespace VehicleShowRoomManager.Controllers
             return View(currentVehicle);
         }
 
+        public ActionResult CompletePurchaseOrder(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+            }
+            var purchaseOrder = _db.PurchaseOrders.Find(id);
+            if (purchaseOrder == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            purchaseOrder.Status = PurchaseOrder.PurchaseOrderStatus.Done;
+            _db.SaveChanges();
+            return RedirectToAction("ListPurchaseOrder");
+
+        }
     }
 }
