@@ -8,6 +8,7 @@ namespace VehicleShowRoomManager.Models
     public class ModelImage
     {
         public int Id { get; set; }
+        
         public string Cover { get; set; }
 
         public string Color { get; set; }
@@ -15,5 +16,9 @@ namespace VehicleShowRoomManager.Models
         public int VehicleModelId { get; set; }
 
         public virtual VehicleModel VehicleModel { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        
+        public DateTime UpdatedAt { get; set; }
     }
 }
