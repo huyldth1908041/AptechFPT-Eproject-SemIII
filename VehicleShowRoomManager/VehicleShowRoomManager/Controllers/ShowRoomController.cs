@@ -80,16 +80,16 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult CreateGoodsReceipt(int? id)
         {
             //create a good receipt for a pending vehicle
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var currentVehicle = _db.Vehicles.Find(id);
-            if(currentVehicle == null)
+            if (currentVehicle == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            if(currentVehicle.Status != Vehicle.VehicleStatus.Pending)
+            if (currentVehicle.Status != Vehicle.VehicleStatus.Pending)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -156,13 +156,13 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult CreatePurchaseOrder(int? id)
         {
             //create purchase order for an pending vehicle
-            if(id == null)
+            if (id == null)
             {
-            
+
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var currentVehicle = _db.Vehicles.Find(id);
-            if(currentVehicle == null)
+            if (currentVehicle == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
@@ -188,6 +188,10 @@ namespace VehicleShowRoomManager.Controllers
             return RedirectToAction("RegisterVehicleData", "ShowRoom", new { id = model.VehicleId });
         }
 
+        public ActionResult GoodReceiptDetail()
+        {
+            return View();
+        }
         public ActionResult RegisterVehicleData(int? id)
         {
             if (id == null)
@@ -195,7 +199,7 @@ namespace VehicleShowRoomManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var vehicle = _db.Vehicles.Find(id);
-            if(vehicle.Status != Vehicle.VehicleStatus.Pending)
+            if (vehicle.Status != Vehicle.VehicleStatus.Pending)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -205,13 +209,13 @@ namespace VehicleShowRoomManager.Controllers
         [HttpPost]
         public ActionResult RegisterVehicleData(int? id, Vehicle model)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var existVehicle = _db.Vehicles.Find(id);
 
-            if(existVehicle == null)
+            if (existVehicle == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
@@ -232,7 +236,7 @@ namespace VehicleShowRoomManager.Controllers
             existVehicle.VIN = model.VIN;
             existVehicle.FN = model.FN;
             _db.SaveChanges();
-            return RedirectToAction("ManageVehicleDetail", new { id = id});
+            return RedirectToAction("ManageVehicleDetail", new { id = id });
         }
 
         [HttpPost]
@@ -353,7 +357,7 @@ namespace VehicleShowRoomManager.Controllers
         {
 
 
-           
+
             //var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Available || s.Status == Vehicle.VehicleStatus.Used  ).ToList();
 
 
@@ -365,7 +369,7 @@ namespace VehicleShowRoomManager.Controllers
 
 
 
-    
+
         public ActionResult CreateSaleOrderOfAnVehicle(int? id)
         {
             if (id == null)
@@ -472,11 +476,11 @@ namespace VehicleShowRoomManager.Controllers
 
             }
             var currentVehicle = _db.Vehicles.Find(id);
-            if(currentVehicle == null )
+            if (currentVehicle == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-           
+
             return View(currentVehicle);
         }
 
