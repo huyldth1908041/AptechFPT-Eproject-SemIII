@@ -1,38 +1,104 @@
-﻿.header {
-    background-color: cornflowerblue;
-    color: white;
-    height: 150px;
-    align-content: center;
-}
-
-.body{
-    padding: 0 40px;
-}
-.title-grey {
+﻿.receipt .text-grey {
     color: grey;
     font-size: 20px;
     padding-bottom: 5px;
 }
 
-.header .title {
-    align-self: center;
-    font-size: 40px;
-    text-transform: uppercase;
-    padding-left: 50px;
-}
-
-.header .left, .right {
-    font-size: 20px
-}
-
-.customer {
+.receipt .text-black {
     color: black;
-    font-size: 20px;
-    height: 300px;
-    align-content: center;
-    border-bottom: 3px solid cornflowerblue;
+    font-size: 22px;
 }
 
-    .customer .title {
-        text-align: right;
+.receipt .text-blue {
+    color: cornflowerblue;
+    font-size: 22px;
+}
+
+.receipt {
+    background-color: white;
+}
+
+    .receipt .header {
+        background-color: cornflowerblue;
+        color: white;
     }
+
+        .receipt .header .row {
+            align-content: center;
+            height: 150px;
+            ▐
+        }
+
+            .receipt .header .row .title {
+                align-self: center;
+                font-size: 40px;
+                text-transform: uppercase;
+                padding-left: 50px;
+            }
+
+        .receipt .header .left, .right {
+            font-size: 20px
+        }
+
+    .receipt .body-receipt {
+        padding: 0 40px 40px;
+    }
+
+
+
+        .receipt .body-receipt .customer {
+            color: black;
+            font-size: 20px;
+            height: 270px;
+            align-content: center;
+            border-bottom: 3px solid cornflowerblue;
+        }
+
+            .receipt .body-receipt .customer .title {
+                text-align: right;
+            }
+
+                .receipt .body-receipt .customer .title .text-blue {
+                    font-size: 50px;
+                }
+
+        .receipt .body-receipt .title-table {
+            font-size: 24px;
+            color: cornflowerblue;
+            text-align: right;
+        }
+
+            .receipt .body-receipt .title-table .left {
+                text-align: left;
+            }
+
+        .receipt .body-receipt .item-table {
+            text-align: right;
+            padding-bottom: 20px;
+            border-bottom: 1px solid grey
+        }
+
+            .receipt .body-receipt .item-table .left {
+                text-align: left;
+            }
+
+        .receipt .body-receipt .total {
+            padding-bottom: 20px;
+            text-align: right;
+        }
+
+        .receipt .body-receipt .total-first {
+            padding-top: 70px;
+        }
+
+            .receipt .body-receipt .total-first .text-blue {
+                font-size: 24px;
+            }
+
+        .receipt .body-receipt .total-last {
+            padding-top: 30px;
+        }
+
+            .receipt .body-receipt .total-last .col-xl-3 {
+                align-self: flex-end;
+            }
