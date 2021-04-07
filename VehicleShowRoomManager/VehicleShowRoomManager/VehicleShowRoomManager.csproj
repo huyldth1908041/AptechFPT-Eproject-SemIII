@@ -132,6 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowRoomController.cs" />
     <Compile Include="Global.asax.cs">
@@ -149,10 +150,18 @@
     <Compile Include="Migrations\202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.Designer.cs">
       <DependentUpon>202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104060913563_add_employee_table.cs" />
+    <Compile Include="Migrations\202104060913563_add_employee_table.Designer.cs">
+      <DependentUpon>202104060913563_add_employee_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
+
+    <Compile Include="Models\Employee.cs" />
+
     <Compile Include="Models\GetVehicleByColorBindingModel.cs" />
+
     <Compile Include="Models\GoodsReceipt.cs" />
     <Compile Include="Models\ModelImage.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
@@ -715,9 +724,17 @@
     <Content Include="Views\ShowRoom\ManageVehicle.cshtml" />
     <Content Include="Views\ShowRoom\ManageVehicleDetail.cshtml" />
     <Content Include="Views\ShowRoom\GoodReceiptDetail.cshtml" />
+
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+
     <Content Include="Views\ShowRoom\ListVehicleModel.cshtml" />
     <Content Include="Views\ShowRoom\_ListVehicleModelByBrand.cshtml" />
     <Content Include="Views\ShowRoom\VehicleModelDetail.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -740,6 +757,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.resx">
       <DependentUpon>202104051240125_Add_ModelImages_Table_Add_Assets_Column_To_Vehicles_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104060913563_add_employee_table.resx">
+      <DependentUpon>202104060913563_add_employee_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
