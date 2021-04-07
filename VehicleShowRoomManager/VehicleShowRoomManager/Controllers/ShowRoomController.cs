@@ -367,18 +367,14 @@ namespace VehicleShowRoomManager.Controllers
         }
 
         // Create sale order 
-        public ActionResult CreateSaleOrder()
+        public ActionResult SaleOrderDetail()
         {
-
-
-
             //var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Available || s.Status == Vehicle.VehicleStatus.Used  ).ToList();
-
 
             //ViewBag.ListModels = _db.VehicleModels.ToList();
             //ViewBag.ListBrands = _db.Brands.ToList();
             //return View("ListAvailableVehicle", listAvailableVehicle);
-            return RedirectToAction("ListVehicle");
+            return View();
         }
 
 

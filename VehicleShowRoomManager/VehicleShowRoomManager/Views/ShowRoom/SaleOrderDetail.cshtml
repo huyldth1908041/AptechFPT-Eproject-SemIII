@@ -1,22 +1,17 @@
-﻿@model VehicleShowRoomManager.Models.GoodsReceipt
+﻿@model IEnumerable<VehicleShowRoomManager.Models.SaleOrder>
 
-@{
-    ViewBag.Title = "GoodReceiptDetail";
-}
 <link href="@Url.Content("~/Content/receipt.css")" rel="stylesheet" />
 
-<h2>Good Receipt Detail</h2>
+<h2>Sale Order Detail</h2>
 <div class="receipt">
-
     <div class="header">
         <div class="row">
-            <div class="col-xl-6 title">Invoice</div>
+            <div class="col-xl-6 title">Sale Order</div>
             <div class="col-xl-3 left">
                 <div class="phone">0399.666.888</div>
                 <div class="email">showroom@gmail.com</div>
                 <div class="website">showroom.com</div>
             </div>
-
             <div class="col-xl-3 right">
                 <div class="address">1 Your Address</div>
                 <div class="address">City, State, Country</div>
@@ -28,8 +23,8 @@
 
         <div class="row customer">
             <div class="col-xl-3 left">
-                <div class="text-grey">From</div>
-                <div class="text-black">Showroom Name</div>
+                <div class="text-grey">Billed To: </div>
+                <div class="text-black">Client Name</div>
                 <div class="text-black">1 Client Address</div>
                 <div class="text-black">City, State, Country</div>
                 <div class="text-black">1000000</div>
@@ -39,11 +34,11 @@
                 <div class="text-grey">Invoice Number</div>
                 <div class="text-black m-b-30">00000000</div>
                 <div class="title-grey">Date of Issue</div>
-                <div class="text-black">@Model.CreatedAt</div>
+                <div class="text-black">02/02/2021</div>
             </div>
             <div class="col-xl-6 title">
                 <div class="text-grey">Invoice Total</div>
-                <div class="text-blue">&dollar;@Model.ReceiptPrice</div>
+                <div class="text-blue">&dollar; 1000</div>
             </div>
         </div>
         <div class="row title-table p-t-30">
@@ -55,11 +50,11 @@
         </div>
         <div class="row item-table p-t-30">
             <div class="col-xl-6 left">
-                <div class="text-black">@Model.Vehicle.Name</div>
-                <div class="text-grey">VIN: @Model.Vehicle.VIN </div>
-                <div class="text-grey">FN: @Model.Vehicle.FN </div>
+                <div class="text-black">Vehicle Name</div>
+                <div class="text-grey">VIN: Model Vehicle VIN </div>
+                <div class="text-grey">FN: Model.Vehicle.FN </div>
             </div>
-            <div class="col-xl-2 p-r-25"> <div class="text-black m-b-30">@Model.PrepaymentMoney</div></div>
+            <div class="col-xl-2 p-r-25"> <div class="text-black m-b-30">1000</div></div>
             <div class="col-xl-2 p-r-0"> <div class="text-black m-b-30">1</div></div>
             <div class="col-xl-2"> <div class="text-black m-b-30">1000</div></div>
         </div>
