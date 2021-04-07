@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace VehicleShowRoomManager.Models
 {
@@ -31,6 +32,7 @@ namespace VehicleShowRoomManager.Models
         [Display(Name="Price")]
         [Required]
         public float SalePrice { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
         public VehicleType Type { get; set; }
         public VehicleControlType Control { get; set; }

@@ -190,9 +190,21 @@ namespace VehicleShowRoomManager.Controllers
             return RedirectToAction("RegisterVehicleData", "ShowRoom", new { id = model.VehicleId });
         }
 
-        public ActionResult GoodReceiptDetail()
+        public ActionResult GoodsReceiptDetail(int? id)
         {
-            return View();
+            var vehicle = _db.Vehicles.Find(id);
+
+            if (vehicle == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var goodsReceipt = _db.GoodsReceipts.Where(v => v.VehicleId == id).FirstOrDefault();
+            if(goodsReceipt == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View("GoodReceiptDetail", goodsReceipt);
         }
         public ActionResult RegisterVehicleData(int? id)
         {
