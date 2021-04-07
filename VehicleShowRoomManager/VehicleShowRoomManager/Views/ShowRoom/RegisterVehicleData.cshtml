@@ -114,12 +114,35 @@
         </form>
     </div>
 </div>
-    @*</form>*@
+@*</form>*@
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-    @section pageScripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section pageScripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*Add path file ckeditor.js to view*@
+    <script src="~/Content/ckeditor5-build-classic/ckeditor.js"></script>
+
+    @*Change edit description to ckeditor form*@
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Description'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+
+    <style>
+        .ck-editor__editable {
+            min-height: 200px;
+        }
+    </style>
+}
