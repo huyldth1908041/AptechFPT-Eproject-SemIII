@@ -87,7 +87,7 @@
                         </div>
                         <div class="product-description">
                             <h4 class="mb-1">Descriptions</h4>
-                            <p>@Html.DisplayFor(model => model.Description)</p>
+                            <p>@Html.Raw(Model.Description)</p>
 
                             <a href="@Url.Action("CreatePurchaseOrder", new { id = Model.Id})" class="btn btn-primary btn-block">Create Purchase Order</a>
                             @if (Model.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Pending)
