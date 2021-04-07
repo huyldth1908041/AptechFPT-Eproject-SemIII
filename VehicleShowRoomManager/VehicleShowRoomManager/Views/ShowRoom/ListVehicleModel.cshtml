@@ -1,0 +1,153 @@
+﻿@model IEnumerable<VehicleShowRoomManager.Models.VehicleModel>
+
+@{
+    ViewBag.Title = "ListVehicleModel";
+}
+
+
+
+@{
+    ViewBag.Title = "ListVehicle";
+    List<VehicleShowRoomManager.Models.VehicleModel> listModels = ViewBag.ListModels as List<VehicleShowRoomManager.Models.VehicleModel>;
+    List<VehicleShowRoomManager.Models.Brand> listBrands = ViewBag.ListBrands as List<VehicleShowRoomManager.Models.Brand>;
+}
+
+@section PageStyles {
+    <link href="@Url.Content("~/Content/assets/libs/css/ListVehicle.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/page-list.css")" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+            <h2 class="pageheader-title">All Vehicle Models </h2>
+            <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">List Vehicles</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+        <div class="row" id="vehicle-container">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="product-thumbnail">
+                        <div class="product-img-head">
+                            <div class="product-img">
+                                <img src="@item.ModelImages.First().GetAllImages().First()" alt="" class="img-fluid">
+                            </div>
+                            <div class="ribbons"></div>
+                            <div class="ribbons-text">New</div>
+
+                        </div>
+                        <div class="product-content">
+                            <div class="product-content-head">
+                                <h3 class="product-title">  @Html.DisplayFor(modelItem => item.ModelName)</h3>
+                                <div class="product-rating d-inline-block">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </div>
+                                <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.Vehicles.First().SalePrice)</div>
+                            </div>
+                            <div class="product-btn">
+                       
+                                    @Html.ActionLink("Detail", "VehicleModelDetail", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        @*<div class="page-separate text-center">
+                <p class="page-separate-text">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</p>
+
+                @Html.PagedListPager(Model, page => Url.Action("ListVehicle", "ShowRoom", new { page }))
+            </div>*@
+
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+        <div class="product-sidebar">
+            <div class="product-sidebar-widget">
+                <h4 class="mb-0">Vehicle Filter</h4>
+            </div>
+            <div class="product-sidebar-widget">
+                <h4 class="product-sidebar-widget-title">Brand</h4>
+                @foreach (var item in listBrands)
+                {
+                    <div class="custom-control custom-radio custom-color-red">
+                        <input type="radio" id="brand-@item.Id" name="brand" class="custom-control-input" value="@item.Id">
+                        <label class="custom-control-label" for="brand-@item.Id">@item.Name</label>
+                    </div>
+                }
+            </div>
+            <div class="product-sidebar-widget">
+                <h4 class="product-sidebar-widget-title">Price</h4>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="price-1">
+                    <label class="custom-control-label" for="price-1">$$</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="price-2">
+                    <label class="custom-control-label" for="price-2">$$$</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="price-3">
+                    <label class="custom-control-label" for="price-3">$$$$</label>
+                </div>
+            </div>
+            <div class="product-sidebar-widget">
+                <a href="#" class="btn btn-outline-light">Reset Filter</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section pageScripts {
+    <script>
+        const modelRadios = document.querySelectorAll("input[name='modelNumber']");
+        const vehiclesContainer = document.getElementById("vehicle-container");
+        const brandRadios = document.querySelectorAll("input[name='brand']");
+
+        function updateListVehicle(data) {
+            vehiclesContainer.innerHTML = "";
+            vehiclesContainer.innerHTML = data;
+        }
+        //filter by brand
+        for (let i = 0; i < brandRadios.length; i++) {
+            const currentRadio = brandRadios[i];
+            currentRadio.addEventListener("click", e => {
+                const id = e.target.value;
+                //ajax
+                $.ajax({
+                    url: "/ShowRoom/ListVehicleModelByBrand/".concat(id),
+                    type: "GET",
+
+
+                    traditional: true,
+                    dataType: "html",
+                    success: function (data) {
+                        updateListVehicle(data);
+                    },
+                    error: function () {
+                        alert("An error has occured!!!");
+                    }
+                });
+            })
+        }
+        function alertError(e) {
+
+            alert("Can not create sale order for this Vehicle")
+        }
+    </script>
+
+}

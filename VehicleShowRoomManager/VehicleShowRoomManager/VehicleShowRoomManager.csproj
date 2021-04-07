@@ -157,7 +157,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
+
     <Compile Include="Models\Employee.cs" />
+
+    <Compile Include="Models\GetVehicleByColorBindingModel.cs" />
+
     <Compile Include="Models\GoodsReceipt.cs" />
     <Compile Include="Models\ModelImage.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
@@ -196,6 +200,7 @@
     <Content Include="Content\assets\images\loader.svg" />
     <Content Include="Content\assets\images\logo.png" />
     <Content Include="Content\assets\images\mail_chimp.png" />
+    <Content Include="Content\assets\images\next.png" />
     <Content Include="Content\assets\images\product-pic-2.jpg" />
     <Content Include="Content\assets\images\product-pic-3.jpg" />
     <Content Include="Content\assets\images\product-pic-4.jpg" />
@@ -719,11 +724,17 @@
     <Content Include="Views\ShowRoom\ManageVehicle.cshtml" />
     <Content Include="Views\ShowRoom\ManageVehicleDetail.cshtml" />
     <Content Include="Views\ShowRoom\GoodReceiptDetail.cshtml" />
+
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+
+    <Content Include="Views\ShowRoom\ListVehicleModel.cshtml" />
+    <Content Include="Views\ShowRoom\_ListVehicleModelByBrand.cshtml" />
+    <Content Include="Views\ShowRoom\VehicleModelDetail.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
