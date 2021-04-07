@@ -188,10 +188,6 @@ namespace VehicleShowRoomManager.Controllers
             return RedirectToAction("RegisterVehicleData", "ShowRoom", new { id = model.VehicleId });
         }
 
-        public ActionResult GoodReceiptDetail()
-        {
-            return View();
-        }
         public ActionResult RegisterVehicleData(int? id)
         {
             if (id == null)
@@ -501,6 +497,28 @@ namespace VehicleShowRoomManager.Controllers
             _db.SaveChanges();
             return RedirectToAction("ListPurchaseOrder");
 
+        }
+        public ActionResult GoodReceiptDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            var vehicle = _db.Vehicles.Find((int)id);
+            if (vehicle == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            var goodsReceipt = _db.GoodsReceipts.Where(v => v.VehicleId == vehicle.Id).FirstOrDefault();
+            if (goodsReceipt == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+
+            return View(goodsReceipt);
         }
     }
 }

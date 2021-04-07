@@ -94,6 +94,10 @@
                             {
                                 <a href="@Url.Action("CreateGoodsReceipt", new { id = Model.Id})" class="btn btn-secondary btn-block">Create Goods Receipt</a>
                             }
+                            @if (Model.Status != VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Pending)
+                            {
+                                <a href="@Url.Action("GoodReceiptDetail", new { id = Model.Id })" class="btn btn-secondary btn-block">Goods Receipt detail</a>
+                            }
 
                         </div>
 
