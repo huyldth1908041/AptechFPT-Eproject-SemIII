@@ -87,6 +87,10 @@
             text-align: right;
         }
 
+            .receipt .body-receipt .total .col-xl-3 {
+                align-items: end
+            }
+
         .receipt .body-receipt .total-first {
             padding-top: 70px;
         }
@@ -97,8 +101,9 @@
 
         .receipt .body-receipt .total-last {
             padding-top: 30px;
+            align-items: center;
         }
-
             .receipt .body-receipt .total-last .col-xl-3 {
-                align-self: flex-end;
+                text-align: right;
+                padding:0
             }
