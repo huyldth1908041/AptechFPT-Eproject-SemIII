@@ -1,0 +1,259 @@
+﻿@model VehicleShowRoomManager.Models.VehicleModel
+
+@{
+    ViewBag.Title = "VehicleModelDetail";
+    List<string> listColor = ViewBag.ListColor as List<string>;
+
+}
+
+
+@section PageStyles {
+    <link href="@Url.Content("~/Content/assets/libs/css/ListVehicle.css")" rel="stylesheet" />
+}
+<div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">Detail Vehicle Model</h2>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/Showroom/ListVehicle" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail Vehicle Model</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*End Header*@
+    <div class="row">
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+
+                        <div class="card-body" >
+                            <img class="img-fluid" src="@Model.ModelImages.ToList()[0].GetAllImages().First()" alt="First slide" id="vehicle-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
+                    <div class="product-details">
+                        <div class="border-bottom pb-3 mb-3">
+                            <h2 class="mb-3">@Html.DisplayFor(model => model.ModelName)</h2>
+
+                            <h3 class="mb-0 text-primary">&dollar; <span id="vehicle-price"></span></h3>
+                        </div>
+                        <div class="product-size border-bottom">
+                            <h5>Color</h5>
+                            @for (int i = 0; i < listColor.Count(); i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <label class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="color" checked="" class="custom-control-input" value="@listColor[i]"><span class="custom-control-label">@listColor[i]</span>
+                                    </label>
+                                }
+                                else
+                                {
+                                    <label class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="color" class="custom-control-input" value="@listColor[i]"><span class="custom-control-label">@listColor[i]</span>
+                                    </label>
+                                }
+                            }
+                       
+
+                        </div>
+
+                        <div class="product-size border-bottom">
+                            <h4>Status</h4>
+                            <div class="btn-group" role="group" aria-label="First group">
+                                <span id="vehicle-status"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="product-description">
+                            <h4 class="mb-1">Descriptions</h4>
+                            <p>@Model.Descriptions</p>
+                            <div id="vehicle-desciption">
+                            </div>
+                            <div id="vehicle-action">
+
+                            </div>
+                
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
+                    <div class="simple-card">
+                        <ul class="nav nav-tabs" id="myTab5" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active border-left-0" id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="product-tab-1" aria-selected="true">Descriptions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="product-tab-2" aria-selected="false">Reviews</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent5">
+                            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
+                                
+                            </div>
+                            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="product-tab-2">
+                                <div class="review-block">
+                                    <p class="review-text font-italic m-0">“Vestibulum cursus felis vel arcu convallis, viverra commodo felis bibendum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin non auctor est, sed lacinia velit. Orci varius natoque penatibus et magnis dis parturient montes nascetur ridiculus mus.”</p>
+                                    <div class="rating-star mb-4">
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                    </div>
+                                    <span class="text-dark font-weight-bold">Virgina G. Lightfoot</span><small class="text-mute"> (Company name)</small>
+                                </div>
+                                <div class="review-block border-top mt-3 pt-3">
+                                    <p class="review-text font-italic m-0">“Integer pretium laoreet mi ultrices tincidunt. Suspendisse eget risus nec sapien malesuada ullamcorper eu ac sapien. Maecenas nulla orci, varius ac tincidunt non, ornare a sem. Aliquam sed massa volutpat, aliquet nibh sit amet, tincidunt ex. Donec interdum pharetra dignissim.”</p>
+                                    <div class="rating-star mb-4">
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                    </div>
+                                    <span class="text-dark font-weight-bold">Ruby B. Matheny</span><small class="text-mute"> (Company name)</small>
+                                </div>
+                                <div class="review-block  border-top mt-3 pt-3">
+                                    <p class="review-text font-italic m-0">“ Cras non rutrum neque. Sed lacinia ex elit, vel viverra nisl faucibus eu. Aenean faucibus neque vestibulum condimentum maximus. In id porttitor nisi. Quisque sit amet commodo arcu, cursus pharetra elit. Nam tincidunt lobortis augueat euismod ante sodales non. ”</p>
+                                    <div class="rating-star mb-4">
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                        <i class="fa fa-fw fa-star"></i>
+                                    </div>
+                                    <span class="text-dark font-weight-bold">Gloria S. Castillo</span><small class="text-mute"> (Company name)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section pageScripts{
+    <script>
+        //static html elements
+        const colorRadioButtons = document.querySelectorAll("input[name='color']");
+        const priceEl = document.getElementById("vehicle-price");
+        const imgEl = document.getElementById("vehicle-img");
+        const statusEl = document.getElementById("vehicle-status");
+        const descriptionEl = document.getElementById("vehicle-desciption");
+        const descriptionTabEl = document.getElementById("tab-1");
+        const vehicleActionEl = document.getElementById("vehicle-action");
+        const modelId = @Model.Id;
+        //init when start
+        (function () {
+            let currentColor;
+            for (let i = 0; i < colorRadioButtons.length; i++) {           
+                if (colorRadioButtons[i].checked) {
+                    currentColor = colorRadioButtons[i].value;
+                    break;
+                }         
+
+            }
+            //call ajax to get vehicle by color then update view
+            const data = { color: currentColor, modelId: modelId };
+            $.ajax({
+                url: "/ShowRoom/GetVehicleByColor",
+                type: "post",
+                data: data,
+                traditional: true,
+                datatype: "json",
+                success: function (data) {
+                    const vehicle = JSON.parse(data);
+                    //update view here
+                    updateVehicle(vehicle);
+
+                },
+                error: function () {
+                    alert("an error has occured!!!");
+                }
+            });
+
+        })();
+        for (let i = 0; i < colorRadioButtons.length; i++) {
+            var currentRadio = colorRadioButtons[i];
+            currentRadio.addEventListener("change", e => {
+                const target = e.target;
+                const color = target.value;
+
+               
+                const data = { color: color, modelId: modelId };
+             
+                //call ajax to get vehicle by color then update view
+                $.ajax({
+                    url: "/ShowRoom/GetVehicleByColor",
+                    type: "post",
+                    data: data,
+                    traditional: true,
+                    datatype: "json",
+                    success: function (data) {
+                        const vehicle = JSON.parse(data);
+                        //update view here
+                        updateVehicle(vehicle);
+
+                    },
+                    error: function () {
+                        alert("an error has occured!!!");
+                    }
+                });
+            })
+        }
+
+        function updateVehicle(vehicle) {
+            priceEl.textContent = vehicle.SalePrice;
+            imgEl.src = vehicle.Cover;
+            statusEl.textContent = getVehicleStatus(vehicle.Status)
+            descriptionEl.innerHTML = vehicle.Description;
+            descriptionTabEl.innerHTML = vehicle.Description;
+            const status = vehicle.Status;
+            let action = "";
+            if (status == 1 || status == 5) {
+                action = `<a href = "/ShowRoom/CreateSaleOrderOfAnVehicle/${vehicle.Id}" class="btn btn-primary btn-block">Create Order </a>`;
+            } else {
+                action = `<button type="button" class="btn btn-secondary btn-block" onclick="alertError()">Create Order</button>`;
+            }
+            vehicleActionEl.innerHTML = action;
+        }
+        function alertError() {
+            alert("can not create sale order for this vehicle");
+        }
+        function getVehicleStatus(statusCode) {
+            switch (statusCode) {
+                case 0:
+                    return "Pending";
+                case 1:
+                    return "Available";
+                case 2:
+                    return "Sold";
+                case 3:
+                    return "Assgined";
+                case 4:
+                    return "Ready";
+                case 5:
+                    return "Used";
+                case 6:
+                    return "InOrrder";
+            }
+        }
+
+ 
+    </script>    
+}

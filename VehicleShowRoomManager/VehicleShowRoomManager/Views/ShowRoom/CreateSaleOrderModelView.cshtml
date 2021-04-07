@@ -54,7 +54,7 @@
                                 <p style="padding: 20px">@Model.Vehicle.FN</p>
                             </div>
                             <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="product-tab-3">
-                                <p style="padding: 20px">@Model.Vehicle.Description</p>
+                                <div style="padding: 20px">@Html.Raw(Model.Vehicle.Description)</div>
                             </div>
                         </div>
                     </div>
