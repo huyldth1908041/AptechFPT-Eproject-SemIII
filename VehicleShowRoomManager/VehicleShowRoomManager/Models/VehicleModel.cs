@@ -28,5 +28,7 @@ namespace VehicleShowRoomManager.Models
         public DateTime UpdatedAt { get; set; }
 
 
+
+
     }
 }

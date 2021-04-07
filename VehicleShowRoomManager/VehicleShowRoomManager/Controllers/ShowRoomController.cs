@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Newtonsoft.Json;
+using PagedList;
 using System;
 using System.Collections.Generic;
 
@@ -99,6 +100,7 @@ namespace VehicleShowRoomManager.Controllers
 
         public ActionResult ListVehicle(int? page)
         {
+
             // 1. Tham số int? dùng để thể hiện null và kiểu int
             // page có thể có giá trị là null và kiểu int.
 
@@ -498,11 +500,24 @@ namespace VehicleShowRoomManager.Controllers
             return RedirectToAction("ListPurchaseOrder");
 
         }
+<<<<<<< HEAD
         public ActionResult GoodReceiptDetail(int? id)
+=======
+        public ActionResult ListVehicleModel()
+        {
+            var list = _db.VehicleModels.ToList();
+            ViewBag.ListModels = _db.VehicleModels.ToList();
+            ViewBag.ListBrands = _db.Brands.ToList();
+            return View(list);
+        }
+        //for ajax call only
+        public ActionResult ListVehicleModelByBrand(int? id)
+>>>>>>> 263551dfe5647ffe8e9bbafb6b95a16b3b9ca8ab
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+<<<<<<< HEAD
 
             }
             var vehicle = _db.Vehicles.Find((int)id);
@@ -519,6 +534,61 @@ namespace VehicleShowRoomManager.Controllers
             }
 
             return View(goodsReceipt);
+=======
+            }
+            var currentBrand = _db.Brands.Find(id);
+            if(currentBrand == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list = currentBrand.VehicleModels.ToList();
+            return PartialView("_ListVehicleModelByBrand", list);
+        }
+
+        public ActionResult VehicleModelDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var currentModel = _db.VehicleModels.Find(id);
+            if (currentModel == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var listColor = new List<string>();
+            foreach(var item in currentModel.ModelImages)
+            {
+                listColor.Add(item.Color);
+            }
+            ViewBag.ListColor = listColor;
+            return View(currentModel);
+        }
+        //for ajax call only
+        //accept model id and color
+        //return json string of a vehicle
+        [HttpPost]
+        public string GetVehicleByColor(GetVehicleByColorBindingModel model)
+        {
+            var vehicle = _db.Vehicles.Where(v => v.VehicleModelId == model.ModelId && v.Color == model.Color).FirstOrDefault();
+            var vehicleBindModel = new
+            {
+                Id = vehicle.Id,
+                Name = vehicle.Name,
+                Status = (int)vehicle.Status,
+                Type = (int)vehicle.Type,
+                Control = (int)vehicle.Control,
+                Cover = vehicle.GetAllImages().First(),
+                Assets = (int)vehicle.Assets,
+                VehicleModelId = vehicle.VehicleModelId,
+                SalePrice = vehicle.SalePrice,
+                Description = vehicle.Description,
+                Color = vehicle.Color,
+                VIN = vehicle.VIN,
+                FN = vehicle.FN
+            };
+            return JsonConvert.SerializeObject(vehicleBindModel);
+>>>>>>> 263551dfe5647ffe8e9bbafb6b95a16b3b9ca8ab
         }
     }
 }
