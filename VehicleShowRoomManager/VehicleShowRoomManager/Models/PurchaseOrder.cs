@@ -32,7 +32,7 @@ namespace VehicleShowRoomManager.Models
 
         public string GetModelNames()
         {
-            if(this.PurchaseOrderDetails == null)
+            if(this.PurchaseOrderDetails == null || this.PurchaseOrderDetails.Count() == 0)
             {
                 return "";
             }
@@ -42,7 +42,10 @@ namespace VehicleShowRoomManager.Models
                 modelNames.Append(item.VehicleModel.ModelNumber);
                 modelNames.Append(", ");
             }
-            modelNames.Length -= 2;
+            if(modelNames.Length >= 2)
+            {
+                modelNames.Length -= 2;
+            }
             return modelNames.ToString();
         }
     }
