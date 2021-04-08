@@ -184,12 +184,13 @@ namespace VehicleShowRoomManager.Controllers
             model.CreatedAt = DateTime.Now;
             model.UpdatedAt = DateTime.Now;
             model.ReceivedAt = DateTime.Now;
+           
             _db.GoodsReceipts.Add(model);
             _db.SaveChanges();
 
             return RedirectToAction("RegisterVehicleData", "ShowRoom", new { id = model.VehicleId });
         }
-
+        //find good receipt of an vehicle
         public ActionResult GoodsReceiptDetail(int? id)
         {
             var vehicle = _db.Vehicles.Find(id);
@@ -204,6 +205,8 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.Tax = goodsReceipt.PrepaymentMoney * 0.1;
+            ViewBag.Total = goodsReceipt.PrepaymentMoney * 1.1;
             return View("GoodReceiptDetail", goodsReceipt);
         }
         public ActionResult RegisterVehicleData(int? id)
