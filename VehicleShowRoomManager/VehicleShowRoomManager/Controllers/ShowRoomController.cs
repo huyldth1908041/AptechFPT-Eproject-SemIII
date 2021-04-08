@@ -586,5 +586,66 @@ namespace VehicleShowRoomManager.Controllers
             };
             return JsonConvert.SerializeObject(vehicleBindModel);
         }
+        
+       
+
+        public ActionResult EditSaleOrder(int? id)
+        {
+            return View(_db.SaleOrders.Find(id));
+        }
+        [HttpPut]
+        public ActionResult EditSaleOrder(SaleOrder saleOrder)
+        {
+            var saleOrderInDB = _db.SaleOrders.Find(saleOrder.Id);
+            if (saleOrderInDB== null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            saleOrderInDB.TotalPrice = saleOrder.TotalPrice;
+            saleOrderInDB.UpdateAt = DateTime.Now  ;
+            saleOrderInDB.Status = saleOrder.Status;
+            _db.SaveChanges();
+            if (saleOrder.Status== SaleOrder.SaleOrderStatus.Cancel && saleOrderInDB.Status == SaleOrder.SaleOrderStatus.Pending)
+            {
+                var assignedVehicle = _db.Vehicles.Find(saleOrder.VehicleId);
+                if(assignedVehicle.Status == Vehicle.VehicleStatus.Assigned)
+                {
+                    assignedVehicle.Status = Vehicle.VehicleStatus.Available;
+                    _db.SaveChanges();
+                }
+            }
+
+            return View("ListPendingSaleOrder");
+        }
+
+        public ActionResult DeleteSaleOrder(int? id)
+        {
+
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var saleOrder = _db.SaleOrders.Find(id);
+            if(saleOrder == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            saleOrder.Status = SaleOrder.SaleOrderStatus.Cancel;
+            _db.SaveChanges();
+            var vehicle = _db.Vehicles.Find(saleOrder.VehicleId);
+            if (vehicle == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if(vehicle.Status == Vehicle.VehicleStatus.Assigned || vehicle.Status == Vehicle.VehicleStatus.InOrder)
+            {
+                vehicle.Status = Vehicle.VehicleStatus.Available;
+                _db.SaveChanges();
+            }
+            return View("ListPendingSaleOrder");
+        }
+
+
+
     }
 }
