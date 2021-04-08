@@ -21,15 +21,8 @@
                     <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.Vehicles.First().SalePrice)</div>
                 </div>
                 <div class="product-btn">
-                    @*@if (item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Used)
-                    {
-                        <a href="@Url.Action("CreateSaleOrderOfAnVehicle", new { id = item.Id})" class="btn btn-primary">Create Order</a>
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-secondary disabled" onclick="alertError()">Create Order</button>
-                    }
-                    @Html.ActionLink("Detail", "VehicleDetail", new { id = item.Id }, new { @class = "btn btn-outline-info" })*@
+
+                    @Html.ActionLink("Detail", "VehicleModelDetail", new { id = item.Id }, new { @class = "btn btn-outline-info" })
                 </div>
             </div>
         </div>
