@@ -26,7 +26,6 @@
         .receipt .header .row {
             align-content: center;
             height: 150px;
-            ▐
         }
 
             .receipt .header .row .title {
@@ -105,5 +104,4 @@
         }
             .receipt .body-receipt .total-last .col-xl-3 {
                 text-align: right;
-                padding:0
             }
