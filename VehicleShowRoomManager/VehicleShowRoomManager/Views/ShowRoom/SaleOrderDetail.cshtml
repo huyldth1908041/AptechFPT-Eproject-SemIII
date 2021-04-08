@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VehicleShowRoomManager.Models.SaleOrder>
+﻿@model VehicleShowRoomManager.Models.SaleOrder
 
 <link href="@Url.Content("~/Content/receipt.css")" rel="stylesheet" />
 
@@ -24,39 +24,39 @@
         <div class="row customer">
             <div class="col-xl-3 left">
                 <div class="text-grey">Billed To: </div>
-                <div class="text-black">Client Name</div>
-                <div class="text-black">1 Client Address</div>
-                <div class="text-black">City, State, Country</div>
+                <div class="text-black">@Model.Customer.Name</div>
+                <div class="text-black">@Model.Customer.Address</div>
+                <div class="text-black"></div>
                 <div class="text-black">1000000</div>
             </div>
 
             <div class="col-xl-3 right">
                 <div class="text-grey">Invoice Number</div>
-                <div class="text-black m-b-30">00000000</div>
+                <div class="text-black m-b-30"><span>0000</span>@Model.Id</div>
                 <div class="title-grey">Date of Issue</div>
-                <div class="text-black">02/02/2021</div>
+                <div class="text-black"> @Model.CreateAt.ToString("MM/dd/yyyy")</div>
             </div>
             <div class="col-xl-6 title">
                 <div class="text-grey">Invoice Total</div>
-                <div class="text-blue">&dollar; 1000</div>
+                <div class="text-blue">&dollar; @Model.TotalPrice</div>
             </div>
         </div>
         <div class="row title-table p-t-30">
             <div class="col-xl-3 left">Description</div>
             <div class="col-xl-3"></div>
-            <div class="col-xl-2 p-r-25">PrePaymemt</div>
+            <div class="col-xl-2 p-r-25">Status</div>
             <div class="col-xl-2 p-r-0">Qty/ Hr Rate</div>
             <div class="col-xl-2">Amount</div>
         </div>
         <div class="row item-table p-t-30">
             <div class="col-xl-6 left">
-                <div class="text-black">Vehicle Name</div>
-                <div class="text-grey">VIN: Model Vehicle VIN </div>
-                <div class="text-grey">FN: Model.Vehicle.FN </div>
+                <div class="text-black">@Model.Vehicle.Name</div>
+                <div class="text-grey">VIN: @Model.Vehicle.VIN </div>
+                <div class="text-grey">FN: @Model.Vehicle.FN </div>
             </div>
-            <div class="col-xl-2 p-r-25"> <div class="text-black m-b-30">1000</div></div>
+            <div class="col-xl-2 p-r-25"> <div class="text-black m-b-30">@Model.Status</div></div>
             <div class="col-xl-2 p-r-0"> <div class="text-black m-b-30">1</div></div>
-            <div class="col-xl-2"> <div class="text-black m-b-30">1000</div></div>
+            <div class="col-xl-2"> <div class="text-black m-b-30">1</div></div>
         </div>
         <div class="total-money">
 
@@ -64,19 +64,19 @@
                 <div class="col-xl-6">
                 </div>
                 <div class="col-xl-3 p-r-0"> <div class="text-blue">Subtotal</div></div>
-                <div class="col-xl-3"> <div class="text-black m-b-30">&dollar; 4000.00</div></div>
+                <div class="col-xl-3"> <div class="text-black m-b-30">&dollar; @Model.TotalPrice</div></div>
             </div>
             <div class="row total">
                 <div class="col-xl-6">
                 </div>
                 <div class="col-xl-3 p-r-0"> <div class="text-blue">Tax</div></div>
-                <div class="col-xl-3"> <div class="text-black m-b-30">&dollar; 520.00</div></div>
+                <div class="col-xl-3"> <div class="text-black m-b-30">&dollar; 0</div></div>
             </div>
             <div class="row total">
                 <div class="col-xl-6">
                 </div>
                 <div class="col-xl-3 p-r-0"> <div class="text-blue">Total</div></div>
-                <div class="col-xl-3"> <div class="text-black m-b-30">&dollar; 4520.00</div></div>
+                <div class="col-xl-3"> <div class="text-black m-b-30">&dollar; @Model.TotalPrice</div></div>
             </div>
             <div class="row total-last">
                 <div class="col-xl-6">
@@ -84,7 +84,7 @@
                     <div class="text-black">Ex. Please pay your invoice by ...</div>
                 </div>
                 <div class="col-xl-3 p-r-0"> <div class="text-blue">Amount Due (USD)</div></div>
-                <div class="col-xl-3"> <div class="text-black">&dollar; 4520.00</div></div>
+                <div class="col-xl-3"> <div class="text-black">&dollar; @Model.TotalPrice</div></div>
             </div>
         </div>
 
