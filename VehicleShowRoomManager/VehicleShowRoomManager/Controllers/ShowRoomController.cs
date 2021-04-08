@@ -184,12 +184,13 @@ namespace VehicleShowRoomManager.Controllers
             model.CreatedAt = DateTime.Now;
             model.UpdatedAt = DateTime.Now;
             model.ReceivedAt = DateTime.Now;
+           
             _db.GoodsReceipts.Add(model);
             _db.SaveChanges();
 
             return RedirectToAction("RegisterVehicleData", "ShowRoom", new { id = model.VehicleId });
         }
-
+        //find good receipt of an vehicle
         public ActionResult GoodsReceiptDetail(int? id)
         {
             var vehicle = _db.Vehicles.Find(id);
@@ -204,6 +205,8 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.Tax = goodsReceipt.PrepaymentMoney * 0.1;
+            ViewBag.Total = goodsReceipt.PrepaymentMoney * 1.1;
             return View("GoodReceiptDetail", goodsReceipt);
         }
         public ActionResult RegisterVehicleData(int? id)
@@ -579,5 +582,66 @@ namespace VehicleShowRoomManager.Controllers
             };
             return JsonConvert.SerializeObject(vehicleBindModel);
         }
+        
+       
+
+        public ActionResult EditSaleOrder(int? id)
+        {
+            return View(_db.SaleOrders.Find(id));
+        }
+        [HttpPut]
+        public ActionResult EditSaleOrder(SaleOrder saleOrder)
+        {
+            var saleOrderInDB = _db.SaleOrders.Find(saleOrder.Id);
+            if (saleOrderInDB== null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            saleOrderInDB.TotalPrice = saleOrder.TotalPrice;
+            saleOrderInDB.UpdateAt = DateTime.Now  ;
+            saleOrderInDB.Status = saleOrder.Status;
+            _db.SaveChanges();
+            if (saleOrder.Status== SaleOrder.SaleOrderStatus.Cancel && saleOrderInDB.Status == SaleOrder.SaleOrderStatus.Pending)
+            {
+                var assignedVehicle = _db.Vehicles.Find(saleOrder.VehicleId);
+                if(assignedVehicle.Status == Vehicle.VehicleStatus.Assigned)
+                {
+                    assignedVehicle.Status = Vehicle.VehicleStatus.Available;
+                    _db.SaveChanges();
+                }
+            }
+
+            return View("ListPendingSaleOrder");
+        }
+
+        public ActionResult DeleteSaleOrder(int? id)
+        {
+
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var saleOrder = _db.SaleOrders.Find(id);
+            if(saleOrder == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            saleOrder.Status = SaleOrder.SaleOrderStatus.Cancel;
+            _db.SaveChanges();
+            var vehicle = _db.Vehicles.Find(saleOrder.VehicleId);
+            if (vehicle == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if(vehicle.Status == Vehicle.VehicleStatus.Assigned || vehicle.Status == Vehicle.VehicleStatus.InOrder)
+            {
+                vehicle.Status = Vehicle.VehicleStatus.Available;
+                _db.SaveChanges();
+            }
+            return View("ListPendingSaleOrder");
+        }
+
+
+
     }
 }
