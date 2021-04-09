@@ -74,7 +74,7 @@ namespace VehicleShowRoomManager.Controllers
             _db.Vehicles.Add(model);
             _db.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ManageVehicle");
         }
 
 
@@ -371,19 +371,19 @@ namespace VehicleShowRoomManager.Controllers
 
         // Create sale order 
         //sale order detail
-        public ActionResult SaleOrderDetail(int? id)
+        public ActionResult BillDetail(int? id)
         {
             if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var saleOrder = _db.SaleOrders.Find(id);
-            if(saleOrder == null)
+            var bill = _db.Bills.Find(id);
+            if(bill == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(saleOrder);
+            return View(bill);
         }
 
 
@@ -719,7 +719,50 @@ namespace VehicleShowRoomManager.Controllers
             return View(purchaseOrderDetailInDB);
 
         }
+        [HttpGet]
+        public ActionResult CreateBill(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var saleOrder = _db.SaleOrders.Find(id);
+            if(saleOrder == null || saleOrder.Status == SaleOrder.SaleOrderStatus.Cancel)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var viewModel = new CreateBillViewModel
+            {
+                SaleOrder = saleOrder,
+                Bill = new Bill()
+            };
+            return View(viewModel);
+        }
 
+        [HttpPost]
+        public ActionResult CreateBill(int SalerOrderId, int PayMethod, float PayedMoney)
+        {
+            var newBill = new Bill
+            {
+                PayMethod = (Bill.BillPayMethod) PayMethod,
+                PayedMoney = PayedMoney,
+                UpdatedAt = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                Status = Bill.BillStatus.Pending,
+                SaleOrderId = SalerOrderId
+
+            };
+
+            _db.Bills.Add(newBill);
+            _db.SaveChanges();
+            return RedirectToAction("ListBill");
+
+        }
+        public ActionResult ListBill()
+        {
+            var list = _db.Bills.ToList();
+            return View(list);
+        }
 
     }
 }

@@ -151,7 +151,7 @@
                                     }
                                     @if (item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Cancel)
                                     {
-                                        <a href="@Url.Action("SaleOrderDetail", new { id = item.Id})" class="btn btn-secondary">Create Bill</a>
+                                        <a href="@Url.Action("CreateBill", new { id = item.Id})" class="btn btn-secondary">Create Bill</a>
                                     }
 
 

@@ -158,9 +158,14 @@
     <Compile Include="Migrations\202104091008036_Add_Bill_Table.Designer.cs">
       <DependentUpon>202104091008036_Add_Bill_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104091052359_Add_PayMethod_To_Bills_Table.cs" />
+    <Compile Include="Migrations\202104091052359_Add_PayMethod_To_Bills_Table.Designer.cs">
+      <DependentUpon>202104091052359_Add_PayMethod_To_Bills_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\CreateBillViewModel.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\GetVehicleByColorBindingModel.cs" />
@@ -737,6 +742,9 @@
     <Content Include="Views\ShowRoom\SaleOrderDetail.cshtml" />
     <Content Include="Views\ShowRoom\EditSaleOrder.cshtml" />
     <Content Include="Views\ShowRoom\EditPurchaseOrderDetail.cshtml" />
+    <Content Include="Views\ShowRoom\CreateBill.cshtml" />
+    <Content Include="Views\ShowRoom\ListBill.cshtml" />
+    <Content Include="Views\ShowRoom\BillDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -765,6 +773,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104091008036_Add_Bill_Table.resx">
       <DependentUpon>202104091008036_Add_Bill_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104091052359_Add_PayMethod_To_Bills_Table.resx">
+      <DependentUpon>202104091052359_Add_PayMethod_To_Bills_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

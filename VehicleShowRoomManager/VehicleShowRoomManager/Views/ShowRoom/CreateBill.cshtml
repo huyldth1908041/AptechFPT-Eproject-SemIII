@@ -1,0 +1,113 @@
+﻿@model VehicleShowRoomManager.Models.CreateBillViewModel
+@{
+    ViewBag.Title = "CreateBill";
+}
+
+<h2>Create Bill</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
+                    <div class="product-details">
+                        <h4>Sale Order Information</h4>
+                        <hr />
+                        <div style="margin-bottom: 20px;">
+                            <img src="@Model.SaleOrder.Vehicle.GetAllImages().First()" class="img-fluid" alt="Alternate Text" />
+                        </div>
+                        <div class="border-bottom pb-3 mb-3">
+                            <h2 class="mb-3">@Model.SaleOrder.Vehicle.Name</h2>
+
+
+
+                        </div>
+                        <div class="product-size border-bottom">
+                            <h4>Total Price</h4>
+                            <h3 class="mb-0 text-primary">&dollar; @Model.SaleOrder.TotalPrice</h3>
+
+                        </div>
+                        
+
+                        <ul class="nav nav-tabs" id="myTab5" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active border-left-0" id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="product-tab-1" aria-selected="true">Customer Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="product-tab-2" aria-selected="false">Sale Order Detail</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent5">
+
+                            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="product-tab-1">
+                                <ul>
+                                    <li>Customer: @Model.SaleOrder.Customer.Name</li>
+                                    <li>Phone: @Model.SaleOrder.Customer.Phone</li>
+                                    <li>Email: @Model.SaleOrder.Customer.Email</li>
+                                    <li>Address: @Model.SaleOrder.Customer.Address</li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="product-tab-2">
+                                <ul>
+                                    <li>Price: &dollar; @Model.SaleOrder.TotalPrice </li>
+                                    <li>Status: @Model.SaleOrder.Status</li>
+                                    <li>Created at: @Model.SaleOrder.CreateAt.ToString("MM/dd/yyyy")</li>
+                                    <li>Updated at: @Model.SaleOrder.UpdateAt.ToString("MM/dd/yyyy")</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="@Url.Action("CreateBill")">
+                    <input type="hidden" name="SalerOrderId" value="@Model.SaleOrder.Id" />
+                    <div class="form-group">
+                        <label class="control-label col-md-12">Customer Payed Money</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" data-val="true" data-val-number="The field PayedMoney must be a number." data-val-required="The PayedMoney field is required." id="Bill_PayedMoney" name="PayedMoney" type="number" value="0" />
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Bill.PayedMoney" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12">Payment Method</label>
+                        <div class="col-md-10">
+                            <select class="form-control" data-val="true"  data-val-required="The PayMethod field is required." id="PayMethod" name="PayMethod">
+                                <option selected="selected" value="0">Card</option>
+                                <option value="1">Cash Direct</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+ 
+        </div>
+    </div>
+</div>
+

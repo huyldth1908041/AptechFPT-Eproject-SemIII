@@ -13,6 +13,8 @@ namespace VehicleShowRoomManager.Models
         public float PayedMoney { get; set; }
 
         public int SaleOrderId { get; set; }
+ 
+        public BillPayMethod PayMethod { get; set; }
 
         public virtual SaleOrder SaleOrder { get; set; }
 
@@ -24,6 +26,14 @@ namespace VehicleShowRoomManager.Models
         public enum BillStatus
         {
             Pending, Done
+        }
+
+        public enum BillPayMethod 
+        {
+            Card, 
+            [Display(Name="Cash Direct")]
+            Direct,
+            
         }
     }
 }
