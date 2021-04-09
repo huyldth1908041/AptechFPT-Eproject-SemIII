@@ -370,14 +370,20 @@ namespace VehicleShowRoomManager.Controllers
         }
 
         // Create sale order 
-        public ActionResult SaleOrderDetail()
+        //sale order detail
+        public ActionResult SaleOrderDetail(int? id)
         {
-            //var listAvailableVehicle = _db.Vehicles.Where(s => s.Status == Vehicle.VehicleStatus.Available || s.Status == Vehicle.VehicleStatus.Used  ).ToList();
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            //ViewBag.ListModels = _db.VehicleModels.ToList();
-            //ViewBag.ListBrands = _db.Brands.ToList();
-            //return View("ListAvailableVehicle", listAvailableVehicle);
-            return View();
+            var saleOrder = _db.SaleOrders.Find(id);
+            if(saleOrder == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(saleOrder);
         }
 
 
@@ -453,7 +459,7 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult ListPendingSaleOrder()
         {
 
-            var listSaleOrder = _db.SaleOrders.Where(s => s.Status != SaleOrder.SaleOrderStatus.Cancel).ToList();
+            var listSaleOrder = _db.SaleOrders.ToList();
             return View(listSaleOrder);
         }
 
