@@ -200,7 +200,7 @@ namespace VehicleShowRoomManager.Controllers
             }
 
             var goodsReceipt = _db.GoodsReceipts.Where(v => v.VehicleId == id).FirstOrDefault();
-            if(goodsReceipt == null)
+            if (goodsReceipt == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -531,7 +531,7 @@ namespace VehicleShowRoomManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var currentBrand = _db.Brands.Find(id);
-            if(currentBrand == null)
+            if (currentBrand == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -551,7 +551,7 @@ namespace VehicleShowRoomManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var listColor = new List<string>();
-            foreach(var item in currentModel.ModelImages)
+            foreach (var item in currentModel.ModelImages)
             {
                 listColor.Add(item.Color);
             }
@@ -583,8 +583,8 @@ namespace VehicleShowRoomManager.Controllers
             };
             return JsonConvert.SerializeObject(vehicleBindModel);
         }
-        
-       
+
+
 
         public ActionResult EditSaleOrder(int? id)
         {
@@ -594,18 +594,18 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult EditSaleOrder(SaleOrder saleOrder)
         {
             var saleOrderInDB = _db.SaleOrders.Find(saleOrder.Id);
-            if (saleOrderInDB== null)
+            if (saleOrderInDB == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             saleOrderInDB.TotalPrice = saleOrder.TotalPrice;
-            saleOrderInDB.UpdateAt = DateTime.Now  ;
+            saleOrderInDB.UpdateAt = DateTime.Now;
             saleOrderInDB.Status = saleOrder.Status;
             _db.SaveChanges();
-            if (saleOrder.Status== SaleOrder.SaleOrderStatus.Cancel && saleOrderInDB.Status == SaleOrder.SaleOrderStatus.Pending)
+            if (saleOrder.Status == SaleOrder.SaleOrderStatus.Cancel && saleOrderInDB.Status == SaleOrder.SaleOrderStatus.Pending)
             {
                 var assignedVehicle = _db.Vehicles.Find(saleOrder.VehicleId);
-                if(assignedVehicle.Status == Vehicle.VehicleStatus.Assigned)
+                if (assignedVehicle.Status == Vehicle.VehicleStatus.Assigned)
                 {
                     assignedVehicle.Status = Vehicle.VehicleStatus.Available;
                     _db.SaveChanges();
@@ -615,15 +615,12 @@ namespace VehicleShowRoomManager.Controllers
             return View("ListPendingSaleOrder");
         }
 
-        public ActionResult DeleteSaleOrder(int? id)
+        public ActionResult CancelSaleOrder(int id)
         {
 
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+          
             var saleOrder = _db.SaleOrders.Find(id);
-            if(saleOrder == null)
+            if (saleOrder == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
@@ -634,14 +631,89 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            if(vehicle.Status == Vehicle.VehicleStatus.Assigned || vehicle.Status == Vehicle.VehicleStatus.InOrder)
+            // đổi trang thai vehicle ve vailable
+            if (vehicle.Status == Vehicle.VehicleStatus.Assigned || vehicle.Status == Vehicle.VehicleStatus.InOrder)
             {
                 vehicle.Status = Vehicle.VehicleStatus.Available;
                 _db.SaveChanges();
             }
-            return View("ListPendingSaleOrder");
+            return RedirectToAction("ListPendingSaleOrder", "ShowRoom");
+        }
+       
+        public ActionResult EditPurchaseOrderDetail(int? id)
+        {
+            if (id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var purchaseOrderDetail = _db.PurchaseOrderDetails.Find(id);
+            if (purchaseOrderDetail == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+            return View(purchaseOrderDetail);
         }
 
+        [HttpPost]
+        public ActionResult EditPurchaseOrderDetail(PurchaseOrderDetail purchaseOrderDetail)
+        {
+            var purchaseOrderDetailInDB = _db.PurchaseOrderDetails.Find(purchaseOrderDetail.Id);
+            var purchaseOrderInDB = _db.PurchaseOrders.Find(purchaseOrderDetail.PurchaseOrderId);
+
+            if (purchaseOrderDetailInDB == null || purchaseOrderInDB == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            }
+
+            // truong hop xoa purchaseOrderDetail
+            if (purchaseOrderDetailInDB.Status == PurchaseOrderDetail.PurchaseOrderDetailStatus.Pending
+                && purchaseOrderDetail.Status == PurchaseOrderDetail.PurchaseOrderDetailStatus.Deleted)
+            {
+                purchaseOrderDetailInDB.Status = PurchaseOrderDetail.PurchaseOrderDetailStatus.Deleted;
+
+                // xoa puechaseOrder detail nen tru quantity cua no trong purchareOrder
+                purchaseOrderInDB.Quantity -= purchaseOrderDetailInDB.Quantity;
+                _db.SaveChanges();
+                purchaseOrderDetailInDB.Quantity = purchaseOrderDetail.Quantity;
+                purchaseOrderDetailInDB.Color = purchaseOrderDetail.Color;
+                _db.SaveChanges();
+            }
+            // truong hop chi update thong tin 
+
+            purchaseOrderDetailInDB.Status = purchaseOrderDetail.Status;
+            if (purchaseOrderDetailInDB.Status == PurchaseOrderDetail.PurchaseOrderDetailStatus.Pending)
+            {
+                // update quantity trong purchaseOrder theo thay doi cua quantity trong purchaseOrdeDetail
+                purchaseOrderInDB.Quantity -= (purchaseOrderDetailInDB.Quantity - purchaseOrderDetail.Quantity);
+                _db.SaveChanges();
+                purchaseOrderDetailInDB.Quantity = purchaseOrderDetail.Quantity;
+                purchaseOrderDetailInDB.Color = purchaseOrderDetail.Color;
+                _db.SaveChanges();
+            }
+            // truong hop done purchareOrderDetail 
+            if (purchaseOrderDetailInDB.Status == PurchaseOrderDetail.PurchaseOrderDetailStatus.Done)
+            {
+                var PurchaseOrderOfThisPurchaseOrderDetail = _db.PurchaseOrders.Find(purchaseOrderDetailInDB.PurchaseOrderId);
+                var listPendingPurchaseOrderDetailOfThisPurchareOrder
+                    = _db.PurchaseOrderDetails.Where(p => p.PurchaseOrderId == PurchaseOrderOfThisPurchaseOrderDetail.Id
+                                                && p.Status == PurchaseOrderDetail.PurchaseOrderDetailStatus.Pending).ToList();
+
+                if (listPendingPurchaseOrderDetailOfThisPurchareOrder.Count == 0) // tất cả purchaseOrderDetail đã sửa lí xong
+                {
+                    // done purchaseOrder khi tat ca detail cua no da done 
+                    PurchaseOrderOfThisPurchaseOrderDetail.Status = PurchaseOrder.PurchaseOrderStatus.Done;
+                    _db.SaveChanges();
+                    purchaseOrderDetailInDB.Quantity = purchaseOrderDetail.Quantity;
+                    purchaseOrderDetailInDB.Color = purchaseOrderDetail.Color;
+                    _db.SaveChanges();
+                }
+            }
+
+
+
+            return View(purchaseOrderDetailInDB);
+
+        }
 
 
     }
