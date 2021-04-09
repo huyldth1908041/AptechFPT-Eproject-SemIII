@@ -23,5 +23,6 @@ namespace VehicleShowRoomManager.Models
         public DbSet<SaleOrder> SaleOrders { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Bill> Bills { get; set; }
     }
 }
