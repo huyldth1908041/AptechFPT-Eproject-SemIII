@@ -69,7 +69,7 @@
                                 <td>
 
 
-                                    @if (item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Assigned && item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Done)
+                                    @if ((item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Assigned && item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Done) && item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Cancel)
                                     {
                                         @*@Html.ActionLink("Comfirm", "ComfirmSaleOrder", new { id = item.Id }, new { @class = "btn btn-infor" })*@
                                         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirm-@item.Id">
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                     }
-                                    @if (item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.InOrder)
+                                    @if ((item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.Available || item.Vehicle.Status == VehicleShowRoomManager.Models.Vehicle.VehicleStatus.InOrder) && item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Cancel)
                                     {
                                         @*@Html.ActionLink("Assign", "AssignVehicleToCustomer", new { id = item.Id }, new { @class = "btn btn-primary" })*@
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assign-@item.Id">
@@ -126,7 +126,7 @@
 
                                     @if (item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Cancel)
                                     {
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#confirm-@item.Id">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-@item.Id">
                                             Cancel
                                         </button>
                                         <div class="modal fade" id="confirm-@item.Id" tabindex="-1" role="dialog" aria-labelledby="confirm-@item.Id" aria-hidden="true">
@@ -143,13 +143,16 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a href="@Url.Action("DeleteSaleOrder", new { id = item.Id })" class="btn btn-primary">Confirm</a>
+                                                        <a href="@Url.Action("CancelSaleOrder", new { id = item.Id })" class="btn btn-primary">Confirm</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     }
-                                    <a href="@Url.Action("SaleOrderDetail", new { id = item.Id})" class="btn btn-info"><i class="fas fa-info"></i></a>
+                                    @if (item.Status != VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Cancel)
+                                    {
+                                        <a href="@Url.Action("CreateBill", new { id = item.Id})" class="btn btn-secondary">Create Bill</a>
+                                    }
 
 
 
