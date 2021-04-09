@@ -729,6 +729,7 @@
     <Content Include="Views\ShowRoom\ListVehicleModel.cshtml" />
     <Content Include="Views\ShowRoom\_ListVehicleModelByBrand.cshtml" />
     <Content Include="Views\ShowRoom\VehicleModelDetail.cshtml" />
+    <Content Include="Views\ShowRoom\SaleOrderDetail.cshtml" />
     <Content Include="Views\ShowRoom\EditSaleOrder.cshtml" />
     <Content Include="Views\ShowRoom\EditPurchaseOrderDetail.cshtml" />
   </ItemGroup>

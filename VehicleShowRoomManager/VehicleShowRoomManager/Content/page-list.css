@@ -23,21 +23,21 @@
             background-color: #0e0c28;
         }
 
-    .pagination li a {
-        display: inline-block;
-        border: 1px solid #E5E5E5;
-        margin: 0 10px;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 39px;
-        color: #757575;
-    }
+.list-vehicle .pagination li a {
+    display: inline-block;
+    border: 1px solid #E5E5E5;
+    margin: 0 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 39px;
+    color: #757575;
+}
 
-        .pagination li a:hover {
-            color: #757575;
-        }
+.pagination li a:hover {
+    color: #757575;
+}
 
 .footer {
     position: absolute;
