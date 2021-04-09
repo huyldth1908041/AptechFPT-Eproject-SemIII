@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<VehicleShowRoomManager.Models.PurchaseOrderDetail>
 
 
-
+@{
+    ViewBag.Title = "List Sale Order of" + Model.First().PurchaseOrder.GetModelNames();
+}
 
 @section pageStyles {
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets/vendor/datatables/css/dataTables.bootstrap4.css")">
@@ -17,7 +19,7 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <h5 class="card-header">
-                List Order
+                List purchase order detail of  @Model.First().PurchaseOrder.GetModelNames()
             </h5>
 
             <div class="table-responsive">
@@ -29,7 +31,7 @@
                             <th>Color</th>
                             <th>Price</th>
                             <th>Quantity</th>
-            
+
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Updated At</th>
@@ -49,11 +51,15 @@
                                 <td>@Html.DisplayFor(modelItem => item.Status)</td>
                                 <td>@item.CreatedAt.ToString("hh:mm:ss MM/dd/yyyy")</td>
                                 <td>@item.UpdatedAt.ToString("hh:mm:ss MM/dd/yyyy")</td>
-                                <td><a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i></a></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+                                    @Html.ActionLink("Edit", "EditPurchaseOrderDetail", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                </td>
+                        
                             </tr>
                         }
                     </tbody>
-     
+
                 </table>
             </div>
         </div>
