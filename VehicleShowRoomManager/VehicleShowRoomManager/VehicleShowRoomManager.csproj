@@ -154,7 +154,12 @@
     <Compile Include="Migrations\202104060913563_add_employee_table.Designer.cs">
       <DependentUpon>202104060913563_add_employee_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104091008036_Add_Bill_Table.cs" />
+    <Compile Include="Migrations\202104091008036_Add_Bill_Table.Designer.cs">
+      <DependentUpon>202104091008036_Add_Bill_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -757,6 +762,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104060913563_add_employee_table.resx">
       <DependentUpon>202104060913563_add_employee_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104091008036_Add_Bill_Table.resx">
+      <DependentUpon>202104091008036_Add_Bill_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

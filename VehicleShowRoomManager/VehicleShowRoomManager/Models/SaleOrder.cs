@@ -26,5 +26,7 @@ namespace VehicleShowRoomManager.Models
         }
         public virtual Customer Customer { get; set; }
         public virtual Vehicle Vehicle { get; set; }
+
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }
