@@ -393,6 +393,87 @@
                     UpdatedAt = DateTime.Now
                 }
             );
+
+            // GoodReceipt seed
+            context.GoodsReceipts.AddOrUpdate(x => x.Id,
+                new Models.GoodsReceipt()
+                {
+                    Id = 1,
+                    ReceiptPrice = 30000,
+                    ReceivedAt = DateTime.Now,
+                    PrepaymentMoney = 15000,
+                    VehicleId = 2,
+                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.GoodsReceipt()
+                {
+                    Id = 2,
+                    ReceiptPrice = 30000,
+                    ReceivedAt = DateTime.Now,
+                    PrepaymentMoney = 20000,
+                    VehicleId = 3,
+                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.GoodsReceipt()
+                {
+                    Id = 3,
+                    ReceiptPrice = 20000,
+                    ReceivedAt = DateTime.Now,
+                    PrepaymentMoney = 5000,
+                    VehicleId = 4,
+                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.GoodsReceipt()
+                {
+                    Id = 4,
+                    ReceiptPrice = 20000,
+                    ReceivedAt = DateTime.Now,
+                    PrepaymentMoney = 10000,
+                    VehicleId = 5,
+                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.GoodsReceipt()
+                {
+                    Id = 5,
+                    ReceiptPrice = 20000,
+                    ReceivedAt = DateTime.Now,
+                    PrepaymentMoney = 10000,
+                    VehicleId = 6,
+                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.GoodsReceipt()
+                {
+                    Id = 6,
+                    ReceiptPrice = 120000,
+                    ReceivedAt = DateTime.Now,
+                    PrepaymentMoney = 80000,
+                    VehicleId = 8,
+                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.GoodsReceipt()
+                {
+                    Id = 7,
+                    ReceiptPrice = 120000,
+                    ReceivedAt = DateTime.Now,
+                    PrepaymentMoney = 65000,
+                    VehicleId = 9,
+                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                }
+            );
         }
     }
 }
