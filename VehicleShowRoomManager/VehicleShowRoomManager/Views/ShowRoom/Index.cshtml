@@ -1,0 +1,297 @@
+﻿@model VehicleShowRoomManager.Models.DashBoardViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="ecommerce-widget">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body" id="chart-1">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body" id="chart-2">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- recent orders  -->
+        <!-- ============================================================== -->
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Recent Sale Orders</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="bg-light">
+                                <tr class="border-0">
+                                    <th class="border-0">#</th>
+                                    <th class="border-0">Image</th>
+                                    <th class="border-0">Vehicle Name</th>
+                                    <th class="border-0">Vehicle Model</th>
+
+                                    <th class="border-0">Price</th>
+                                    <th class="border-0">Order Time</th>
+                                    <th class="border-0">Customer</th>
+                                    <th class="border-0">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.SaleOrders)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>
+                                            <div class="m-r-10"><img src="@item.Vehicle.GetSmallImage()" class="rounded" width="45"></div>
+                                        </td>
+                                        <td>@item.Vehicle.Name </td>
+                                        <td>@item.Vehicle.VehicleModel.ModelName </td>
+
+                                        <td>$@item.TotalPrice</td>
+                                        <td>@item.CreateAt.ToString("MM-dd-yyyy HH:mm:ss")</td>
+                                        <td>@item.Customer.Name </td>
+                                        <td>
+                                            @if (item.Status == VehicleShowRoomManager.Models.SaleOrder.SaleOrderStatus.Cancel)
+                                            {
+                                                <span class="badge-dot badge-danger mr-1"></span>@item.Status
+                                            }
+                                            else
+                                            {
+                                                <span class="badge-dot badge-brand mr-1"></span>@item.Status
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="8"><a href="@Url.Action("ListPendingSaleOrder")" class="btn btn-outline-light float-right">View Details</a></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Recent Purchase Orders</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="bg-light">
+                                <tr class="border-0">
+                                    <th class="border-0">#</th>
+                                    <th class="border-0">Model Number</th>
+                                    <th class="border-0">Quantity</th>
+               
+                                    <th class="border-0">Price</th>
+                                    <th class="border-0">Order Time</th>
+
+                                    <th class="border-0">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               @foreach(var item in Model.PurchaseOrders)
+                               {
+                                   <tr>
+                                       <td>@item.Id</td>
+                                       <td>@item.GetModelNames()</td>
+                                       <td>@item.Quantity</td>
+                                       <td>@item.TotalPrice</td>
+                                       <td>@item.CreatedAt.ToString("MM-dd-yyyy HH:mm:ss")</td>
+                                       <td>@item.Status</td>
+                                   </tr>
+                               }
+                                <tr>
+                                    <td colspan="9"><a href="@Url.Action("ListPurchaseOrder")" class="btn btn-outline-light float-right">View Details</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end recent orders  -->
+        <!-- ============================================================== -->
+
+    </div>
+
+
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- Vehicle Model Count  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">Total Vehicle Models</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">@Model.TotalModels</h1>
+                    </div>
+          
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end sales  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- total vehicle  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">Total vehicles</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">@Model.TotalVehicle</h1>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end new customer  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Customers  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">Total Customers</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">@Model.TotalCustomer</h1>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end visitor  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- total orders  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">Total Orders</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">@Model.TotalOrders</h1>
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end total orders  -->
+        <!-- ============================================================== -->
+    </div>
+</div>
+
+@section pageScripts{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['line'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Date');
+            data.addColumn('number', 'Revenue');
+            // for (var i = 0; i < chart_data.length; i++) {
+     
+            data.addRow([new Date('2021-01-10'), Number('2000')]);
+            data.addRow([new Date('2021-01-11'), Number('5000')]);
+            data.addRow([new Date('2021-01-12'), Number('7000')]);
+            data.addRow([new Date('2021-01-13'), Number('8000')]);
+            data.addRow([new Date('2021-01-14'), Number('9000')]);
+            data.addRow([new Date('2021-01-15'), Number('200')]);
+            data.addRow([new Date('2021-01-16'), Number('100')]);
+            data.addRow([new Date('2021-01-19'), Number('9200')]);
+            data.addRow([new Date('2021-01-26'), Number('6000')]);
+            data.addRow([new Date('2021-01-27'), Number('1000')]);
+            data.addRow([new Date('2021-01-29'), Number('9000')]);
+            data.addRow([new Date('2021-02-01'), Number('1000')]);
+            data.addRow([new Date('2021-02-02'), Number('28000')]);
+            data.addRow([new Date('2021-02-03'), Number('11000')]);
+            data.addRow([new Date('2021-02-04'), Number('26000')]);
+
+            // }
+            var options = {
+                chart: {
+                    title: 'Revenue chart over time',
+                    subtitle: 'Currency(Dollar $)'
+                },
+                series: [{ color: 'green', visibleInLegend: true }],
+                height: 300,
+                hAxis: {
+                    format: 'yyyy/MM/dd'
+                }
+            };
+
+            var chart = new google.charts.Line(document.getElementById('chart-1'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['line'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Date');
+            data.addColumn('number', 'Payment');
+            // for (var i = 0; i < chart_data.length; i++) {
+   
+            data.addRow([new Date('2021-01-10'), Number('2000')]);
+            data.addRow([new Date('2021-01-11'), Number('5000')]);
+            data.addRow([new Date('2021-01-12'), Number('7000')]);
+            data.addRow([new Date('2021-01-13'), Number('8000')]);
+            data.addRow([new Date('2021-01-14'), Number('9000')]);
+            data.addRow([new Date('2021-01-15'), Number('200')]);
+            data.addRow([new Date('2021-01-16'), Number('100')]);
+            data.addRow([new Date('2021-01-19'), Number('9200')]);
+            data.addRow([new Date('2021-01-26'), Number('6000')]);
+            data.addRow([new Date('2021-01-27'), Number('1000')]);
+            data.addRow([new Date('2021-01-29'), Number('9000')]);
+            data.addRow([new Date('2021-02-01'), Number('1000')]);
+            data.addRow([new Date('2021-02-02'), Number('28000')]);
+            data.addRow([new Date('2021-02-03'), Number('11000')]);
+            data.addRow([new Date('2021-02-04'), Number('26000')]);
+
+            // }
+            var options = {
+                chart: {
+                    title: 'Payment chart over time',
+                    subtitle: 'Currency(Dollar $)'
+                },
+                series: [{ color: 'red', visibleInLegend: true }],
+                height: 300,
+                hAxis: {
+                    format: 'yyyy/MM/dd'
+                },
+                color: "red"
+            };
+
+            var chart = new google.charts.Line(document.getElementById('chart-2'));
+
+            chart.draw(data, options);
+        }
+    </script>
+}
+
