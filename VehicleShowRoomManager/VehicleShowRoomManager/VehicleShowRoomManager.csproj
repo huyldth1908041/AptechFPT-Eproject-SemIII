@@ -727,7 +727,6 @@
     <Content Include="Views\ShowRoom\CreateSaleOrderModelView.cshtml" />
     <Content Include="Views\ShowRoom\ListPendingSaleOrder.cshtml" />
     <Content Include="Views\ShowRoom\_ListVehiclePartialView.cshtml" />
-    <Content Include="Views\ShowRoom\ListAvailableVehicle.cshtml" />
     <Content Include="Views\ShowRoom\ManageVehicle.cshtml" />
     <Content Include="Views\ShowRoom\ManageVehicleDetail.cshtml" />
     <Content Include="Views\ShowRoom\GoodReceiptDetail.cshtml" />
@@ -736,7 +735,6 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\ShowRoom\ListVehicleModel.cshtml" />
     <Content Include="Views\ShowRoom\_ListVehicleModelByBrand.cshtml" />
     <Content Include="Views\ShowRoom\VehicleModelDetail.cshtml" />
     <Content Include="Views\ShowRoom\SaleOrderDetail.cshtml" />
