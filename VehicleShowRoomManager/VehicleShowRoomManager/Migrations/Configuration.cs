@@ -566,7 +566,7 @@
                 {
                     Id = 1,
                     ReceiptPrice = 30000,
-                    ReceivedAt = DateTime.Now,
+                    ReceivedAt = DateTime.ParseExact("2021-01-08 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     PrepaymentMoney = 5000,
                     VehicleId = 2,
                     Status = GoodsReceiptStatus.Prepayment,
@@ -577,7 +577,7 @@
                 {
                     Id = 2,
                     ReceiptPrice = 30000,
-                    ReceivedAt = DateTime.Now,
+                    ReceivedAt = DateTime.ParseExact("2021-02-15 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     PrepaymentMoney = 7500,
                     VehicleId = 3,
                     Status = GoodsReceiptStatus.Prepayment,
@@ -588,7 +588,7 @@
                 {
                     Id = 3,
                     ReceiptPrice = 20000,
-                    ReceivedAt = DateTime.Now,
+                    ReceivedAt = DateTime.ParseExact("2021-03-10 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     PrepaymentMoney = 9000,
                     VehicleId = 4,
                     Status = GoodsReceiptStatus.Prepayment,
@@ -599,7 +599,7 @@
                 {
                     Id = 4,
                     ReceiptPrice = 20000,
-                    ReceivedAt = DateTime.Now,
+                    ReceivedAt = DateTime.ParseExact("2021-03-24 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     PrepaymentMoney = 10000,
                     VehicleId = 5,
                     Status = GoodsReceiptStatus.Prepayment,
@@ -610,7 +610,7 @@
                 {
                     Id = 5,
                     ReceiptPrice = 20000,
-                    ReceivedAt = DateTime.Now,
+                    ReceivedAt = DateTime.ParseExact("2021-04-01 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     PrepaymentMoney = 12000,
                     VehicleId = 6,
                     Status = GoodsReceiptStatus.Prepayment,
@@ -621,7 +621,7 @@
                 {
                     Id = 6,
                     ReceiptPrice = 120000,
-                    ReceivedAt = DateTime.Now,
+                    ReceivedAt = DateTime.ParseExact("2021-04-05 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     PrepaymentMoney = 85000,
                     VehicleId = 8,
                     Status = GoodsReceiptStatus.Prepayment,
@@ -632,7 +632,7 @@
                 {
                     Id = 7,
                     ReceiptPrice = 120000,
-                    ReceivedAt = DateTime.Now,
+                    ReceivedAt = DateTime.ParseExact("2021-04-11 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     PrepaymentMoney = 65000,
                     VehicleId = 9,
                     Status = GoodsReceiptStatus.Prepayment,
