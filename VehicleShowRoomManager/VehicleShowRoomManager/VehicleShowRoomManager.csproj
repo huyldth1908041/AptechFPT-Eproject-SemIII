@@ -163,6 +163,10 @@
     <Compile Include="Migrations\202104091052359_Add_PayMethod_To_Bills_Table.Designer.cs">
       <DependentUpon>202104091052359_Add_PayMethod_To_Bills_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104110951073_Add_Bill_Image_To_Bills_Table.cs" />
+    <Compile Include="Migrations\202104110951073_Add_Bill_Image_To_Bills_Table.Designer.cs">
+      <DependentUpon>202104110951073_Add_Bill_Image_To_Bills_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -788,6 +792,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104091052359_Add_PayMethod_To_Bills_Table.resx">
       <DependentUpon>202104091052359_Add_PayMethod_To_Bills_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104110951073_Add_Bill_Image_To_Bills_Table.resx">
+      <DependentUpon>202104110951073_Add_Bill_Image_To_Bills_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
