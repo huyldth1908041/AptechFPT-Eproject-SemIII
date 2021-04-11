@@ -13,33 +13,32 @@
     <link href="@Url.Content("~/Content/account.css")" rel="stylesheet" />
     <title>Login</title>
 </head>
-<body>
-
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm" class="account">
+<body class="login">
+    <div class="row login">
+        <div class="col-md-4 account">
+            <section id="loginForm" class="account-controll">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h4>Login</h4>
+                    <h2>LOGIN</h2>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
                             @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-primary" />
+                        <div class="col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-primary" style="width: 100%;" />
                         </div>
                     </div>
                     <div class="row">
@@ -52,7 +51,6 @@
                             </div>
                         </div>
                         <div>
-
                             @Html.ActionLink("Sign Up", "Register")
                         </div>
                     </div>
