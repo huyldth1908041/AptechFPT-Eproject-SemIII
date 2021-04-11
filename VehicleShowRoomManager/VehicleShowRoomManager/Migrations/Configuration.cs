@@ -7,12 +7,13 @@
     using static VehicleShowRoomManager.Models.Bill;
     using static VehicleShowRoomManager.Models.Brand;
     using static VehicleShowRoomManager.Models.Customer;
+    using static VehicleShowRoomManager.Models.Employee;
     using static VehicleShowRoomManager.Models.GoodsReceipt;
     using static VehicleShowRoomManager.Models.SaleOrder;
     using static VehicleShowRoomManager.Models.Vehicle;
     using static VehicleShowRoomManager.Models.VehicleModel;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<VehicleShowRoomManager.Models.ShowRoomDataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Models.ShowRoomDataContext>
     {
         public Configuration()
         {
@@ -20,7 +21,7 @@
             AutomaticMigrationDataLossAllowed = false;
         }
 
-        protected override void Seed(VehicleShowRoomManager.Models.ShowRoomDataContext context)
+        protected override void Seed(Models.ShowRoomDataContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -33,7 +34,7 @@
                {
                    Id = 1,
                    Name = "Kia",
-                   Description = "Xe Kia",
+                   Description = "Kia Brand",
                    Status = BrandStatus.Active,
                    CreatedAt = DateTime.Now,
                    UpdatedAt = DateTime.Now
@@ -42,7 +43,7 @@
                {
                    Id = 2,
                    Name = "Toyota",
-                   Description = "Xe Toyota",
+                   Description = "Toyota Brand",
                    Status = BrandStatus.Active,
                    CreatedAt = DateTime.Now,
                    UpdatedAt = DateTime.Now
@@ -51,7 +52,34 @@
                {
                    Id = 3,
                    Name = "Mazda",
-                   Description = "Xe Mazda",
+                   Description = "Mazda Brand",
+                   Status = BrandStatus.Active,
+                   CreatedAt = DateTime.Now,
+                   UpdatedAt = DateTime.Now
+               },
+               new Models.Brand()
+               {
+                   Id = 4,
+                   Name = "Lexus",
+                   Description = "Lexus Brand",
+                   Status = BrandStatus.Active,
+                   CreatedAt = DateTime.Now,
+                   UpdatedAt = DateTime.Now
+               },
+               new Models.Brand()
+               {
+                   Id = 5,
+                   Name = "Mercedes",
+                   Description = "Mercedes Brand",
+                   Status = BrandStatus.Active,
+                   CreatedAt = DateTime.Now,
+                   UpdatedAt = DateTime.Now
+               },
+               new Models.Brand()
+               {
+                   Id = 6,
+                   Name = "Honda",
+                   Description = "Honda Brand",
                    Status = BrandStatus.Active,
                    CreatedAt = DateTime.Now,
                    UpdatedAt = DateTime.Now
@@ -90,6 +118,39 @@
                     ModelNumber = "Mazda CX-5",
                     Status = VehicleModelStatus.Active,
                     Descriptions = "Mazda CX-5 line of sport utility vehicle with high chassis",
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.VehicleModel()
+                {
+                    Id = 4,
+                    BrandId = 4,
+                    ModelName = "Lexus LX 570",
+                    ModelNumber = "Lexus LX 570",
+                    Status = VehicleModelStatus.Active,
+                    Descriptions = "This is Lexus LX 570",
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.VehicleModel()
+                {
+                    Id = 5,
+                    BrandId = 5,
+                    ModelName = "Mercedes C200",
+                    ModelNumber = "Mercedes C200",
+                    Status = VehicleModelStatus.Active,
+                    Descriptions = "This is Mercedes C200",
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.VehicleModel()
+                {
+                    Id = 6,
+                    BrandId = 6,
+                    ModelName = "Honda CR-V",
+                    ModelNumber = "Honda CR-V",
+                    Status = VehicleModelStatus.Active,
+                    Descriptions = "This is Honda CR-V",
                     UpdatedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
                 }
@@ -175,6 +236,51 @@
                     Cover = "9.xe-mau-den-mazda-cx-5-2019-2020-muaxegiatot-com_hytppf",
                     Color = "Black",
                     VehicleModelId = 3,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.ModelImage()
+                {
+                    Id = 10,
+                    Cover = "10.mau-xe-kia-morning-sparkling-silver_csdzjj",
+                    Color = "Gray",
+                    VehicleModelId = 1,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.ModelImage()
+                {
+                    Id = 11,
+                    Cover = "11.innova-bronze-mica_jt8t2e",
+                    Color = "Black",
+                    VehicleModelId = 2,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.ModelImage()
+                {
+                    Id = 12,
+                    Cover = "13.71dZrx4ejbL._UY560__awtouo",
+                    Color = "Gray",
+                    VehicleModelId = 4,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.ModelImage()
+                {
+                    Id = 13,
+                    Cover = "14.xehay-Mercedes-Benz-C200-AMG-Line-191017-7_cyop4h",
+                    Color = "Black",
+                    VehicleModelId = 5,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Models.ModelImage()
+                {
+                    Id = 14,
+                    Cover = "15.infographic-10-mau-xe-o-to-ban-chay-nhat-thang-1-2019-tai-viet-nam-155746_sb0xmq",
+                    Color = "Blue",
+                    VehicleModelId = 6,
                     UpdatedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
                 }
@@ -397,6 +503,60 @@
                     VehicleModelId = 3,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
+                },
+                new Models.Vehicle()
+                {
+                    Id = 13,
+                    Color = "Gray",
+                    Name = "Lexus LX 570",
+                    Cover = "9.xe-mau-den-mazda-cx-5-2019-2020-muaxegiatot-com_hytppf",
+                    VIN = "",
+                    FN = "",
+                    SalePrice = 150000,
+                    Description = "<ul><li>Vehicle name: Lexus LX 570</li><li>Dimensions: 4.550 mm D x 1.840 mm R x 1.680 mm C</li><li>Type: Both</li><li>Control: Manual</li><li>Color: Gray</li></ul>",
+                    Type = VehicleType.Both,
+                    Control = VehicleControlType.Manual,
+                    Status = VehicleStatus.Pending,
+                    Assets = VehicleAssets.Default,
+                    VehicleModelId = 4,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Vehicle()
+                {
+                    Id = 14,
+                    Color = "Black",
+                    Name = "Mercedes C200",
+                    Cover = "14.xehay-Mercedes-Benz-C200-AMG-Line-191017-7_cyop4h",
+                    VIN = "",
+                    FN = "",
+                    SalePrice = 70000,
+                    Description = "<ul><li>Vehicle name: Mercedes C200</li><li>Dimensions: 4.550 mm D x 1.840 mm R x 1.680 mm C</li><li>Type: Diesel</li><li>Control: Manual</li><li>Color: Black</li></ul>",
+                    Type = VehicleType.Diesel,
+                    Control = VehicleControlType.Manual,
+                    Status = VehicleStatus.Pending,
+                    Assets = VehicleAssets.Default,
+                    VehicleModelId = 5,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Vehicle()
+                {
+                    Id = 15,
+                    Color = "Blue",
+                    Name = "Honda CR-V",
+                    Cover = "15.infographic-10-mau-xe-o-to-ban-chay-nhat-thang-1-2019-tai-viet-nam-155746_sb0xmq",
+                    VIN = "",
+                    FN = "",
+                    SalePrice = 80000,
+                    Description = "<ul><li>Vehicle name: Honda CR-V</li><li>Dimensions: 4.550 mm D x 1.840 mm R x 1.680 mm C</li><li>Type: Petrol</li><li>Control: Automatic</li><li>Color: Blue</li></ul>",
+                    Type = VehicleType.Petrol,
+                    Control = VehicleControlType.Automatic,
+                    Status = VehicleStatus.Pending,
+                    Assets = VehicleAssets.Default,
+                    VehicleModelId = 6,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
                 }
             );
 
@@ -407,10 +567,10 @@
                     Id = 1,
                     ReceiptPrice = 30000,
                     ReceivedAt = DateTime.Now,
-                    PrepaymentMoney = 15000,
+                    PrepaymentMoney = 5000,
                     VehicleId = 2,
                     Status = GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.ParseExact("2021-04-01 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                    CreatedAt = DateTime.ParseExact("2021-01-08 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -418,10 +578,10 @@
                     Id = 2,
                     ReceiptPrice = 30000,
                     ReceivedAt = DateTime.Now,
-                    PrepaymentMoney = 20000,
+                    PrepaymentMoney = 7500,
                     VehicleId = 3,
                     Status = GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.ParseExact("2021-04-02 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                    CreatedAt = DateTime.ParseExact("2021-02-15 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -429,10 +589,10 @@
                     Id = 3,
                     ReceiptPrice = 20000,
                     ReceivedAt = DateTime.Now,
-                    PrepaymentMoney = 5000,
+                    PrepaymentMoney = 9000,
                     VehicleId = 4,
                     Status = GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.ParseExact("2021-04-04 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                    CreatedAt = DateTime.ParseExact("2021-03-10 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -443,7 +603,7 @@
                     PrepaymentMoney = 10000,
                     VehicleId = 5,
                     Status = GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.ParseExact("2021-04-06 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                    CreatedAt = DateTime.ParseExact("2021-03-24 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -451,10 +611,10 @@
                     Id = 5,
                     ReceiptPrice = 20000,
                     ReceivedAt = DateTime.Now,
-                    PrepaymentMoney = 10000,
+                    PrepaymentMoney = 12000,
                     VehicleId = 6,
                     Status = GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.ParseExact("2021-04-07 00:00:00", "yyyy-MM-dd HH:mm:ss",System.Globalization.CultureInfo.InvariantCulture),
+                    CreatedAt = DateTime.ParseExact("2021-04-01 00:00:00", "yyyy-MM-dd HH:mm:ss",System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -462,10 +622,10 @@
                     Id = 6,
                     ReceiptPrice = 120000,
                     ReceivedAt = DateTime.Now,
-                    PrepaymentMoney = 80000,
+                    PrepaymentMoney = 85000,
                     VehicleId = 8,
                     Status = GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.ParseExact("2021-04-10 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                    CreatedAt = DateTime.ParseExact("2021-04-05 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -599,52 +759,106 @@
                 new Models.Bill()
                 {
                     Id = 1,
-                    PayedMoney = 30000,
+                    PayedMoney = 50000,
                     SaleOrderId = 1,
                     PayMethod = BillPayMethod.Card,
                     Status = BillStatus.Done,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.ParseExact("2021-01-03 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.Bill()
                 {
                     Id = 2,
-                    PayedMoney = 20000,
+                    PayedMoney = 40000,
                     SaleOrderId = 2,
                     PayMethod = BillPayMethod.Direct,
                     Status = BillStatus.Done,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.ParseExact("2021-01-19 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.Bill()
                 {
                     Id = 3,
-                    PayedMoney = 20000,
+                    PayedMoney = 30000,
                     SaleOrderId = 3,
                     PayMethod = BillPayMethod.Direct,
                     Status = BillStatus.Done,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.ParseExact("2021-02-08 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.Bill()
                 {
                     Id = 4,
-                    PayedMoney = 30000,
+                    PayedMoney = 60000,
                     SaleOrderId = 4,
                     PayMethod = BillPayMethod.Card,
                     Status = BillStatus.Done,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.ParseExact("2021-03-23 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.Bill()
                 {
                     Id = 5,
-                    PayedMoney = 120000,
+                    PayedMoney = 150000,
                     SaleOrderId = 5,
                     PayMethod = BillPayMethod.Card,
                     Status = BillStatus.Done,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.ParseExact("2021-04-09 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
+                }
+            );
+
+            // Employee seed
+            context.Employees.AddOrUpdate(x => x.Id,
+                new Models.Employee()
+                {
+                    Id = 1,
+                    Name = "Duc Nguyen",
+                    Email = "duc@gmail.com",
+                    Phone = "0123456789",
+                    Address = "Ha Noi",
+                    Position = "Dealer",
+                    Status = EmployeeStatus.ACTIVE
+                },
+                new Models.Employee()
+                {
+                    Id = 2,
+                    Name = "Tuan Anh",
+                    Email = "tuananh@gmail.com",
+                    Phone = "0123456789",
+                    Address = "Ha Noi",
+                    Position = "Accountant",
+                    Status = EmployeeStatus.ACTIVE
+                },
+                new Models.Employee()
+                {
+                    Id = 3,
+                    Name = "Minh Vu",
+                    Email = "minh@gmail.com",
+                    Phone = "0914605779",
+                    Address = "Ha Noi",
+                    Position = "Dealer",
+                    Status = EmployeeStatus.ACTIVE
+                },
+                new Models.Employee()
+                {
+                    Id = 4,
+                    Name = "Trang Nguyen",
+                    Email = "trang@gmail.com",
+                    Phone = "0912456789",
+                    Address = "Ha Noi",
+                    Position = "Dealer",
+                    Status = EmployeeStatus.ACTIVE
+                },
+                new Models.Employee()
+                {
+                    Id = 5,
+                    Name = "Thao Le",
+                    Email = "thao@gmail.com",
+                    Phone = "0973884932",
+                    Address = "Ha Noi",
+                    Position = "Dealer",
+                    Status = EmployeeStatus.ACTIVE
                 }
             );
         }
