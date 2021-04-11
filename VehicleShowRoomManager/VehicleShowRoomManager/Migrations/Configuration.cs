@@ -4,7 +4,13 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using static VehicleShowRoomManager.Models.Bill;
+    using static VehicleShowRoomManager.Models.Brand;
+    using static VehicleShowRoomManager.Models.Customer;
+    using static VehicleShowRoomManager.Models.GoodsReceipt;
+    using static VehicleShowRoomManager.Models.SaleOrder;
     using static VehicleShowRoomManager.Models.Vehicle;
+    using static VehicleShowRoomManager.Models.VehicleModel;
 
     internal sealed class Configuration : DbMigrationsConfiguration<VehicleShowRoomManager.Models.ShowRoomDataContext>
     {
@@ -28,7 +34,7 @@
                    Id = 1,
                    Name = "Kia",
                    Description = "Xe Kia",
-                   Status = Models.Brand.BrandStatus.Active,
+                   Status = BrandStatus.Active,
                    CreatedAt = DateTime.Now,
                    UpdatedAt = DateTime.Now
                },
@@ -37,7 +43,7 @@
                    Id = 2,
                    Name = "Toyota",
                    Description = "Xe Toyota",
-                   Status = Models.Brand.BrandStatus.Active,
+                   Status = BrandStatus.Active,
                    CreatedAt = DateTime.Now,
                    UpdatedAt = DateTime.Now
                },
@@ -46,7 +52,7 @@
                    Id = 3,
                    Name = "Mazda",
                    Description = "Xe Mazda",
-                   Status = Models.Brand.BrandStatus.Active,
+                   Status = BrandStatus.Active,
                    CreatedAt = DateTime.Now,
                    UpdatedAt = DateTime.Now
                }
@@ -60,7 +66,7 @@
                     BrandId = 1,
                     ModelName = "Kia Morning",
                     ModelNumber = "Kia Morning",
-                    Status = Models.VehicleModel.VehicleModelStatus.Active,
+                    Status = VehicleModelStatus.Active,
                     Descriptions = "Kia Morning is a small car, many middle-income users choose",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -71,7 +77,7 @@
                     BrandId = 2,
                     ModelName = "Toyota Innova",
                     ModelNumber = "Toyota Innova",
-                    Status = Models.VehicleModel.VehicleModelStatus.Active,
+                    Status = VehicleModelStatus.Active,
                     Descriptions = "The Toyota Innova features an elegant design",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -82,7 +88,7 @@
                     BrandId = 3,
                     ModelName = "Mazda CX-5",
                     ModelNumber = "Mazda CX-5",
-                    Status = Models.VehicleModel.VehicleModelStatus.Active,
+                    Status = VehicleModelStatus.Active,
                     Descriptions = "Mazda CX-5 line of sport utility vehicle with high chassis",
                     UpdatedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
@@ -403,8 +409,8 @@
                     ReceivedAt = DateTime.Now,
                     PrepaymentMoney = 15000,
                     VehicleId = 2,
-                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.Now,
+                    Status = GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.ParseExact("2021-04-01 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -414,8 +420,8 @@
                     ReceivedAt = DateTime.Now,
                     PrepaymentMoney = 20000,
                     VehicleId = 3,
-                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.Now,
+                    Status = GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.ParseExact("2021-04-02 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -425,8 +431,8 @@
                     ReceivedAt = DateTime.Now,
                     PrepaymentMoney = 5000,
                     VehicleId = 4,
-                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.Now,
+                    Status = GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.ParseExact("2021-04-04 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -436,8 +442,8 @@
                     ReceivedAt = DateTime.Now,
                     PrepaymentMoney = 10000,
                     VehicleId = 5,
-                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.Now,
+                    Status = GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.ParseExact("2021-04-06 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -447,8 +453,8 @@
                     ReceivedAt = DateTime.Now,
                     PrepaymentMoney = 10000,
                     VehicleId = 6,
-                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.Now,
+                    Status = GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.ParseExact("2021-04-07 00:00:00", "yyyy-MM-dd HH:mm:ss",System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -458,8 +464,8 @@
                     ReceivedAt = DateTime.Now,
                     PrepaymentMoney = 80000,
                     VehicleId = 8,
-                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
-                    CreatedAt = DateTime.Now,
+                    Status = GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.ParseExact("2021-04-10 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
                     UpdatedAt = DateTime.Now
                 },
                 new Models.GoodsReceipt()
@@ -469,7 +475,174 @@
                     ReceivedAt = DateTime.Now,
                     PrepaymentMoney = 65000,
                     VehicleId = 9,
-                    Status = Models.GoodsReceipt.GoodsReceiptStatus.Prepayment,
+                    Status = GoodsReceiptStatus.Prepayment,
+                    CreatedAt = DateTime.ParseExact("2021-04-11 00:00:00", "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                    UpdatedAt = DateTime.Now
+                }
+            );
+
+            // Customer seed
+            context.Customers.AddOrUpdate(x => x.Id,
+                new Models.Customer()
+                {
+                    Id = 1,
+                    Name = "Le Minh Hoang",
+                    Phone = "0123456789",
+                    Address = "12 Me Tri",
+                    Email = "hoang@gmail.com",
+                    Status = CustomerStatus.Active,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Customer()
+                {
+                    Id = 2,
+                    Name = "Luu Duc Huy",
+                    Phone = "0123883290",
+                    Address = "20 Ho Tung Mau",
+                    Email = "huy@gmail.com",
+                    Status = CustomerStatus.Active,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Customer()
+                {
+                    Id = 3,
+                    Name = "Do Thai Anh",
+                    Phone = "0914366644",
+                    Address = "10 Cau Giay",
+                    Email = "thaianh@gmail.com",
+                    Status = CustomerStatus.Active,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Customer()
+                {
+                    Id = 4,
+                    Name = "Hoang Huy Truong",
+                    Phone = "0914598775",
+                    Address = "77 Nguyen Trai St",
+                    Email = "truong@gmail.com",
+                    Status = CustomerStatus.Active,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Customer()
+                {
+                    Id = 5,
+                    Name = "Cao Linh",
+                    Phone = "0989734455",
+                    Address = "34 Cau Giay",
+                    Email = "caolinh@gmail.com",
+                    Status = CustomerStatus.Active,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                }
+            );
+
+            // SaleOrder seed
+            context.SaleOrders.AddOrUpdate(x => x.Id,
+                new Models.SaleOrder()
+                {
+                    Id = 1,
+                    CustomerId = 1,
+                    VehicleId = 2,
+                    TotalPrice = 30000,
+                    CreateAt = DateTime.Now,
+                    UpdateAt = DateTime.Now,
+                    Status = SaleOrderStatus.Pending
+                },
+                new Models.SaleOrder()
+                {
+                    Id = 2,
+                    CustomerId = 2,
+                    VehicleId = 4,
+                    TotalPrice = 20000,
+                    CreateAt = DateTime.Now,
+                    UpdateAt = DateTime.Now,
+                    Status = SaleOrderStatus.Pending
+                },
+                new Models.SaleOrder()
+                {
+                    Id = 3,
+                    CustomerId = 3,
+                    VehicleId = 5,
+                    TotalPrice = 20000,
+                    CreateAt = DateTime.Now,
+                    UpdateAt = DateTime.Now,
+                    Status = SaleOrderStatus.Pending
+                },
+                new Models.SaleOrder()
+                {
+                    Id = 4,
+                    CustomerId = 4,
+                    VehicleId = 3,
+                    TotalPrice = 30000,
+                    CreateAt = DateTime.Now,
+                    UpdateAt = DateTime.Now,
+                    Status = SaleOrderStatus.Pending
+                },
+                new Models.SaleOrder()
+                {
+                    Id = 5,
+                    CustomerId = 5,
+                    VehicleId = 7,
+                    TotalPrice = 120000,
+                    CreateAt = DateTime.Now,
+                    UpdateAt = DateTime.Now,
+                    Status = SaleOrderStatus.Pending
+                }
+            );
+
+            // Bill seed
+            context.Bills.AddOrUpdate(x => x.Id,
+                new Models.Bill()
+                {
+                    Id = 1,
+                    PayedMoney = 30000,
+                    SaleOrderId = 1,
+                    PayMethod = BillPayMethod.Card,
+                    Status = BillStatus.Done,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Bill()
+                {
+                    Id = 2,
+                    PayedMoney = 20000,
+                    SaleOrderId = 2,
+                    PayMethod = BillPayMethod.Direct,
+                    Status = BillStatus.Done,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Bill()
+                {
+                    Id = 3,
+                    PayedMoney = 20000,
+                    SaleOrderId = 3,
+                    PayMethod = BillPayMethod.Direct,
+                    Status = BillStatus.Done,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Bill()
+                {
+                    Id = 4,
+                    PayedMoney = 30000,
+                    SaleOrderId = 4,
+                    PayMethod = BillPayMethod.Card,
+                    Status = BillStatus.Done,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                },
+                new Models.Bill()
+                {
+                    Id = 5,
+                    PayedMoney = 120000,
+                    SaleOrderId = 5,
+                    PayMethod = BillPayMethod.Card,
+                    Status = BillStatus.Done,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
                 }
