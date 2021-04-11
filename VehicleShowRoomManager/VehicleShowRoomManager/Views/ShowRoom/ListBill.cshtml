@@ -26,6 +26,9 @@
                                 @Html.DisplayNameFor(model => model.Id)
                             </th>
                             <th>
+                                Bill Image
+                            </th>
+                            <th>
                                 Payed Money
                             </th>
                             <th>
@@ -49,6 +52,9 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    <img src="@item.GetSmallImage()" alt="Bill Image" />
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PayedMoney)
