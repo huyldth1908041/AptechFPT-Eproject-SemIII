@@ -208,6 +208,7 @@
     <Compile Include="Models\AuthenticationModels.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\ChartBindingModel.cs" />
     <Compile Include="Models\CreateBillViewModel.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DashBoardViewModel.cs" />

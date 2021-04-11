@@ -37,8 +37,8 @@ namespace VehicleShowRoomManager.Controllers
             var totalCustomer = _db.Customers.Count();
             var totalModels = _db.VehicleModels.Count();
             var toltalOrdes = _db.PurchaseOrderDetails.Count() + _db.SaleOrders.Count();
-            var viewModel = new DashBoardViewModel 
-            { 
+            var viewModel = new DashBoardViewModel
+            {
                 Bills = listBills,
                 GoodsReceipts = listGoodsReceipt,
                 PurchaseOrders = listCurrentPurchaseOrders,
@@ -106,7 +106,7 @@ namespace VehicleShowRoomManager.Controllers
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 Cover = model.Cover,
-                
+
             });
             _db.Vehicles.Add(model);
             _db.SaveChanges();
@@ -221,7 +221,7 @@ namespace VehicleShowRoomManager.Controllers
             model.CreatedAt = DateTime.Now;
             model.UpdatedAt = DateTime.Now;
             model.ReceivedAt = DateTime.Now;
-           
+
             _db.GoodsReceipts.Add(model);
             _db.SaveChanges();
 
@@ -410,13 +410,13 @@ namespace VehicleShowRoomManager.Controllers
         //sale order detail
         public ActionResult BillDetail(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var bill = _db.Bills.Find(id);
-            if(bill == null)
+            if (bill == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -662,7 +662,7 @@ namespace VehicleShowRoomManager.Controllers
         public ActionResult CancelSaleOrder(int id)
         {
 
-          
+
             var saleOrder = _db.SaleOrders.Find(id);
             if (saleOrder == null)
             {
@@ -683,7 +683,7 @@ namespace VehicleShowRoomManager.Controllers
             }
             return RedirectToAction("ListPendingSaleOrder", "ShowRoom");
         }
-       
+
         public ActionResult EditPurchaseOrderDetail(int? id)
         {
             if (id == 0)
@@ -761,12 +761,12 @@ namespace VehicleShowRoomManager.Controllers
         [HttpGet]
         public ActionResult CreateBill(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var saleOrder = _db.SaleOrders.Find(id);
-            if(saleOrder == null || saleOrder.Status == SaleOrder.SaleOrderStatus.Cancel)
+            if (saleOrder == null || saleOrder.Status == SaleOrder.SaleOrderStatus.Cancel)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -781,11 +781,11 @@ namespace VehicleShowRoomManager.Controllers
         [HttpPost]
         public ActionResult CreateBill(int SalerOrderId, int PayMethod, float PayedMoney, List<string> Covers)
         {
-            
+
 
             var newBill = new Bill
             {
-                PayMethod = (Bill.BillPayMethod) PayMethod,
+                PayMethod = (Bill.BillPayMethod)PayMethod,
                 PayedMoney = PayedMoney,
                 UpdatedAt = DateTime.Now,
                 CreatedAt = DateTime.Now,
@@ -814,7 +814,7 @@ namespace VehicleShowRoomManager.Controllers
                 //update model
                 newBill.BillImage = cover.ToString();
             }
-  
+
             _db.Bills.Add(newBill);
             _db.SaveChanges();
             return RedirectToAction("ListBill");
@@ -825,6 +825,48 @@ namespace VehicleShowRoomManager.Controllers
             var list = _db.Bills.ToList();
             return View(list);
         }
+        //for ajax call only
+        [HttpGet]
+        public string ListBilJson()
+        {
+            var listModel = new List<BillBindingModel>();
+            var listBills = _db.Bills.ToList();
+            foreach (var item in listBills)
+            {
+                listModel.Add(new BillBindingModel
+                {
+                    Id = item.Id,
+                    CreatedAt = item.CreatedAt.ToString("yyyy-MM-dd"),
+                    PayedMoney = item.PayedMoney,
+                    UpdatedAt = item.UpdatedAt.ToString("yyyy-MM-dd"),
+                });
+            }
+
+            return JsonConvert.SerializeObject(listModel);
+        }
+        //for ajax call only
+        [HttpGet]
+        public string ListGoodsReceiptsJson()
+        {
+            var listModel = new List<GoodsReceiptBindingModel>();
+            var listBills = _db.GoodsReceipts.ToList();
+            foreach (var item in listBills)
+            {
+                listModel.Add(new GoodsReceiptBindingModel
+                {
+                    Id = item.Id,
+                    ReceivedAt = item.ReceivedAt.ToString("yyyy-MM-dd"),
+                  
+              
+                    PrepaymentMoney = item.PrepaymentMoney,
+                    ReceiptPrice = item.ReceiptPrice,
+                    
+                });
+            }
+
+            return JsonConvert.SerializeObject(listModel);
+        }
+
 
     }
 }

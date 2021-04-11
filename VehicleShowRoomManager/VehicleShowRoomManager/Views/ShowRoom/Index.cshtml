@@ -95,7 +95,7 @@
                                     <th class="border-0">#</th>
                                     <th class="border-0">Model Number</th>
                                     <th class="border-0">Quantity</th>
-               
+
                                     <th class="border-0">Price</th>
                                     <th class="border-0">Order Time</th>
 
@@ -103,17 +103,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               @foreach(var item in Model.PurchaseOrders)
-                               {
-                                   <tr>
-                                       <td>@item.Id</td>
-                                       <td>@item.GetModelNames()</td>
-                                       <td>@item.Quantity</td>
-                                       <td>@item.TotalPrice</td>
-                                       <td>@item.CreatedAt.ToString("MM-dd-yyyy HH:mm:ss")</td>
-                                       <td>@item.Status</td>
-                                   </tr>
-                               }
+                                @foreach (var item in Model.PurchaseOrders)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.GetModelNames()</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.TotalPrice</td>
+                                        <td>@item.CreatedAt.ToString("MM-dd-yyyy HH:mm:ss")</td>
+                                        <td>@item.Status</td>
+                                    </tr>
+                                }
                                 <tr>
                                     <td colspan="9"><a href="@Url.Action("ListPurchaseOrder")" class="btn btn-outline-light float-right">View Details</a></td>
                                 </tr>
@@ -141,7 +141,7 @@
                     <div class="metric-value d-inline-block">
                         <h1 class="mb-1">@Model.TotalModels</h1>
                     </div>
-          
+
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@
                     <div class="metric-value d-inline-block">
                         <h1 class="mb-1">@Model.TotalVehicle</h1>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -176,7 +176,7 @@
                         <h1 class="mb-1">@Model.TotalCustomer</h1>
 
                     </div>
-           
+
                 </div>
             </div>
         </div>
@@ -193,7 +193,7 @@
                     <div class="metric-value d-inline-block">
                         <h1 class="mb-1">@Model.TotalOrders</h1>
                     </div>
-              
+
                 </div>
             </div>
         </div>
@@ -204,95 +204,139 @@
 </div>
 
 @section pageScripts{
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['line'] });
-        google.charts.setOnLoadCallback(drawChart);
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 
-        function drawChart() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('date', 'Date');
-            data.addColumn('number', 'Revenue');
-            // for (var i = 0; i < chart_data.length; i++) {
-     
-            data.addRow([new Date('2021-01-10'), Number('2000')]);
-            data.addRow([new Date('2021-01-11'), Number('5000')]);
-            data.addRow([new Date('2021-01-12'), Number('7000')]);
-            data.addRow([new Date('2021-01-13'), Number('8000')]);
-            data.addRow([new Date('2021-01-14'), Number('9000')]);
-            data.addRow([new Date('2021-01-15'), Number('200')]);
-            data.addRow([new Date('2021-01-16'), Number('100')]);
-            data.addRow([new Date('2021-01-19'), Number('9200')]);
-            data.addRow([new Date('2021-01-26'), Number('6000')]);
-            data.addRow([new Date('2021-01-27'), Number('1000')]);
-            data.addRow([new Date('2021-01-29'), Number('9000')]);
-            data.addRow([new Date('2021-02-01'), Number('1000')]);
-            data.addRow([new Date('2021-02-02'), Number('28000')]);
-            data.addRow([new Date('2021-02-03'), Number('11000')]);
-            data.addRow([new Date('2021-02-04'), Number('26000')]);
-
-            // }
-            var options = {
-                chart: {
-                    title: 'Revenue chart over time',
-                    subtitle: 'Currency(Dollar $)'
-                },
-                series: [{ color: 'green', visibleInLegend: true }],
-                height: 300,
-                hAxis: {
-                    format: 'yyyy/MM/dd'
-                }
-            };
-
-            var chart = new google.charts.Line(document.getElementById('chart-1'));
-
-            chart.draw(data, options);
-        }
     </script>
     <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['line'] });
-        google.charts.setOnLoadCallback(drawChart);
+        //call ajax for bill data
 
-        function drawChart() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('date', 'Date');
-            data.addColumn('number', 'Payment');
-            // for (var i = 0; i < chart_data.length; i++) {
-   
-            data.addRow([new Date('2021-01-10'), Number('2000')]);
-            data.addRow([new Date('2021-01-11'), Number('5000')]);
-            data.addRow([new Date('2021-01-12'), Number('7000')]);
-            data.addRow([new Date('2021-01-13'), Number('8000')]);
-            data.addRow([new Date('2021-01-14'), Number('9000')]);
-            data.addRow([new Date('2021-01-15'), Number('200')]);
-            data.addRow([new Date('2021-01-16'), Number('100')]);
-            data.addRow([new Date('2021-01-19'), Number('9200')]);
-            data.addRow([new Date('2021-01-26'), Number('6000')]);
-            data.addRow([new Date('2021-01-27'), Number('1000')]);
-            data.addRow([new Date('2021-01-29'), Number('9000')]);
-            data.addRow([new Date('2021-02-01'), Number('1000')]);
-            data.addRow([new Date('2021-02-02'), Number('28000')]);
-            data.addRow([new Date('2021-02-03'), Number('11000')]);
-            data.addRow([new Date('2021-02-04'), Number('26000')]);
-
-            // }
-            var options = {
-                chart: {
-                    title: 'Payment chart over time',
-                    subtitle: 'Currency(Dollar $)'
-                },
-                series: [{ color: 'red', visibleInLegend: true }],
-                height: 300,
-                hAxis: {
-                    format: 'yyyy/MM/dd'
-                },
-                color: "red"
-            };
-
-            var chart = new google.charts.Line(document.getElementById('chart-2'));
-
-            chart.draw(data, options);
+        const getBills = async () => {
+            try {
+                const response = await fetch("/ShowRoom/ListBilJson/", { method: "GET", cache: "no-cache" });
+                if (response.ok) {
+                    const jsonResponse = await response.json();
+                    console.log(jsonResponse);
+                    return jsonResponse;
+                }
+            } catch (err) {
+                console.log(err)
+                return null;
+            }
         }
+        const drawlChartAsync = async () => {
+            const bills = await getBills();
+            google.charts.load('current', { 'packages': ['line'] });
+            google.charts.setOnLoadCallback(() => {
+                console.log("in call back");
+                var data = new google.visualization.DataTable();
+                console.log("in call back bills: " + bills)
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'Revenue');
+                for (var i = 0; i < bills.length; i++) {
+                    let currentBill = bills[i];
+                    console.log("current date:  " + currentBill.CreatedAt + " " + " Current money: " + currentBill.PayedMoney)
+                    data.addRow([new Date(currentBill.CreatedAt), Number(currentBill.PayedMoney)]);
+                    //data.addRow([new Date('2021-01-11'), Number('5000')]);
+                    //data.addRow([new Date('2021-01-12'), Number('7000')]);
+                    //data.addRow([new Date('2021-01-13'), Number('8000')]);
+                    //data.addRow([new Date('2021-01-14'), Number('9000')]);
+                    //data.addRow([new Date('2021-01-15'), Number('200')]);
+                    //data.addRow([new Date('2021-01-16'), Number('100')]);
+                    //data.addRow([new Date('2021-01-19'), Number('9200')]);
+                    //data.addRow([new Date('2021-01-26'), Number('6000')]);
+                    //data.addRow([new Date('2021-01-27'), Number('1000')]);
+                    //data.addRow([new Date('2021-01-29'), Number('9000')]);
+                    //data.addRow([new Date('2021-02-01'), Number('1000')]);
+                    //data.addRow([new Date('2021-02-02'), Number('28000')]);
+                    //data.addRow([new Date('2021-02-03'), Number('11000')]);
+                    //data.addRow([new Date('2021-02-04'), Number('26000')]);
+
+                }
+                var options = {
+                    chart: {
+                        title: 'Revenue chart over time',
+                        subtitle: 'Currency(Dollar $)'
+                    },
+                    series: [{ color: 'green', visibleInLegend: true }],
+                    height: 300,
+                    hAxis: {
+                        format: 'yyyy/MM/dd'
+                    }
+                };
+
+                var chart = new google.charts.Line(document.getElementById('chart-1'));
+
+                chart.draw(data, options);
+            });
+        }
+        drawlChartAsync();
+
+    </script>
+    <script type="text/javascript">
+        //call ajax for bill data
+
+        const getGoodsReceipts = async () => {
+            try {
+                const response = await fetch("/ShowRoom/ListGoodsReceiptsJson/", { method: "GET", cache: "no-cache" });
+                if (response.ok) {
+                    const jsonResponse = await response.json();
+                    console.log(jsonResponse);
+                    return jsonResponse;
+                }
+            } catch (err) {
+                console.log(err)
+                return null;
+            }
+        }
+        const drawlChartAsync2 = async () => {
+            const goodsReceipts = await getGoodsReceipts();
+            google.charts.load('current', { 'packages': ['line'] });
+            google.charts.setOnLoadCallback(() => {
+                console.log("in call back goods receipt");
+                var data = new google.visualization.DataTable();
+                
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'Payment');
+                for (var i = 0; i < goodsReceipts.length; i++) {
+                    let currentGoodsReceipt = goodsReceipts[i];
+                    console.log("current date:  " + currentGoodsReceipt.ReceivedAt + " " + " Current money: " + currentGoodsReceipt.PrepaymentMoney)
+                    data.addRow([new Date(currentGoodsReceipt.ReceivedAt), Number(currentGoodsReceipt.PrepaymentMoney)]);
+                    //data.addRow([new Date('2021-01-11'), Number('5000')]);
+                    //data.addRow([new Date('2021-01-12'), Number('7000')]);
+                    //data.addRow([new Date('2021-01-13'), Number('8000')]);
+                    //data.addRow([new Date('2021-01-14'), Number('9000')]);
+                    //data.addRow([new Date('2021-01-15'), Number('200')]);
+                    //data.addRow([new Date('2021-01-16'), Number('100')]);
+                    //data.addRow([new Date('2021-01-19'), Number('9200')]);
+                    //data.addRow([new Date('2021-01-26'), Number('6000')]);
+                    //data.addRow([new Date('2021-01-27'), Number('1000')]);
+                    //data.addRow([new Date('2021-01-29'), Number('9000')]);
+                    //data.addRow([new Date('2021-02-01'), Number('1000')]);
+                    //data.addRow([new Date('2021-02-02'), Number('28000')]);
+                    //data.addRow([new Date('2021-02-03'), Number('11000')]);
+                    //data.addRow([new Date('2021-02-04'), Number('26000')]);
+
+                }
+                var options = {
+                    chart: {
+                        title: 'Payement chart over time',
+                        subtitle: 'Currency(Dollar $)'
+                    },
+                    series: [{ color: 'green', visibleInLegend: true }],
+                    height: 300,
+                    hAxis: {
+                        format: 'yyyy/MM/dd'
+                    }
+                };
+
+                var chart = new google.charts.Line(document.getElementById('chart-2'));
+
+                chart.draw(data, options);
+            });
+        }
+        drawlChartAsync2();
+        
+        
     </script>
 }
 
