@@ -37,12 +37,12 @@
                             <li class="nav-item dropdown nav-user">
                                 <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</a>
                                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                
+
                                     <form action="@Url.Action("LogOff", "Account")" method="post">
                                         @Html.AntiForgeryToken()
                                         <button type="submit" class="dropdown-item"><i class="fas fa-power-off mr-2"></i>Logout</button>
                                     </form>
-                                   
+
                                 </div>
                             </li>
                         }
@@ -83,7 +83,20 @@
                                             <a class="nav-link" href="/Showroom/ListVehicleModel">List Vehicle Model</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/Showroom/ManageVehicle">Manage Vehicle</a>
+                                            <a class="nav-link" href="/Showroom/ManageVehicle">List Pending Vehicle</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fa fa-fw fa-rocket"></i>Vehicle Model</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/VehicleModel/">List Vehicle Model</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/VehicleModel/Create">Create Vehicle Model</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,6 +109,32 @@
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="/Showroom/ListBill"><i class="fas fa-fw fa-file"></i>List Bill</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-f fa-inbox"></i>Customer</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Customer/">List Customer</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Customer/Create">Create Customer</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-columns"></i>Employee</a>
+                                <div id="submenu-5" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Employees/">List Employee</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Employees/Create">Create Employee</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
