@@ -94,8 +94,19 @@ namespace VehicleShowRoomManager.Controllers
             // Save timestamp and status
             model.CreatedAt = DateTime.Now;
             model.UpdatedAt = DateTime.Now;
-            model.Assets = Vehicle.VehicleAssets.Default;
+            model.Assets = Vehicle.VehicleAssets.Fixed;
             model.Status = Vehicle.VehicleStatus.Pending;
+            //save new img to models img
+            var thisModel = _db.VehicleModels.Find(model.VehicleModelId);
+            thisModel.ModelImages.Add(new ModelImage
+            {
+                VehicleModelId = thisModel.Id,
+                Color = model.Color,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Cover = model.Cover,
+                
+            });
             _db.Vehicles.Add(model);
             _db.SaveChanges();
 
@@ -502,6 +513,8 @@ namespace VehicleShowRoomManager.Controllers
         {
             var saleOrder = _db.SaleOrders.Find(id);
             saleOrder.Status = SaleOrder.SaleOrderStatus.Done;
+            var currentVehicle = saleOrder.Vehicle;
+            currentVehicle.Assets = Vehicle.VehicleAssets.Current;
             _db.SaveChanges();
 
             return RedirectToAction("ListPendingSaleOrder", "ShowRoom");
@@ -581,7 +594,7 @@ namespace VehicleShowRoomManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var listColor = new HashSet<string>();
-            foreach (var item in currentModel.Vehicles)
+            foreach (var item in currentModel.ModelImages)
             {
                 listColor.Add(item.Color);
             }

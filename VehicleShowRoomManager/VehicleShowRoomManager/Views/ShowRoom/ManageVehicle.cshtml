@@ -41,6 +41,10 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Status)
                             </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assets)
+                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.CreatedAt)
                             </th>
@@ -52,38 +56,42 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VehicleModel.ModelNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Color)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    <img src="@item.GetSmallImage()" alt="Alternate Text" />
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.SalePrice)
-                                </td>
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VehicleModel.ModelNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Color)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <img src="@item.GetSmallImage()" alt="Alternate Text" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalePrice)
+                            </td>
 
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CreatedAt)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
 
-                                <td>
-                                    <a href="@Url.Action("ManageVehicleDetail", new { id = item.Id})" class="btn btn-primary">Details</a>
-                                </td>
-                            </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Assets)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedAt)
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("ManageVehicleDetail", new { id = item.Id})" class="btn btn-primary">Details</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                     @*<tfoot>
