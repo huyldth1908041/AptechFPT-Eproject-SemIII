@@ -179,7 +179,7 @@
     <Compile Include="Models\ShowRoomDataContext.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleModel.cs" />
-    <Compile Include="Models\VehicleModelController.cs" />
+    <Compile Include="Controllers\VehicleModelController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
