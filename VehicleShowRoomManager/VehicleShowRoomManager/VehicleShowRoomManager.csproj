@@ -132,6 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowRoomController.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\CreateBillViewModel.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DashBoardViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\GetVehicleByColorBindingModel.cs" />
     <Compile Include="Models\GoodsReceipt.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Models\ShowRoomDataContext.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Controllers\VehicleModelController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -743,6 +746,17 @@
     <Content Include="Views\ShowRoom\CreateBill.cshtml" />
     <Content Include="Views\ShowRoom\ListBill.cshtml" />
     <Content Include="Views\ShowRoom\BillDetail.cshtml" />
+    <Content Include="Views\ShowRoom\Index.cshtml" />
+    <Content Include="Views\VehicleModel\Create.cshtml" />
+    <Content Include="Views\VehicleModel\Delete.cshtml" />
+    <Content Include="Views\VehicleModel\Details.cshtml" />
+    <Content Include="Views\VehicleModel\Edit.cshtml" />
+    <Content Include="Views\VehicleModel\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

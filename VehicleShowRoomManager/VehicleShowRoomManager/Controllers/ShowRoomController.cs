@@ -26,6 +26,31 @@ namespace VehicleShowRoomManager.Controllers
             _db = new ShowRoomDataContext();
         }
         // GET: ShowRoom
+        public ActionResult Index()
+        {
+            var listCurrentSaleOrders = _db.SaleOrders.OrderBy(s => s.CreateAt).Take(5).ToList();
+            var listBills = _db.Bills.ToList();
+            var listCurrentPurchaseOrders = _db.PurchaseOrders.OrderBy(s => s.CreatedAt).Take(5).ToList();
+            var listGoodsReceipt = _db.GoodsReceipts.ToList();
+            var totalVehicle = _db.Vehicles.Count();
+            var totalCustomer = _db.Customers.Count();
+            var totalModels = _db.VehicleModels.Count();
+            var toltalOrdes = _db.PurchaseOrderDetails.Count() + _db.SaleOrders.Count();
+            var viewModel = new DashBoardViewModel 
+            { 
+                Bills = listBills,
+                GoodsReceipts = listGoodsReceipt,
+                PurchaseOrders = listCurrentPurchaseOrders,
+                SaleOrders = listCurrentSaleOrders,
+                TotalCustomer = totalCustomer,
+                TotalOrders = toltalOrdes,
+                TotalModels = totalModels,
+                TotalVehicle = totalVehicle
+            };
+
+            return View(viewModel);
+
+        }
         public ActionResult CreateVehicle()
         {
             ViewBag.Models = _db.VehicleModels.ToList();
@@ -69,8 +94,19 @@ namespace VehicleShowRoomManager.Controllers
             // Save timestamp and status
             model.CreatedAt = DateTime.Now;
             model.UpdatedAt = DateTime.Now;
-            model.Assets = Vehicle.VehicleAssets.Default;
+            model.Assets = Vehicle.VehicleAssets.Fixed;
             model.Status = Vehicle.VehicleStatus.Pending;
+            //save new img to models img
+            var thisModel = _db.VehicleModels.Find(model.VehicleModelId);
+            thisModel.ModelImages.Add(new ModelImage
+            {
+                VehicleModelId = thisModel.Id,
+                Color = model.Color,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Cover = model.Cover,
+                
+            });
             _db.Vehicles.Add(model);
             _db.SaveChanges();
 
@@ -477,6 +513,8 @@ namespace VehicleShowRoomManager.Controllers
         {
             var saleOrder = _db.SaleOrders.Find(id);
             saleOrder.Status = SaleOrder.SaleOrderStatus.Done;
+            var currentVehicle = saleOrder.Vehicle;
+            currentVehicle.Assets = Vehicle.VehicleAssets.Current;
             _db.SaveChanges();
 
             return RedirectToAction("ListPendingSaleOrder", "ShowRoom");
@@ -555,12 +593,12 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var listColor = new List<string>();
+            var listColor = new HashSet<string>();
             foreach (var item in currentModel.ModelImages)
             {
                 listColor.Add(item.Color);
             }
-            ViewBag.ListColor = listColor;
+            ViewBag.ListColor = listColor.ToList();
             return View(currentModel);
         }
         //for ajax call only
