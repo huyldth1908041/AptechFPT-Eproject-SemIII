@@ -236,7 +236,7 @@
                 data.addColumn('number', 'Revenue');
                 for (var i = 0; i < bills.length; i++) {
                     let currentBill = bills[i];
-                    console.log("current date:  " + currentBill.CreatedAt + " " + " Current money: " + currentBill.PayedMoney)
+                    console.log("BILLS: current date:  " + currentBill.CreatedAt + " " + " Current money: " + currentBill.PayedMoney)
                     data.addRow([new Date(currentBill.CreatedAt), Number(currentBill.PayedMoney)]);
                     //data.addRow([new Date('2021-01-11'), Number('5000')]);
                     //data.addRow([new Date('2021-01-12'), Number('7000')]);
@@ -301,7 +301,7 @@
                 data.addColumn('number', 'Payment');
                 for (var i = 0; i < goodsReceipts.length; i++) {
                     let currentGoodsReceipt = goodsReceipts[i];
-                    console.log("current date:  " + currentGoodsReceipt.ReceivedAt + " " + " Current money: " + currentGoodsReceipt.PrepaymentMoney)
+                    console.log("GOODS RECEIPTS: current date:  " + currentGoodsReceipt.ReceivedAt + " " + " Current money: " + currentGoodsReceipt.PrepaymentMoney)
                     data.addRow([new Date(currentGoodsReceipt.ReceivedAt), Number(currentGoodsReceipt.PrepaymentMoney)]);
                     //data.addRow([new Date('2021-01-11'), Number('5000')]);
                     //data.addRow([new Date('2021-01-12'), Number('7000')]);

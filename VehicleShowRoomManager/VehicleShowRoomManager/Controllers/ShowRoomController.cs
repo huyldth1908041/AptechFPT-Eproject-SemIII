@@ -830,7 +830,7 @@ namespace VehicleShowRoomManager.Controllers
         public string ListBilJson()
         {
             var listModel = new List<BillBindingModel>();
-            var listBills = _db.Bills.ToList();
+            var listBills = _db.Bills.OrderBy(x => x.CreatedAt).ToList();
             foreach (var item in listBills)
             {
                 listModel.Add(new BillBindingModel
@@ -849,7 +849,7 @@ namespace VehicleShowRoomManager.Controllers
         public string ListGoodsReceiptsJson()
         {
             var listModel = new List<GoodsReceiptBindingModel>();
-            var listBills = _db.GoodsReceipts.ToList();
+            var listBills = _db.GoodsReceipts.OrderBy(x => x.ReceivedAt).ToList();
             foreach (var item in listBills)
             {
                 listModel.Add(new GoodsReceiptBindingModel
