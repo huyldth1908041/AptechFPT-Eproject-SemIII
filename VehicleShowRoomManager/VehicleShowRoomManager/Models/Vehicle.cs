@@ -100,7 +100,7 @@ namespace VehicleShowRoomManager.Models
         {
             if (this.Cover == null || this.Cover.Length == 0)
             {
-                this.Cover = "n2ssze3joengkhuzgzr3";
+                this.Cover = "vwg6d5hsjeur046qwwmg";
             }
             var listCover = this.Cover.Split(',');
             var listImagesUrl = new List<string>();

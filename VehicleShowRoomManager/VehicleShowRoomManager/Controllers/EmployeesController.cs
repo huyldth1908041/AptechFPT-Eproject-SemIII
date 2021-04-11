@@ -10,6 +10,7 @@ using VehicleShowRoomManager.Models;
 
 namespace VehicleShowRoomManager.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private ShowRoomDataContext db = new ShowRoomDataContext();

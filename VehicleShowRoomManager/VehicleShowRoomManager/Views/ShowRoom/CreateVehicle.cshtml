@@ -200,11 +200,11 @@
             var myWidget = cloudinary.createUploadWidget({
                 cloudName: 'thaianh284',
                 uploadPreset: 'diucrcip',
-                multiple: true,
+                multiple: false,
                 form: '#create-vehicle-form',
                 fieldName: 'Covers',
                 thumbnails: '.cover',
-                cropping: "server",
+                cropping: true,
 
 
             }, (error, result) => {

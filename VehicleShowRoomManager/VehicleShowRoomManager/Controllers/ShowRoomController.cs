@@ -18,6 +18,7 @@ using VehicleShowRoomManager.Models;
 
 namespace VehicleShowRoomManager.Controllers
 {
+    [Authorize]
     public class ShowRoomController : Controller
     {
         private static ShowRoomDataContext _db;
@@ -67,7 +68,7 @@ namespace VehicleShowRoomManager.Controllers
 
             {
                 //set cover to holder image public key
-                model.Cover = "n2ssze3joengkhuzgzr3";
+                model.Cover = "vwg6d5hsjeur046qwwmg";
             }
             else
             {
@@ -778,8 +779,10 @@ namespace VehicleShowRoomManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateBill(int SalerOrderId, int PayMethod, float PayedMoney)
+        public ActionResult CreateBill(int SalerOrderId, int PayMethod, float PayedMoney, List<string> Covers)
         {
+            
+
             var newBill = new Bill
             {
                 PayMethod = (Bill.BillPayMethod) PayMethod,
@@ -787,10 +790,31 @@ namespace VehicleShowRoomManager.Controllers
                 UpdatedAt = DateTime.Now,
                 CreatedAt = DateTime.Now,
                 Status = Bill.BillStatus.Pending,
-                SaleOrderId = SalerOrderId
+                SaleOrderId = SalerOrderId,
 
             };
 
+            if (Covers == null || Covers.Count() == 0)
+            {
+                Debug.WriteLine("Null Covers");
+                //set cover to holder image public key
+                newBill.BillImage = "images_rce8z6";
+            }
+            else
+            {
+                //save cloudinary public id separated by comma 
+                var cover = new StringBuilder();
+                foreach (var item in Covers)
+                {
+                    cover.Append(item);
+                    cover.Append(",");
+                }
+                //delete last comma
+                cover.Length--;
+                //update model
+                newBill.BillImage = cover.ToString();
+            }
+  
             _db.Bills.Add(newBill);
             _db.SaveChanges();
             return RedirectToAction("ListBill");
