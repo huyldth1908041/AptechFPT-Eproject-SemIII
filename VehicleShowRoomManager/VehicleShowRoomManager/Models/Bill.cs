@@ -45,7 +45,7 @@ namespace VehicleShowRoomManager.Models
         {
             if (this.BillImage == null || this.BillImage.Length == 0)
             {
-                this.BillImage = "n2ssze3joengkhuzgzr3";
+                this.BillImage = "images_rce8z6";
             }
             //get first BillImage
             var listBillImage = this.BillImage.Split(',');
