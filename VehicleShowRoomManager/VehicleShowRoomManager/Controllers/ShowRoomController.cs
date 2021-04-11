@@ -26,6 +26,31 @@ namespace VehicleShowRoomManager.Controllers
             _db = new ShowRoomDataContext();
         }
         // GET: ShowRoom
+        public ActionResult Index()
+        {
+            var listCurrentSaleOrders = _db.SaleOrders.OrderBy(s => s.CreateAt).Take(5).ToList();
+            var listBills = _db.Bills.ToList();
+            var listCurrentPurchaseOrders = _db.PurchaseOrders.OrderBy(s => s.CreatedAt).Take(5).ToList();
+            var listGoodsReceipt = _db.GoodsReceipts.ToList();
+            var totalVehicle = _db.Vehicles.Count();
+            var totalCustomer = _db.Customers.Count();
+            var totalModels = _db.VehicleModels.Count();
+            var toltalOrdes = _db.PurchaseOrderDetails.Count() + _db.SaleOrders.Count();
+            var viewModel = new DashBoardViewModel 
+            { 
+                Bills = listBills,
+                GoodsReceipts = listGoodsReceipt,
+                PurchaseOrders = listCurrentPurchaseOrders,
+                SaleOrders = listCurrentSaleOrders,
+                TotalCustomer = totalCustomer,
+                TotalOrders = toltalOrdes,
+                TotalModels = totalModels,
+                TotalVehicle = totalVehicle
+            };
+
+            return View(viewModel);
+
+        }
         public ActionResult CreateVehicle()
         {
             ViewBag.Models = _db.VehicleModels.ToList();
@@ -555,12 +580,12 @@ namespace VehicleShowRoomManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var listColor = new List<string>();
-            foreach (var item in currentModel.ModelImages)
+            var listColor = new HashSet<string>();
+            foreach (var item in currentModel.Vehicles)
             {
                 listColor.Add(item.Color);
             }
-            ViewBag.ListColor = listColor;
+            ViewBag.ListColor = listColor.ToList();
             return View(currentModel);
         }
         //for ajax call only
