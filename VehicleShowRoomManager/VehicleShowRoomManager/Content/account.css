@@ -1,0 +1,58 @@
+﻿body.login {
+    background-image: url("bg-login.png");
+}
+
+body.register {
+    background-image: url("bg-register.png");
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    body .row {
+        margin: 0;
+    }
+
+.account {
+    margin: auto;
+    background-color: #fe841d96;
+    margin-top: 130px;
+}
+
+.register .account {
+    background-color: #ffffff80
+}
+
+.account-controll {
+    text-align: -webkit-center;
+}
+
+.account .row {
+    width: 100%;
+    place-content: center;
+}
+
+.account .account-controll h2 {
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.register .account-controll h2 {
+    color: #bc4011
+}
+
+.account .account-controll .row .form-group {
+    padding-right: 10px;
+}
+
+.register .account .account-controll {
+    text-align: -webkit-center;
+}
+
+    .register .account .account-controll .form-group:last-child {
+        margin-bottom: 50px;
+        margin-top: 30px;
+    }

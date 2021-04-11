@@ -10,47 +10,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="@Url.Content("~/Content/account.css")" rel="stylesheet" />
     <title>Register</title>
 </head>
-<body>
-
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
+<body class="register">
+    <div class="row register">
+        <div class="col-md-4 account">
+            <section id="loginForm " class="account-controll">
                 <form action="@Url.Action("Register")" method="post" id="register">
                     @Html.AntiForgeryToken()
-                    <h4>Create a new account.</h4>
-                    <hr />
+                    <h2>CREATE NEW ACCOUNT</h2>
                     @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" class="btn btn-primary" value="Register" />
+                            <input type="submit" class="btn btn-primary" value="Register" style="width: 100%;" />
                         </div>
                     </div>
                 </form>
