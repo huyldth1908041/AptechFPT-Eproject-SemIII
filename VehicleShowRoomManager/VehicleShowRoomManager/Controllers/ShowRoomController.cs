@@ -18,6 +18,7 @@ using VehicleShowRoomManager.Models;
 
 namespace VehicleShowRoomManager.Controllers
 {
+    [Authorize]
     public class ShowRoomController : Controller
     {
         private static ShowRoomDataContext _db;
@@ -67,7 +68,7 @@ namespace VehicleShowRoomManager.Controllers
 
             {
                 //set cover to holder image public key
-                model.Cover = "n2ssze3joengkhuzgzr3";
+                model.Cover = "vwg6d5hsjeur046qwwmg";
             }
             else
             {
@@ -797,7 +798,7 @@ namespace VehicleShowRoomManager.Controllers
             {
                 Debug.WriteLine("Null Covers");
                 //set cover to holder image public key
-                newBill.BillImage = "n2ssze3joengkhuzgzr3";
+                newBill.BillImage = "images_rce8z6";
             }
             else
             {
