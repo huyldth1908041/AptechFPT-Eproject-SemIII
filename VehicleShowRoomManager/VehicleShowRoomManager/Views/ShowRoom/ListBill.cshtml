@@ -18,66 +18,68 @@
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered first">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Id)
-                            </th>
-                            <th>
-                                Bill Image
-                            </th>
-                            <th>
-                                Payed Money
-                            </th>
-                            <th>
-                                Payement Method
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Status)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CreatedAt)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.UpdatedAt)
-                            </th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered first">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
-                                <td>
-                                    <img src="@item.GetSmallImage()" alt="Bill Image" />
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PayedMoney)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PayMethod)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CreatedAt)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UpdatedAt)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("BillDetail", new { id = item.Id})" class="btn btn-info"><i class="fas fa-info"></i></a>
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Id)
+                                </th>
+                                <th>
+                                    Bill Image
+                                </th>
+                                <th>
+                                    Payed Money
+                                </th>
+                                <th>
+                                    Payement Method
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CreatedAt)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UpdatedAt)
+                                </th>
+                                <th>Actions</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="text-align: center">
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        <img src="@item.GetSmallImage()" alt="Bill Image" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PayedMoney)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PayMethod)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UpdatedAt)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("BillDetail", new { id = item.Id})" class="btn btn-info"><i class="fas fa-info"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
