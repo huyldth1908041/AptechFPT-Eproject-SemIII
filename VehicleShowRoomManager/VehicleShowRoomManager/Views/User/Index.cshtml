@@ -11,8 +11,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="@Url.Content("~/Content/assets/libs/css/ListVehicle.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/page-list.css")" rel="stylesheet" />
+    @Styles.Render("~/Contennt/layout-style")
     <title>Customer</title>
 </head>
 
@@ -27,25 +29,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto navbar-right-top">
 
-                        @if (Request.IsAuthenticated)
-                        {
-            <li class="nav-item dropdown nav-user">
-                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</a>
-                <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-
-                    <form action="@Url.Action("LogOff", "Account")" method="post">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="dropdown-item"><i class="fas fa-power-off mr-2"></i>Logout</button>
-                    </form>
-
-                </div>
-            </li>}
-
-                    </ul>
-                </div>
             </nav>
         </div>
         <!-- ============================================================== -->
@@ -60,7 +44,7 @@
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
-        <div class="dashboard-wrapper">
+        <div class="dashboard-wrapper" style="margin-left: 0px;">
             <div class="container-fluid dashboard-content">
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -76,31 +60,31 @@
                         <div class="row" id="vehicle-container">
                             @foreach (var item in Model)
                             {
-                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                    <div class="product-thumbnail">
-                        <div class="product-img-head">
-                            <div class="product-img">
-                                <img src="@item.ModelImages.First().GetAllImages().First()" alt="" class="img-fluid">
-                            </div>
-                            <div class="ribbons"></div>
-                            <div class="ribbons-text">New</div>
+                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="product-thumbnail">
+                                        <div class="product-img-head">
+                                            <div class="product-img">
+                                                <img src="@item.ModelImages.First().GetAllImages().First()" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="ribbons"></div>
+                                            <div class="ribbons-text">New</div>
 
-                        </div>
-                        <div class="product-content">
-                            <div class="product-content-head">
-                                <h3 class="product-title">  @Html.DisplayFor(modelItem => item.ModelName)</h3>
-                                <div class="product-rating d-inline-block">
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </div>
-                                <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.Vehicles.First().SalePrice)</div>
-                            </div>
-                            <div class="product-btn">
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-content-head">
+                                                <h3 class="product-title">  @Html.DisplayFor(modelItem => item.ModelName)</h3>
+                                                <div class="product-rating d-inline-block">
+                                                    @Html.DisplayFor(modelItem => item.Status)
+                                                </div>
+                                                <div class="product-price">&dollar; @Html.DisplayFor(modelItem => item.Vehicles.First().SalePrice)</div>
+                                            </div>
+                                            <div class="product-btn">
 
-                                @Html.ActionLink("Detail", "VehicleModelDetail", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
-                            </div>
-                        </div>
-                    </div>
-                </div>}
+                                                @Html.ActionLink("Detail", "VehicleModelDetail", "ShowRoom", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>}
 
                         </div>
                         @*<div class="page-separate text-center">
@@ -119,10 +103,11 @@
                                 <h4 class="product-sidebar-widget-title">Brand</h4>
                                 @foreach (var item in listBrands)
                                 {
-                    <div class="custom-control custom-radio custom-color-red">
-                        <input type="radio" id="brand-@item.Id" name="brand" class="custom-control-input" value="@item.Id">
-                        <label class="custom-control-label" for="brand-@item.Id">@item.Name</label>
-                    </div>}
+                                    <div class="custom-control custom-radio custom-color-red">
+                                        <input type="radio" id="brand-@item.Id" name="brand" class="custom-control-input" value="@item.Id">
+                                        <label class="custom-control-label" for="brand-@item.Id">@item.Name</label>
+                                    </div>
+                                }
                             </div>
                             <div class="product-sidebar-widget">
                                 <h4 class="product-sidebar-widget-title">Price</h4>
@@ -180,6 +165,7 @@
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         const modelRadios = document.querySelectorAll("input[name='modelNumber']");
         const vehiclesContainer = document.getElementById("vehicle-container");
