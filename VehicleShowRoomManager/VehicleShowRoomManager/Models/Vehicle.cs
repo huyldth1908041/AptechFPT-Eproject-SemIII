@@ -43,7 +43,7 @@ namespace VehicleShowRoomManager.Models
         public enum VehicleStatus
         {
 
-
+       
             Pending, //xe dg cho lay tu hang ve => ko tao dc saleorder, hien thi dc ra view
             Available, // xe da dc lay tu hang ve => tao dc saleorder, hien thi dc ra view
             Sold, // xe da duoc ban => ko tao dc sale order, ko hien thi ra list

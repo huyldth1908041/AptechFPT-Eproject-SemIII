@@ -826,46 +826,46 @@ namespace VehicleShowRoomManager.Controllers
             return View(list);
         }
         //for ajax call only
-        [HttpGet]
-        public string ListBilJson()
-        {
-            var listModel = new List<BillBindingModel>();
-            var listBills = _db.Bills.OrderBy(x => x.CreatedAt).ToList();
-            foreach (var item in listBills)
-            {
-                listModel.Add(new BillBindingModel
-                {
-                    Id = item.Id,
-                    CreatedAt = item.CreatedAt.ToString("yyyy-MM-dd"),
-                    PayedMoney = item.PayedMoney,
-                    UpdatedAt = item.UpdatedAt.ToString("yyyy-MM-dd"),
-                });
-            }
+        //[HttpGet]
+        //public string ListBilJson()
+        //{
+        //    var listModel = new List<BillBindingModel>();
+        //    var listBills = _db.Bills.OrderBy(x => x.CreatedAt).ToList();
+        //    foreach (var item in listBills)
+        //    {
+        //        listModel.Add(new BillBindingModel
+        //        {
+        //            Id = item.Id,
+        //            CreatedAt = item.CreatedAt.ToString("yyyy-MM-dd"),
+        //            PayedMoney = item.PayedMoney,
+        //            UpdatedAt = item.UpdatedAt.ToString("yyyy-MM-dd"),
+        //        });
+        //    }
 
-            return JsonConvert.SerializeObject(listModel);
-        }
-        //for ajax call only
-        [HttpGet]
-        public string ListGoodsReceiptsJson()
-        {
-            var listModel = new List<GoodsReceiptBindingModel>();
-            var listBills = _db.GoodsReceipts.OrderBy(x => x.ReceivedAt).ToList();
-            foreach (var item in listBills)
-            {
-                listModel.Add(new GoodsReceiptBindingModel
-                {
-                    Id = item.Id,
-                    ReceivedAt = item.ReceivedAt.ToString("yyyy-MM-dd"),
-                  
-              
-                    PrepaymentMoney = item.PrepaymentMoney,
-                    ReceiptPrice = item.ReceiptPrice,
-                    
-                });
-            }
+        //    return JsonConvert.SerializeObject(listModel);
+        //}
+        //////for ajax call only
+        //[HttpGet]
+        //public string ListGoodsReceiptsJson()
+        //{
+        //    var listModel = new List<GoodsReceiptBindingModel>();
+        //    var listBills = _db.GoodsReceipts.OrderBy(x => x.ReceivedAt).ToList();
+        //    foreach (var item in listBills)
+        //    {
+        //        listModel.Add(new GoodsReceiptBindingModel
+        //        {
+        //            Id = item.Id,
+        //            ReceivedAt = item.ReceivedAt.ToString("yyyy-MM-dd"),
 
-            return JsonConvert.SerializeObject(listModel);
-        }
+
+        //            PrepaymentMoney = item.PrepaymentMoney,
+        //            ReceiptPrice = item.ReceiptPrice,
+
+        //        });
+        //    }
+
+        //    return JsonConvert.SerializeObject(listModel);
+        //}
 
 
     }

@@ -770,6 +770,7 @@
     <Content Include="Views\ShowRoom\ListPurchaseOrder.cshtml" />
     <Content Include="Views\ShowRoom\ListPurchaseOrderDetail.cshtml" />
     <Content Include="Views\ShowRoom\ListVehicle.cshtml" />
+    <Content Include="Views\ShowRoom\ListVehicleModel.cshtml" />
     <Content Include="Views\ShowRoom\VehicleDetail.cshtml" />
     <Content Include="Views\ShowRoom\CreateSaleOrder.cshtml" />
     <Content Include="Views\ShowRoom\CreateSaleOrderModelView.cshtml" />
